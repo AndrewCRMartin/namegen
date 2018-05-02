@@ -115,13 +115,15 @@ int main(int argc, char **argv)
 BOOL ParseCmdLine(int argc, char **argv, char *inFile, char *outFile)
 {
    inFile[0] = outFile[0] = '\0';
+   argc--; argv++;
 
    /* Require at least one filename */
-   if(argc < 2)
+   if(argc < 1)
       return(FALSE);
 
-   argc--; argv++;
    strncpy(inFile, argv[0], MAXBUFF);
+
+   argc--; argv++;
 
    if(argc)
    {
