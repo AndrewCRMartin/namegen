@@ -1,3 +1,4 @@
+#define DEBUG 2
 /************************************************************************/
 /**
 
@@ -172,6 +173,7 @@ BOOL ProcessAllNames(FILE *in, char *nameFile, FILE *out)
          {
             fprintf(out, " spelling");
          }
+         fprintf(out, "\n");
       }
       
    }
@@ -193,7 +195,18 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
          SpellingOK;
       
       TERMINATE(buffer);
+
+      if(!strcmp(newName, buffer))
+         return(TRUE);
+      
+      if(!blReadMDM("data/boomer.mat"))
+      {
+         fprintf(stderr,"Can't read boomer matrix\n");
+         exit(1);
+      }
+      
       BoomerOK = CheckBoomer(newName, buffer);
+
       SpellingOK   = CheckSpelling(newName, buffer);
 
       if(!BoomerOK)   *conflictType |= TYPE_BOOMER;
@@ -211,10 +224,82 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
 
 BOOL CheckBoomer(char *newName, char *oldName)
 {
-   return(FALSE);
+   int score, newScore, oldScore, maxAlnLen;
+   char *newNameAligned = NULL,
+        *oldNameAligned = NULL;
+   int gapOpenPenalty = 2,
+      gapExtensionPenalty = 1,
+      alignmentLength;
+   REAL finalScore = 0.0;
+
+   
+   maxAlnLen = strlen(newName) + strlen(oldName) + 1;
+   if((newNameAligned = (char *)malloc(maxAlnLen * sizeof(char)))==NULL)
+   {
+      fprintf(stderr, "Error: no memory for storing alignment\n");
+      exit(1);
+   }
+   if((oldNameAligned = (char *)malloc(maxAlnLen * sizeof(char)))==NULL)
+   {
+      fprintf(stderr, "Error: no memory for storing alignment\n");
+      exit(1);
+   }
+   
+   
+   oldScore = blAffinealign(oldName, strlen(oldName),
+                            oldName, strlen(oldName),
+                            FALSE, /* verbose */
+                            FALSE, /* identity */
+                            gapOpenPenalty,
+                            gapExtensionPenalty,
+                            newNameAligned,
+                            oldNameAligned,
+                            &alignmentLength);
+   
+   newScore = blAffinealign(newName, strlen(newName),
+                            newName, strlen(newName),
+                            FALSE, /* verbose */
+                            FALSE, /* identity */
+                            gapOpenPenalty,
+                            gapExtensionPenalty,
+                            newNameAligned,
+                            oldNameAligned,
+                            &alignmentLength);
+
+   score = blAffinealign(newName, strlen(newName),
+                         oldName, strlen(oldName),
+                         FALSE, /* verbose */
+                         FALSE, /* identity */
+                         gapOpenPenalty,
+                         gapExtensionPenalty,
+                         newNameAligned,
+                         oldNameAligned,
+                         &alignmentLength);
+
+   finalScore = 100.0 * score / MIN(oldScore, newScore);
+   
+#ifdef DEBUG
+   fprintf(stderr, "%s %s %.2f\n", newName, oldName, finalScore);
+#if DEBUG > 1
+   newNameAligned[alignmentLength] = '\0';
+   oldNameAligned[alignmentLength] = '\0';
+   
+   fprintf(stderr, "%s\n",   newNameAligned);
+   fprintf(stderr, "%s\n\n", oldNameAligned);
+#endif
+#endif
+
+   free(newNameAligned);
+   free(oldNameAligned);
+
+   if(finalScore > 50.0)
+      return(FALSE);
+   
+   
+   return(TRUE);
 }
 
 BOOL CheckSpelling(char *newName, char *oldName)
 {
-   return(FALSE);
+   return(TRUE);
 }
