@@ -81,7 +81,8 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            unsigned int *conflictType);
 BOOL CheckBoomer(char *newName, char *oldName);
 BOOL CheckSpelling(char *newName, char *oldName);
-
+REAL RunAligment(char *newName, char *oldName,
+                 int gapOpenPenalty, int gapExtensionPenalty);
 
 
 /************************************************************************/
@@ -191,8 +192,8 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
    
    while(fgets(buffer, MAXBUFF, namesFp))
    {
-      BOOL BoomerOK,
-         SpellingOK;
+      BOOL BoomerOK = TRUE,
+         SpellingOK = TRUE;
       
       TERMINATE(buffer);
 
@@ -204,11 +205,18 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
          fprintf(stderr,"Can't read boomer matrix\n");
          exit(1);
       }
-      
       BoomerOK = CheckBoomer(newName, buffer);
+      blFreeMDM();
 
+#ifdef NEW
+      if(!blReadMDM("data/spelling.mat"))
+      {
+         fprintf(stderr,"Can't read spelling matrix\n");
+         exit(1);
+      }
       SpellingOK   = CheckSpelling(newName, buffer);
-
+      blFreeMDM();
+#endif
       if(!BoomerOK)   *conflictType |= TYPE_BOOMER;
       if(!SpellingOK) *conflictType |= TYPE_SPELLING;
       
@@ -222,16 +230,15 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
    return(TRUE);
 }
 
-BOOL CheckBoomer(char *newName, char *oldName)
+REAL RunAlignment(char *newName, char *oldName,
+                  int gapOpenPenalty, int gapExtensionPenalty)
 {
+   
    int score, newScore, oldScore, maxAlnLen;
    char *newNameAligned = NULL,
         *oldNameAligned = NULL;
-   int gapOpenPenalty = 2,
-      gapExtensionPenalty = 1,
-      alignmentLength;
+   int alignmentLength;
    REAL finalScore = 0.0;
-
    
    maxAlnLen = strlen(newName) + strlen(oldName) + 1;
    if((newNameAligned = (char *)malloc(maxAlnLen * sizeof(char)))==NULL)
@@ -292,10 +299,20 @@ BOOL CheckBoomer(char *newName, char *oldName)
    free(newNameAligned);
    free(oldNameAligned);
 
-   if(finalScore > 50.0)
+   return(finalScore);
+}
+
+BOOL CheckBoomer(char *newName, char *oldName)
+{
+   REAL score;
+   int  gapOpenPenalty      = 2,
+        gapExtensionPenalty = 1;
+   
+   score = RunAlignment(newName, oldName, gapOpenPenalty,
+                        gapExtensionPenalty);
+   if(score > 50.0)
       return(FALSE);
-   
-   
+
    return(TRUE);
 }
 
