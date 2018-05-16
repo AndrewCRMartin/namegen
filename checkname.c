@@ -1,3 +1,5 @@
+#undef BOOMER
+#define PHONETICS
 #define DEBUG 2
 /************************************************************************/
 /**
@@ -62,7 +64,7 @@
 */
 #define MAXBUFF 160
 #define TYPE_BOOMER 1
-#define TYPE_SPELLING 2
+#define TYPE_PHONETICS 2
 
 
 /************************************************************************/
@@ -80,7 +82,7 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType);
 BOOL CheckBoomer(char *newName, char *oldName);
-BOOL CheckSpelling(char *newName, char *oldName);
+BOOL CheckPhonetics(char *newName, char *oldName);
 REAL RunAligment(char *newName, char *oldName,
                  int gapOpenPenalty, int gapExtensionPenalty);
 
@@ -170,9 +172,9 @@ BOOL ProcessAllNames(FILE *in, char *nameFile, FILE *out)
          {
             fprintf(out, " boomer");
          }
-         if((conflictType & TYPE_SPELLING))
+         if((conflictType & TYPE_PHONETICS))
          {
-            fprintf(out, " spelling");
+            fprintf(out, " phonetics");
          }
          fprintf(out, "\n");
       }
@@ -193,13 +195,14 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
    while(fgets(buffer, MAXBUFF, namesFp))
    {
       BOOL BoomerOK = TRUE,
-         SpellingOK = TRUE;
+         PhoneticsOK = TRUE;
       
       TERMINATE(buffer);
 
       if(!strcmp(newName, buffer))
          return(TRUE);
-      
+
+#ifdef BOOMER
       if(!blReadMDM("data/boomer.mat"))
       {
          fprintf(stderr,"Can't read boomer matrix\n");
@@ -207,20 +210,22 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
       }
       BoomerOK = CheckBoomer(newName, buffer);
       blFreeMDM();
+#endif
 
-#ifdef NEW
-      if(!blReadMDM("data/spelling.mat"))
+#ifdef PHONETICS
+      if(!blReadMDM("data/kondrak.mat"))
       {
-         fprintf(stderr,"Can't read spelling matrix\n");
+         fprintf(stderr,"Can't read phonetics matrix\n");
          exit(1);
       }
-      SpellingOK   = CheckSpelling(newName, buffer);
+      PhoneticsOK   = CheckPhonetics(newName, buffer);
       blFreeMDM();
 #endif
+
       if(!BoomerOK)   *conflictType |= TYPE_BOOMER;
-      if(!SpellingOK) *conflictType |= TYPE_SPELLING;
+      if(!PhoneticsOK) *conflictType |= TYPE_PHONETICS;
       
-      if((!BoomerOK) || (!SpellingOK))
+      if((!BoomerOK) || (!PhoneticsOK))
       {
          strncpy(conflictName, buffer, maxConflictName);
          return(FALSE);
@@ -285,15 +290,12 @@ REAL RunAlignment(char *newName, char *oldName,
 
    finalScore = 100.0 * score / MIN(oldScore, newScore);
    
-#ifdef DEBUG
-   fprintf(stderr, "%s %s %.2f\n", newName, oldName, finalScore);
 #if DEBUG > 1
    newNameAligned[alignmentLength] = '\0';
    oldNameAligned[alignmentLength] = '\0';
    
-   fprintf(stderr, "%s\n",   newNameAligned);
-   fprintf(stderr, "%s\n\n", oldNameAligned);
-#endif
+   fprintf(stderr, "\n%s\n",   newNameAligned);
+   fprintf(stderr, "%s\n", oldNameAligned);
 #endif
 
    free(newNameAligned);
@@ -305,18 +307,33 @@ REAL RunAlignment(char *newName, char *oldName,
 BOOL CheckBoomer(char *newName, char *oldName)
 {
    REAL score;
-   int  gapOpenPenalty      = 2,
+   int  gapOpenPenalty      = 1,
         gapExtensionPenalty = 1;
    
    score = RunAlignment(newName, oldName, gapOpenPenalty,
                         gapExtensionPenalty);
-   if(score > 50.0)
+
+   fprintf(stderr, "Boomer: %s %s %.2f\n", newName, oldName, score);
+
+   if(score > 60.0)
       return(FALSE);
 
    return(TRUE);
 }
 
-BOOL CheckSpelling(char *newName, char *oldName)
+BOOL CheckPhonetics(char *newName, char *oldName)
 {
+   REAL score;
+   int  gapOpenPenalty      = 12,
+        gapExtensionPenalty = 12;
+   
+   score = RunAlignment(newName, oldName, gapOpenPenalty,
+                        gapExtensionPenalty);
+
+   fprintf(stderr, "Phonetics: %s %s %.2f\n", newName, oldName, score);
+   
+   if(score > 90.0)
+      return(FALSE);
+
    return(TRUE);
 }
