@@ -76,16 +76,17 @@
 */
 int main(int argc, char **argv);
 BOOL ParseCmdLine(int argc, char **argv, char *inFile, char *outFile,
-                  int *type);
+                  int *type, BOOL *doAll, BOOL *verbose);
 void Usage(void);
-BOOL ProcessAllNames(FILE *in, char *nameFile, int type, FILE *out);
+BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
-BOOL CheckBoomer(char *newName, char *oldName, FILE *out);
-BOOL CheckPhonetics(char *newName, char *oldName, FILE *out);
-REAL RunAligment(char *newName, char *oldName,
-                 int gapOpenPenalty, int gapExtensionPenalty);
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out);
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out);
+REAL RunAlignment(char *newName, char *oldName,
+                  int gapOpenPenalty, int gapExtensionPenalty,
+                  BOOL verbose, FILE *out);
 
 
 /************************************************************************/
@@ -96,13 +97,24 @@ int main(int argc, char **argv)
    char inFile[MAXBUFF],
         outFile[MAXBUFF];
    int  type = DEFAULT_TYPE;
+   BOOL doAll = FALSE,
+      verbose = FALSE;
    
-   
-   if(ParseCmdLine(argc, argv, inFile, outFile, &type))
+   if(ParseCmdLine(argc, argv, inFile, outFile, &type, &doAll, &verbose))
    {
       if(blOpenStdFiles(inFile, outFile, &in, &out))
       {
-         ProcessAllNames(in, inFile, type, out);
+         if(doAll)
+         {
+            if(!inFile[0])
+            {
+               Usage();
+            }
+            else
+            {
+               ProcessAllNames(inFile, type, verbose, out);
+            }
+         }
       }
       else
       {
@@ -120,7 +132,7 @@ int main(int argc, char **argv)
 
 /************************************************************************/
 BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
-                  int *type)
+                  int *type, BOOL *doAll, BOOL *verbose)
 {
    BOOL setType = FALSE;
    
@@ -147,6 +159,12 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
                return(FALSE);
             *type   = TYPE_PHONETICS;
             setType = TRUE;
+            break;
+         case 'a':
+            *doAll = TRUE;
+            break;
+         case 'v':
+            *verbose = TRUE;
             break;
          default:
             return(FALSE);
@@ -180,58 +198,96 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
 /************************************************************************/
 void Usage(void)
 {
-   fprintf(stderr,"checknames V0.1 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p][-v] [file.in [file.out]]\n");
+   fprintf(stderr,"       -or-\n");
+   fprintf(stderr,"       checkname -a [-b|-p][-v] file.names [file.out]\n");
+
+   fprintf(stderr,"\n                  -a Check all used names against each other\n");
+   fprintf(stderr,"                  -b Check the boomers\n");
+   fprintf(stderr,"                  -p Check the Kondrak phonetics [Default]\n");
+   fprintf(stderr,"                  -v Verbose - show alignments\n");
+
+   fprintf(stderr,"\nCheckname is a program for comparing potential antibody names against\n");
+   fprintf(stderr,"those already used by the WHO-INN.\n");
+
+   fprintf(stderr,"\nThe -a option is used to compare existing names to look at the \n");
+   fprintf(stderr,"distribution of similarity scores.\n\n");
 }
 
 /************************************************************************/
-BOOL ProcessAllNames(FILE *in, char *nameFile, int type, FILE *out)
+BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out)
 {
-   char name1buffer[MAXBUFF];
-   FILE *namesFp;
-   unsigned int conflictType;
+   char name1[MAXBUFF],
+        name2[MAXBUFF];
+   FILE *fp1 = NULL,
+        *fp2 = NULL;
    
-   if((namesFp=fopen(nameFile, "r"))==NULL)
+   if((fp1=fopen(nameFile, "r"))==NULL)
    {
-      fprintf(stderr,"Error: Can't open names file for reading (%s)\n",
+      fprintf(stderr,"Error: Can't open names file for first reading (%s)\n",
               nameFile);
       return(FALSE);
    }
    
-   while(fgets(buffer, MAXBUFF, in))
+   if((fp2=fopen(nameFile, "r"))==NULL)
    {
-      char conflictName[MAXBUFF];
-      
-      TERMINATE(buffer);
-      
-      rewind(namesFp);
-
-      switch(type)
-      {
-      case TYPE_PHONETICS:
-         if(!blReadMDM("data/kondrak.mat"))
-         {
-            fprintf(stderr,"Error: Can't read phonetics matrix\n");
-            exit(1);
-         }
-         CheckPhonetics(newName, buffer, out);
-         blFreeMDM();
-         break;
-      case TYPE_BOOMER:
-         if(!blReadMDM("data/boomer.mat"))
-         {
-            fprintf(stderr,"Error: Can't read boomer matrix\n");
-            exit(1);
-         }
-         CheckBoomer(newName, buffer, out);
-         blFreeMDM();
-         break;
-      default:
-         fprint(stderr,"Internal Error: Unrecognized type (%d)\n", type);
-         break;
-      }
+      fprintf(stderr,"Error: Can't open names file for second reading (%s)\n",
+              nameFile);
+      return(FALSE);
    }
 
-   fclose(namesFp);
+   switch(type)
+   {
+   case TYPE_PHONETICS:
+      if(!blReadMDM("data/kondrak.mat"))
+      {
+         fprintf(stderr,"Error: Can't read phonetics matrix\n");
+         exit(1);
+      }
+      break;
+   case TYPE_BOOMER:
+      if(!blReadMDM("data/boomer.mat"))
+      {
+         fprintf(stderr,"Error: Can't read boomer matrix\n");
+         exit(1);
+      }
+      break;
+   default:
+      fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+      break;
+   }
+
+   
+   while(fgets(name1, MAXBUFF, fp1))
+   {
+      TERMINATE(name1);
+      rewind(fp2);
+      while(fgets(name2, MAXBUFF, fp2))
+      {
+         TERMINATE(name2);
+         
+         if(strcmp(name1, name2))
+         {
+            switch(type)
+            {
+            case TYPE_PHONETICS:
+               CheckPhonetics(name1, name2, verbose, out);
+               break;
+            case TYPE_BOOMER:
+               CheckBoomer(name1, name2, verbose, out);
+               break;
+            default:
+               fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+               break;
+            }
+         }
+      }
+   }
+   
+   blFreeMDM();
+   fclose(fp1);
+   fclose(fp2);
    return(TRUE);
 }
 
@@ -241,6 +297,7 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out)
 {
+   BOOL verbose = FALSE;
    char buffer[MAXBUFF];
    *conflictType = 0;
    
@@ -260,7 +317,7 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
          fprintf(stderr,"Error: Can't read boomer matrix\n");
          exit(1);
       }
-      BoomerOK = CheckBoomer(newName, buffer, out);
+      BoomerOK = CheckBoomer(newName, buffer, verbose, out);
       blFreeMDM();
 #endif
 
@@ -270,7 +327,7 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
          fprintf(stderr,"Error: Can't read phonetics matrix\n");
          exit(1);
       }
-      PhoneticsOK = CheckPhonetics(newName, buffer, out);
+      PhoneticsOK = CheckPhonetics(newName, buffer, verbose, out);
       blFreeMDM();
 #endif
 
@@ -289,7 +346,8 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
 
 /************************************************************************/
 REAL RunAlignment(char *newName, char *oldName,
-                  int gapOpenPenalty, int gapExtensionPenalty)
+                  int gapOpenPenalty, int gapExtensionPenalty, 
+                  BOOL verbose, FILE *out)
 {
    
    int score, newScore, oldScore, maxAlnLen;
@@ -341,15 +399,16 @@ REAL RunAlignment(char *newName, char *oldName,
                          oldNameAligned,
                          &alignmentLength);
 
-   finalScore = 100.0 * score / MIN(oldScore, newScore);
+   finalScore = 100.0 * score / MAX(oldScore, newScore);
    
-#ifdef ALIGNMENTS
-   newNameAligned[alignmentLength] = '\0';
-   oldNameAligned[alignmentLength] = '\0';
+   if(verbose)
+   {
+      newNameAligned[alignmentLength] = '\0';
+      oldNameAligned[alignmentLength] = '\0';
    
-   fprintf(stderr, "\n%s\n",   newNameAligned);
-   fprintf(stderr, "%s\n", oldNameAligned);
-#endif
+      fprintf(out, "\n%s\n",   newNameAligned);
+      fprintf(out, "%s\n", oldNameAligned);
+   }
 
    free(newNameAligned);
    free(oldNameAligned);
@@ -358,14 +417,14 @@ REAL RunAlignment(char *newName, char *oldName,
 }
 
 /************************************************************************/
-BOOL CheckBoomer(char *newName, char *oldName, FILE *out)
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 1,
         gapExtensionPenalty = 1;
    
    score = RunAlignment(newName, oldName, gapOpenPenalty,
-                        gapExtensionPenalty);
+                        gapExtensionPenalty, verbose, out);
 
    fprintf(out, "Boomer: %s %s %.2f\n", newName, oldName, score);
 
@@ -376,14 +435,14 @@ BOOL CheckBoomer(char *newName, char *oldName, FILE *out)
 }
 
 /************************************************************************/
-BOOL CheckPhonetics(char *newName, char *oldName, FILE *out)
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 10,
         gapExtensionPenalty = 10;
    
    score = RunAlignment(newName, oldName, gapOpenPenalty,
-                        gapExtensionPenalty);
+                        gapExtensionPenalty, verbose, out);
 
    fprintf(out, "Phonetics: %s %s %.2f\n", newName, oldName, score);
    
