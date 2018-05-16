@@ -104,6 +104,10 @@ int main(int argc, char **argv)
    
    letterFeatures = InitLetterFeatures();
 
+   printf("# Kondrak letter sound similarity matrix\n");
+   printf("# Kondrak (2003) Computers and the Humanities 37:273-291\n");
+   printf("# Kondrak PhD Thesis, Chapter 4\n");
+   printf("# Parameters: Cvwl=%.1f Csub=%.1f\n", Cvwl, Csub);
    for(p=0; p<MAXLETTERS; p++)
    {
       for(q=0; q<MAXLETTERS; q++)
@@ -113,9 +117,14 @@ int main(int argc, char **argv)
          REAL Vq    = CalcV(letters[q], Cvwl);
          REAL qsub  = Csub - delta - Vp - Vq;
          
-         printf("%c %c: %f\n", letters[p], letters[q], qsub);
+         printf("%4d", (int)(qsub + 0.5));
       }
+      printf("\n");
    }
+
+   for(p=0; p<MAXLETTERS; p++)
+      printf("   %c", letters[p]);
+   printf("\n");
    
    return(0);
 }
