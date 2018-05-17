@@ -61,9 +61,16 @@
 /* Defines and macros
 */
 #include "constants.h"
+#ifdef TEST
+#define MAXLETTERS 7
+#else
 #define MAXLETTERS 26
+#endif
 #define LETTER(x) (int)(islower(x)?(char)toupper(x):x)-65
+#ifdef FOO
 #define ISVOWEL(a) ((a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u') || (a == 'y'))
+#endif
+#define ISVOWEL(a) ((a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u'))
 
 /* Tables 4.30 and 4.31 */
 typedef struct features
@@ -97,7 +104,11 @@ REAL CalcV(char p, REAL Cvwl);
 int main(int argc, char **argv)
 {
    FEATURES *letterFeatures = NULL;
+#ifdef TEST
+   char     *letters = "aiynprs";
+#else
    char     *letters = "abcdefghijklmnopqrstuvwxyz";
+#endif
    int      p, q;
    REAL     Cvwl = DEFAULT_CVWL;
    REAL     Csub = DEFAULT_CSUB;
@@ -117,7 +128,14 @@ int main(int argc, char **argv)
          REAL Vq    = CalcV(letters[q], Cvwl);
          REAL qsub  = Csub - delta - Vp - Vq;
          
-         printf("%4d", (int)(qsub + 0.5));
+         if(qsub < 0.0)
+         {
+            printf("%4d", (int)(qsub - 0.5));
+         }
+         else
+         {
+            printf("%4d", (int)(qsub + 0.5));
+         }
       }
       printf("\n");
    }
@@ -201,7 +219,11 @@ FEATURES *InitLetterFeatures(void)
    /* v */ {LABIODENTAL,   FRICATIVE,   0,1,0,0,0, 0,    0,       0},
    /* w */ {VELARBILABIAL, HIGHVOWEL,   1,1,0,0,0, HIGH, BACK,    1},
    /* x */ {VELAR,         FRICATIVE,   0,0,0,0,0, 0,    0,       0},
+#ifdef AS_THESIS
    /* y */ {VELAR,         HIGHVOWEL,   1,1,0,0,0, HIGH, FRONT,   0},
+#else
+   /* y */ {PALATAL,       HIGHVOWEL,   0,1,0,0,0, HIGH, FRONT,   0},
+#endif
    /* z */ {ALVEOLAR,      FRICATIVE,   0,1,0,0,0, 0,    0,       0}
    };
 
