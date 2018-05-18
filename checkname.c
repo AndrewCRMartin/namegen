@@ -1,6 +1,3 @@
-#undef BOOMER
-#define PHONETICS
-#define ALIGNMENTS
 /************************************************************************/
 /**
 
@@ -66,10 +63,15 @@
 #define TYPE_BOOMER    1
 #define TYPE_PHONETICS 2
 #define DEFAULT_TYPE   TYPE_PHONETICS
+#define DEFAULT_PHONETICS_MATRIX "data/kondrak.mat"
+#define DEFAULT_BOOMER_MATRIX    "data/boomer.mat"
+#define GAPPEN_DUMMY -10000
 
 /************************************************************************/
 /* Globals
 */
+int gUserGappen    = GAPPEN_DUMMY;
+int gUserGapExtpen = GAPPEN_DUMMY;
 
 /************************************************************************/
 /* Prototypes
@@ -78,7 +80,8 @@ int main(int argc, char **argv);
 BOOL ParseCmdLine(int argc, char **argv, char *inFile, char *outFile,
                   int *type, BOOL *doAll, BOOL *verbose);
 void Usage(void);
-BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out);
+BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
+                     char *phoneticsMatrix, char *boomerMatrix, FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
@@ -98,7 +101,12 @@ int main(int argc, char **argv)
         outFile[MAXBUFF];
    int  type = DEFAULT_TYPE;
    BOOL doAll = FALSE,
-      verbose = FALSE;
+        verbose = FALSE;
+   char phoneticsMatrix[MAXBUFF],
+        boomerMatrix[MAXBUFF];
+
+   strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
+   strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
    
    if(ParseCmdLine(argc, argv, inFile, outFile, &type, &doAll, &verbose))
    {
@@ -112,7 +120,8 @@ int main(int argc, char **argv)
             }
             else
             {
-               ProcessAllNames(inFile, type, verbose, out);
+               ProcessAllNames(inFile, type, verbose,
+                               phoneticsMatrix, boomerMatrix, out);
             }
          }
       }
@@ -166,6 +175,16 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
          case 'v':
             *verbose = TRUE;
             break;
+         case 'g':
+            argc--; argv++;
+            if(!argc) return(FALSE);
+            if(!sscanf(argv[0], "%d", &gUserGappen)) return(FALSE);
+            break;
+         case 'x':
+            argc--; argv++;
+            if(!argc) return(FALSE);
+            if(!sscanf(argv[0], "%d", &gUserGapExtpen)) return(FALSE);
+            break;
          default:
             return(FALSE);
             break;
@@ -199,14 +218,16 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
 void Usage(void)
 {
    fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p][-v] [file.in [file.out]]\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n]  [file.in [file.out]]\n");
    fprintf(stderr,"       -or-\n");
-   fprintf(stderr,"       checkname -a [-b|-p][-v] file.names [file.out]\n");
+   fprintf(stderr,"       checkname -a [-b|-p][-v][-g n][-x n] file.names [file.out]\n");
 
    fprintf(stderr,"\n                  -a Check all used names against each other\n");
    fprintf(stderr,"                  -b Check the boomers\n");
    fprintf(stderr,"                  -p Check the Kondrak phonetics [Default]\n");
    fprintf(stderr,"                  -v Verbose - show alignments\n");
+   fprintf(stderr,"                  -g Specify gap opening penalty\n");
+   fprintf(stderr,"                  -x Specify gap extension penalty\n");
 
    fprintf(stderr,"\nCheckname is a program for comparing potential antibody names against\n");
    fprintf(stderr,"those already used by the WHO-INN.\n");
@@ -216,7 +237,8 @@ void Usage(void)
 }
 
 /************************************************************************/
-BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out)
+BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
+                     char *phoneticsMatrix, char *boomerMatrix, FILE *out)
 {
    char name1[MAXBUFF],
         name2[MAXBUFF];
@@ -240,14 +262,14 @@ BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out)
    switch(type)
    {
    case TYPE_PHONETICS:
-      if(!blReadMDM("data/kondrak.mat"))
+      if(!blReadMDM(phoneticsMatrix))
       {
          fprintf(stderr,"Error: Can't read phonetics matrix\n");
          exit(1);
       }
       break;
    case TYPE_BOOMER:
-      if(!blReadMDM("data/boomer.mat"))
+      if(!blReadMDM(boomerMatrix))
       {
          fprintf(stderr,"Error: Can't read boomer matrix\n");
          exit(1);
@@ -288,59 +310,6 @@ BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose, FILE *out)
    blFreeMDM();
    fclose(fp1);
    fclose(fp2);
-   return(TRUE);
-}
-
-/************************************************************************/
-/* Unused */
-BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
-                           char *conflictName, int maxConflictName,
-                           unsigned int *conflictType, FILE *out)
-{
-   BOOL verbose = FALSE;
-   char buffer[MAXBUFF];
-   *conflictType = 0;
-   
-   while(fgets(buffer, MAXBUFF, namesFp))
-   {
-      BOOL BoomerOK = TRUE,
-         PhoneticsOK = TRUE;
-      
-      TERMINATE(buffer);
-
-      if(!strcmp(newName, buffer))
-         return(TRUE);
-
-#ifdef BOOMER
-      if(!blReadMDM("data/boomer.mat"))
-      {
-         fprintf(stderr,"Error: Can't read boomer matrix\n");
-         exit(1);
-      }
-      BoomerOK = CheckBoomer(newName, buffer, verbose, out);
-      blFreeMDM();
-#endif
-
-#ifdef PHONETICS
-      if(!blReadMDM("data/kondrak.mat"))
-      {
-         fprintf(stderr,"Error: Can't read phonetics matrix\n");
-         exit(1);
-      }
-      PhoneticsOK = CheckPhonetics(newName, buffer, verbose, out);
-      blFreeMDM();
-#endif
-
-      if(!BoomerOK)   *conflictType |= TYPE_BOOMER;
-      if(!PhoneticsOK) *conflictType |= TYPE_PHONETICS;
-      
-      if((!BoomerOK) || (!PhoneticsOK))
-      {
-         strncpy(conflictName, buffer, maxConflictName);
-         return(FALSE);
-      }
-   }
-
    return(TRUE);
 }
 
@@ -422,6 +391,11 @@ BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out)
    REAL score;
    int  gapOpenPenalty      = 1,
         gapExtensionPenalty = 1;
+
+   if(gUserGappen != GAPPEN_DUMMY)
+      gapOpenPenalty = gUserGappen;
+   if(gUserGapExtpen != GAPPEN_DUMMY)
+      gapExtensionPenalty = gUserGapExtpen;
    
    score = RunAlignment(newName, oldName, gapOpenPenalty,
                         gapExtensionPenalty, verbose, out);
@@ -440,6 +414,11 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
    REAL score;
    int  gapOpenPenalty      = 10,
         gapExtensionPenalty = 10;
+
+   if(gUserGappen != GAPPEN_DUMMY)
+      gapOpenPenalty = gUserGappen;
+   if(gUserGapExtpen != GAPPEN_DUMMY)
+      gapExtensionPenalty = gUserGapExtpen;
    
    score = RunAlignment(newName, oldName, gapOpenPenalty,
                         gapExtensionPenalty, verbose, out);
@@ -451,3 +430,4 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
 
    return(TRUE);
 }
+
