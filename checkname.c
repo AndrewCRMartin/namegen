@@ -83,6 +83,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
 void Usage(void);
 BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out);
+BOOL ProcessOneName(inParam, type, verbose, scoreMatrix, out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
@@ -141,7 +142,7 @@ int main(int argc, char **argv)
          }
          else
          {
-            ;
+            ProcessOneName(inParam, type, verbose, scoreMatrix, out);
          }
       }
       else
@@ -468,4 +469,9 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
    return(TRUE);
 }
 
+
+BOOL ProcessOneName(inParam, type, verbose, scoreMatrix, out)
+{
+   return(TRUE);
+}
 
