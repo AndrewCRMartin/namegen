@@ -59,14 +59,16 @@
 /************************************************************************/
 /* Defines and macros
 */
-#define MAXBUFF                  160
-#define TYPE_BOOMER              1
-#define TYPE_PHONETICS           2
-#define DEFAULT_TYPE             TYPE_PHONETICS
-#define DEFAULT_PHONETICS_MATRIX "data/kondrak.mat"
-#define DEFAULT_BOOMER_MATRIX    "data/boomer.mat"
-#define GAPPEN_DUMMY             -10000
-#define DEFAULT_NAMESFILE        "data/abnames.dat"
+#define MAXBUFF                     160
+#define TYPE_BOOMER                 1
+#define TYPE_PHONETICS              2
+#define DEFAULT_TYPE                TYPE_PHONETICS
+#define DEFAULT_PHONETICS_MATRIX    "data/kondrak.mat"
+#define DEFAULT_BOOMER_MATRIX       "data/boomer.mat"
+#define GAPPEN_DUMMY                -10000
+#define DEFAULT_NAMESFILE           "data/abnames.dat"
+#define DEFAULT_PHONETICS_THRESHOLD 93.0
+#define DEFAULT_BOOMER_THRESHOLD    60.0
 
 /************************************************************************/
 /* Globals
@@ -79,16 +81,17 @@ int gUserGapExtpen = GAPPEN_DUMMY;
 */
 int main(int argc, char **argv);
 BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
-                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile);
+                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
+                  REAL *printThreshold);
 void Usage(void);
-BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
+BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out);
-BOOL ProcessOneName(inParam, type, verbose, scoreMatrix, out);
+BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *scoreMatrix, REAL printThreshold, FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out);
-BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out);
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
 REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
@@ -108,13 +111,14 @@ int main(int argc, char **argv)
         boomerMatrix[MAXBUFF],
         namesFile[MAXBUFF],
         scoreMatrix[MAXBUFF];
+   REAL printThreshold = (REAL)(-1000.0); /* If negative, default will be used */
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
    strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
    strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
    
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
-                   namesFile))
+                   namesFile, &printThreshold))
    {
       if(!inParam[0])
       {
@@ -142,7 +146,7 @@ int main(int argc, char **argv)
          }
          else
          {
-            ProcessOneName(inParam, type, verbose, scoreMatrix, out);
+            ProcessOneName(inParam, namesFile, type, verbose, scoreMatrix, printThreshold, out);
          }
       }
       else
@@ -161,7 +165,8 @@ int main(int argc, char **argv)
 
 /************************************************************************/
 BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
-                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile)
+                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
+                  REAL *printThreshold)
 {
    BOOL setType = FALSE;
    
@@ -207,6 +212,11 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
             if(!argc) return(FALSE);
             strncpy(namesFile, argv[0], MAXBUFF);
             break;
+         case 't':
+            argc--; argv++;
+            if(!argc) return(FALSE);
+            if(!sscanf(argv[0], "%lf", printThreshold)) return(FALSE);
+            break;
          default:
             return(FALSE);
             break;
@@ -242,7 +252,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
 void Usage(void)
 {
    fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n][-n file.names] name [file.out]]\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n][-t n][-n file.names] name [file.out]]\n");
    fprintf(stderr,"       -or-\n");
    fprintf(stderr,"       checkname -a [-b|-p][-v][-g n][-x n] file.names [file.out]\n");
 
@@ -253,6 +263,7 @@ void Usage(void)
    fprintf(stderr,"                  -g Specify gap opening penalty\n");
    fprintf(stderr,"                  -x Specify gap extension penalty\n");
    fprintf(stderr,"                  -n Specify the file containing antibody names\n");
+   fprintf(stderr,"                  -t Specify a threshold for printing as similar\n");
 
    fprintf(stderr,"\nCheckname is a program for comparing potential antibody names against\n");
    fprintf(stderr,"those already used by the WHO-INN.\n");
@@ -262,7 +273,7 @@ void Usage(void)
 }
 
 /************************************************************************/
-BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
+BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out)
 {
    char name1[MAXBUFF],
@@ -270,23 +281,23 @@ BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
    FILE *fp1 = NULL,
         *fp2 = NULL;
    
-   if((fp1=fopen(nameFile, "r"))==NULL)
+   if((fp1=fopen(namesFile, "r"))==NULL)
    {
       fprintf(stderr,"Error: Can't open names file for first reading (%s)\n",
-              nameFile);
+              namesFile);
       return(FALSE);
    }
    
-   if((fp2=fopen(nameFile, "r"))==NULL)
+   if((fp2=fopen(namesFile, "r"))==NULL)
    {
       fprintf(stderr,"Error: Can't open names file for second reading (%s)\n",
-              nameFile);
+              namesFile);
       return(FALSE);
    }
 
    if(!blReadMDM(scoreMatrix))
    {
-      fprintf(stderr,"Error: Can't read scoring matrix\n");
+      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n", scoreMatrix);
       exit(1);
    }
    
@@ -303,10 +314,10 @@ BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
             switch(type)
             {
             case TYPE_PHONETICS:
-               CheckPhonetics(name1, name2, verbose, out);
+               CheckPhonetics(name1, name2, verbose, (REAL)0.0, out);
                break;
             case TYPE_BOOMER:
-               CheckBoomer(name1, name2, verbose, out);
+               CheckBoomer(name1, name2, verbose, (REAL)0.0, out);
                break;
             default:
                fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
@@ -395,7 +406,7 @@ REAL RunAlignment(char *newName, char *oldName,
 }
 
 /************************************************************************/
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out)
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 1,
@@ -409,16 +420,17 @@ BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, FILE *out)
    score = RunAlignment(newName, oldName, gapOpenPenalty,
                         gapExtensionPenalty, verbose, out);
 
-   fprintf(out, "Boomer: %s %s %.2f\n", newName, oldName, score);
-
-   if(score > 60.0)
+   if(score > printThreshold)
+      fprintf(out, "Boomer: %s %s %.2f\n", newName, oldName, score);
+   
+   if(score > printThreshold)
       return(FALSE);
 
    return(TRUE);
 }
 
 /************************************************************************/
-BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 10,
@@ -432,9 +444,10 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
    score = RunAlignment(newName, oldName, gapOpenPenalty,
                         gapExtensionPenalty, verbose, out);
 
-   fprintf(out, "Phonetics: %s %s %.2f\n", newName, oldName, score);
+   if(score > printThreshold)
+      fprintf(out, "Phonetics: %s %s %.2f\n", newName, oldName, score);
    
-   if(score > 93.0)
+   if(score > printThreshold)
       return(FALSE);
 
    return(TRUE);
@@ -470,8 +483,60 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 }
 
 
-BOOL ProcessOneName(inParam, type, verbose, scoreMatrix, out)
+BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *scoreMatrix, REAL printThreshold, FILE *out)
 {
+   FILE *fp = NULL;
+   char oldName[MAXBUFF];
+   
+   if((fp=fopen(namesFile, "r"))==NULL)
+   {
+      fprintf(stderr,"Error: Can't open names file (%s)\n",
+              namesFile);
+      return(FALSE);
+   }
+   
+   if(!blReadMDM(scoreMatrix))
+   {
+      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n", scoreMatrix);
+      exit(1);
+   }
+
+   if(printThreshold < 0.0)
+   {
+      switch(type)
+      {
+      case TYPE_PHONETICS:
+         printThreshold = DEFAULT_PHONETICS_THRESHOLD;
+         break;
+      case TYPE_BOOMER:
+         printThreshold = DEFAULT_BOOMER_THRESHOLD;
+         break;
+      default:
+         fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+         break;
+      }
+   }
+   
+   while(fgets(oldName, MAXBUFF, fp))
+   {
+      TERMINATE(oldName);
+
+      switch(type)
+      {
+      case TYPE_PHONETICS:
+         CheckPhonetics(name, oldName, verbose, printThreshold, out);
+         break;
+      case TYPE_BOOMER:
+         CheckBoomer(name, oldName, verbose, printThreshold, out);
+         break;
+      default:
+         fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+         break;
+      }
+   }
+   
+   blFreeMDM();
+   fclose(fp);
    return(TRUE);
 }
 
