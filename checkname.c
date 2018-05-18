@@ -82,8 +82,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
                   int *type, BOOL *doAll, BOOL *verbose, char *namesFile);
 void Usage(void);
 BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
-                     char *phoneticsMatrix, char *boomerMatrix,
-                     FILE *out);
+                     char *scoreMatrix, FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
@@ -106,7 +105,8 @@ int main(int argc, char **argv)
         verbose = FALSE;
    char phoneticsMatrix[MAXBUFF],
         boomerMatrix[MAXBUFF],
-        namesFile[MAXBUFF];
+        namesFile[MAXBUFF],
+        scoreMatrix[MAXBUFF];
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
    strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
@@ -120,12 +120,24 @@ int main(int argc, char **argv)
          Usage();
       }
 
+      switch(type)
+      {
+      case TYPE_PHONETICS:
+         strncpy(scoreMatrix, phoneticsMatrix, MAXBUFF);
+         break;
+      case TYPE_BOOMER:
+         strncpy(scoreMatrix, boomerMatrix, MAXBUFF);
+         break;
+      default:
+         fprintf(stderr,"Error: Internal error - unknown type (%d)\n", type);
+      }
+      
+
       if(OpenStdFile(outFile, &out, "w"))
       {
          if(doAll)
          {
-            ProcessAllNames(inParam, type, verbose,
-                            phoneticsMatrix, boomerMatrix, out);
+            ProcessAllNames(inParam, type, verbose, scoreMatrix, out);
          }
          else
          {
@@ -250,8 +262,7 @@ void Usage(void)
 
 /************************************************************************/
 BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
-                     char *phoneticsMatrix, char *boomerMatrix,
-                     FILE *out)
+                     char *scoreMatrix, FILE *out)
 {
    char name1[MAXBUFF],
         name2[MAXBUFF];
@@ -272,27 +283,11 @@ BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
       return(FALSE);
    }
 
-   switch(type)
+   if(!blReadMDM(scoreMatrix))
    {
-   case TYPE_PHONETICS:
-      if(!blReadMDM(phoneticsMatrix))
-      {
-         fprintf(stderr,"Error: Can't read phonetics matrix\n");
-         exit(1);
-      }
-      break;
-   case TYPE_BOOMER:
-      if(!blReadMDM(boomerMatrix))
-      {
-         fprintf(stderr,"Error: Can't read boomer matrix\n");
-         exit(1);
-      }
-      break;
-   default:
-      fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
-      break;
+      fprintf(stderr,"Error: Can't read scoring matrix\n");
+      exit(1);
    }
-
    
    while(fgets(name1, MAXBUFF, fp1))
    {
