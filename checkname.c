@@ -68,7 +68,7 @@
 #define GAPPEN_DUMMY                -10000
 #define DEFAULT_NAMESFILE           "data/abnames.dat"
 #define DEFAULT_PHONETICS_THRESHOLD 93.0
-#define DEFAULT_BOOMER_THRESHOLD    60.0
+#define DEFAULT_BOOMER_THRESHOLD    95.0
 
 /************************************************************************/
 /* Globals
