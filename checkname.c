@@ -4,7 +4,7 @@
    Program:    checkname
    \file       checkname.c
    
-   \version    V0.1
+   \version    V1.0
    \date       02.05.18   
    \brief      Checks an antibody name for possible conflicts
    
@@ -59,13 +59,14 @@
 /************************************************************************/
 /* Defines and macros
 */
-#define MAXBUFF        160
-#define TYPE_BOOMER    1
-#define TYPE_PHONETICS 2
-#define DEFAULT_TYPE   TYPE_PHONETICS
+#define MAXBUFF                  160
+#define TYPE_BOOMER              1
+#define TYPE_PHONETICS           2
+#define DEFAULT_TYPE             TYPE_PHONETICS
 #define DEFAULT_PHONETICS_MATRIX "data/kondrak.mat"
 #define DEFAULT_BOOMER_MATRIX    "data/boomer.mat"
-#define GAPPEN_DUMMY -10000
+#define GAPPEN_DUMMY             -10000
+#define DEFAULT_NAMESFILE        "data/abnames.dat"
 
 /************************************************************************/
 /* Globals
@@ -77,11 +78,12 @@ int gUserGapExtpen = GAPPEN_DUMMY;
 /* Prototypes
 */
 int main(int argc, char **argv);
-BOOL ParseCmdLine(int argc, char **argv, char *inFile, char *outFile,
-                  int *type, BOOL *doAll, BOOL *verbose);
+BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
+                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile);
 void Usage(void);
 BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
-                     char *phoneticsMatrix, char *boomerMatrix, FILE *out);
+                     char *phoneticsMatrix, char *boomerMatrix,
+                     FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
@@ -90,39 +92,44 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out);
 REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
+BOOL OpenStdFile(char *file, FILE **fp, char *mode);
 
 
 /************************************************************************/
 int main(int argc, char **argv)
 {
-   FILE *in  = stdin,
-        *out = stdout;
-   char inFile[MAXBUFF],
+   FILE *out = stdout;
+   char inParam[MAXBUFF],
         outFile[MAXBUFF];
    int  type = DEFAULT_TYPE;
    BOOL doAll = FALSE,
         verbose = FALSE;
    char phoneticsMatrix[MAXBUFF],
-        boomerMatrix[MAXBUFF];
+        boomerMatrix[MAXBUFF],
+        namesFile[MAXBUFF];
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
    strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
+   strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
    
-   if(ParseCmdLine(argc, argv, inFile, outFile, &type, &doAll, &verbose))
+   if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
+                   namesFile))
    {
-      if(blOpenStdFiles(inFile, outFile, &in, &out))
+      if(!inParam[0])
+      {
+         Usage();
+      }
+
+      if(OpenStdFile(outFile, &out, "w"))
       {
          if(doAll)
          {
-            if(!inFile[0])
-            {
-               Usage();
-            }
-            else
-            {
-               ProcessAllNames(inFile, type, verbose,
-                               phoneticsMatrix, boomerMatrix, out);
-            }
+            ProcessAllNames(inParam, type, verbose,
+                            phoneticsMatrix, boomerMatrix, out);
+         }
+         else
+         {
+            ;
          }
       }
       else
@@ -140,17 +147,14 @@ int main(int argc, char **argv)
 }
 
 /************************************************************************/
-BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
-                  int *type, BOOL *doAll, BOOL *verbose)
+BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
+                  int *type, BOOL *doAll, BOOL *verbose, char *namesFile)
 {
    BOOL setType = FALSE;
    
-   argc--; 
-   argv++;
+   inParam[0] = outfile[0] = '\0';
 
-   infile[0] = outfile[0] = '\0';
-
-
+   argc--; argv++;
    while(argc)
    {
       if(argv[0][0] == '-')
@@ -185,6 +189,11 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
             if(!argc) return(FALSE);
             if(!sscanf(argv[0], "%d", &gUserGapExtpen)) return(FALSE);
             break;
+         case 'n':
+            argc--; argv++;
+            if(!argc) return(FALSE);
+            strncpy(namesFile, argv[0], MAXBUFF);
+            break;
          default:
             return(FALSE);
             break;
@@ -192,19 +201,21 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
       }
       else
       {
-         /* Check that there are only 1 or 2 arguments left             */
-         if(argc > 2)
+         /* Check there are 1 or 2 arguments left */
+         if((argc < 1) || (argc > 2))
             return(FALSE);
+
+         /* Copy the first (compulsory) argument */
+         strncpy(inParam, argv[0], MAXBUFF);
          
-         /* Copy the first to infile                                    */
-         strcpy(infile, argv[0]);
-         
-         /* If there's another, copy it to outfile                      */
-         argc--;
-         argv++;
+         /* See if there is another argument left                          */
+         argc--; argv++;
          if(argc)
+         {
             strcpy(outfile, argv[0]);
-            
+            argc--; argv++;
+         }
+         
          return(TRUE);
       }
       argc--;
@@ -218,7 +229,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *infile, char *outfile,
 void Usage(void)
 {
    fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n]  [file.in [file.out]]\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n][-n file.names] name [file.out]]\n");
    fprintf(stderr,"       -or-\n");
    fprintf(stderr,"       checkname -a [-b|-p][-v][-g n][-x n] file.names [file.out]\n");
 
@@ -228,6 +239,7 @@ void Usage(void)
    fprintf(stderr,"                  -v Verbose - show alignments\n");
    fprintf(stderr,"                  -g Specify gap opening penalty\n");
    fprintf(stderr,"                  -x Specify gap extension penalty\n");
+   fprintf(stderr,"                  -n Specify the file containing antibody names\n");
 
    fprintf(stderr,"\nCheckname is a program for comparing potential antibody names against\n");
    fprintf(stderr,"those already used by the WHO-INN.\n");
@@ -238,7 +250,8 @@ void Usage(void)
 
 /************************************************************************/
 BOOL ProcessAllNames(char *nameFile, int type, BOOL verbose,
-                     char *phoneticsMatrix, char *boomerMatrix, FILE *out)
+                     char *phoneticsMatrix, char *boomerMatrix,
+                     FILE *out)
 {
    char name1[MAXBUFF],
         name2[MAXBUFF];
@@ -430,4 +443,34 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, FILE *out)
 
    return(TRUE);
 }
+
+/************************************************************************/
+/*>BOOL OpenStdFile(char *file, FILE **fp, char *mode)
+   ---------------------------------------------------
+*//**
+
+   \param[in]     *file       Filename
+   \param[out]    **fp        Pointer to file pointer
+   \param[in]     *mode       File read/write mode
+   \return                    Success?
+
+   Open the file if specified. fp is not modified if file is not
+   specified.
+
+-  18.05.18 Original    By: ACRM
+*/
+BOOL OpenStdFile(char *file, FILE **fp, char *mode)
+{
+   if(file!=NULL && file[0] && strcmp(file,"-"))
+   {
+      if((*fp = fopen(file,mode))==NULL)
+      {
+         fprintf(stderr,"Unable to open file: %s\n", file);
+         return(FALSE);
+      }
+   }
+      
+   return(TRUE);
+}
+
 
