@@ -59,16 +59,19 @@
 /************************************************************************/
 /* Defines and macros
 */
-#define MAXBUFF                     160
-#define TYPE_BOOMER                 1
-#define TYPE_PHONETICS              2
-#define DEFAULT_TYPE                TYPE_PHONETICS
-#define DEFAULT_PHONETICS_MATRIX    "data/kondrak.mat"
-#define DEFAULT_BOOMER_MATRIX       "data/boomer.mat"
-#define GAPPEN_DUMMY                -10000
-#define DEFAULT_NAMESFILE           "data/abnames.dat"
-#define DEFAULT_PHONETICS_THRESHOLD 93.0
-#define DEFAULT_BOOMER_THRESHOLD    95.0
+#define MAXBUFF                       160
+#define TYPE_BOOMER                   1
+#define TYPE_PHONETICS                2
+#define TYPE_LETTERSHAPE              3
+#define DEFAULT_TYPE                  TYPE_PHONETICS
+#define DEFAULT_PHONETICS_MATRIX      "data/kondrak.mat"
+#define DEFAULT_BOOMER_MATRIX         "data/boomer.mat"
+#define DEFAULT_LETTER_MATRIX         "data/letters.mat"
+#define GAPPEN_DUMMY                  -10000
+#define DEFAULT_NAMESFILE             "data/abnames.dat"
+#define DEFAULT_PHONETICS_THRESHOLD   93.0
+#define DEFAULT_BOOMER_THRESHOLD      95.0
+#define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
 
 /************************************************************************/
 /* Globals
@@ -92,6 +95,7 @@ BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            unsigned int *conflictType, FILE *out);
 BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
 BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
+BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
 REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
@@ -109,12 +113,14 @@ int main(int argc, char **argv)
         verbose = FALSE;
    char phoneticsMatrix[MAXBUFF],
         boomerMatrix[MAXBUFF],
+        letterMatrix[MAXBUFF],
         namesFile[MAXBUFF],
         scoreMatrix[MAXBUFF];
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will be used */
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
    strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
+   strncpy(letterMatrix,    DEFAULT_LETTER_MATRIX,    MAXBUFF);
    strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
    
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
@@ -132,6 +138,9 @@ int main(int argc, char **argv)
          break;
       case TYPE_BOOMER:
          strncpy(scoreMatrix, boomerMatrix, MAXBUFF);
+         break;
+      case TYPE_LETTERSHAPE:
+         strncpy(scoreMatrix, letterMatrix, MAXBUFF);
          break;
       default:
          fprintf(stderr,"Error: Internal error - unknown type (%d)\n", type);
@@ -189,6 +198,12 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
             if(setType)
                return(FALSE);
             *type   = TYPE_PHONETICS;
+            setType = TRUE;
+            break;
+         case 's':
+            if(setType)
+               return(FALSE);
+            *type   = TYPE_LETTERSHAPE;
             setType = TRUE;
             break;
          case 'a':
@@ -252,13 +267,14 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
 void Usage(void)
 {
    fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p][-v][-g n][-x n][-t n][-n file.names] name [file.out]]\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p|-s][-v][-g n][-x n][-t n][-n file.names] name [file.out]]\n");
    fprintf(stderr,"       -or-\n");
-   fprintf(stderr,"       checkname -a [-b|-p][-v][-g n][-x n] file.names [file.out]\n");
+   fprintf(stderr,"       checkname -a [-b|-p|-s][-v][-g n][-x n] file.names [file.out]\n");
 
    fprintf(stderr,"\n                  -a Check all used names against each other\n");
    fprintf(stderr,"                  -b Check the boomers\n");
    fprintf(stderr,"                  -p Check the Kondrak phonetics [Default]\n");
+   fprintf(stderr,"                  -s Check the Simpson letter similarity\n");
    fprintf(stderr,"                  -v Verbose - show alignments\n");
    fprintf(stderr,"                  -g Specify gap opening penalty\n");
    fprintf(stderr,"                  -x Specify gap extension penalty\n");
@@ -318,6 +334,9 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                break;
             case TYPE_BOOMER:
                CheckBoomer(name1, name2, verbose, (REAL)0.0, out);
+               break;
+            case TYPE_LETTERSHAPE:
+               CheckLetterShape(name1, name2, verbose, (REAL)0.0, out);
                break;
             default:
                fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
@@ -454,6 +473,30 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThresh
 }
 
 /************************************************************************/
+BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
+{
+   REAL score;
+   int  gapOpenPenalty      = 200,
+        gapExtensionPenalty = 200;
+
+   if(gUserGappen != GAPPEN_DUMMY)
+      gapOpenPenalty = gUserGappen;
+   if(gUserGapExtpen != GAPPEN_DUMMY)
+      gapExtensionPenalty = gUserGapExtpen;
+   
+   score = RunAlignment(newName, oldName, gapOpenPenalty,
+                        gapExtensionPenalty, verbose, out);
+
+   if(score > printThreshold)
+      fprintf(out, "Lettershape: %s %s %.2f\n", newName, oldName, score);
+   
+   if(score > printThreshold)
+      return(FALSE);
+
+   return(TRUE);
+}
+
+/************************************************************************/
 /*>BOOL OpenStdFile(char *file, FILE **fp, char *mode)
    ---------------------------------------------------
 *//**
@@ -483,6 +526,7 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 }
 
 
+/************************************************************************/
 BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *scoreMatrix, REAL printThreshold, FILE *out)
 {
    FILE *fp = NULL;
@@ -511,6 +555,9 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *s
       case TYPE_BOOMER:
          printThreshold = DEFAULT_BOOMER_THRESHOLD;
          break;
+      case TYPE_LETTERSHAPE:
+         printThreshold = DEFAULT_LETTERSHAPE_THRESHOLD;
+         break;
       default:
          fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
          break;
@@ -528,6 +575,9 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *s
          break;
       case TYPE_BOOMER:
          CheckBoomer(name, oldName, verbose, printThreshold, out);
+         break;
+      case TYPE_LETTERSHAPE:
+         CheckLetterShape(name, oldName, verbose, printThreshold, out);
          break;
       default:
          fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
