@@ -89,13 +89,17 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
 void Usage(void);
 BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out);
-BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *scoreMatrix, REAL printThreshold, FILE *out);
+BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
+                    char *scoreMatrix, REAL printThreshold, FILE *out);
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
-BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
-BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out);
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose,
+                 REAL printThreshold, FILE *out);
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose,
+                    REAL printThreshold, FILE *out);
+BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose,
+                      REAL printThreshold, FILE *out);
 REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
@@ -103,6 +107,13 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode);
 
 
 /************************************************************************/
+/*>int main(int argc, char **argv)
+   -------------------------------
+*//*
+   Main program
+
+-  18.05.18 Original   By: ACRM
+*/
 int main(int argc, char **argv)
 {
    FILE *out = stdout;
@@ -116,7 +127,9 @@ int main(int argc, char **argv)
         letterMatrix[MAXBUFF],
         namesFile[MAXBUFF],
         scoreMatrix[MAXBUFF];
-   REAL printThreshold = (REAL)(-1000.0); /* If negative, default will be used */
+   REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
+                                             be used 
+                                          */
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
    strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
@@ -143,7 +156,8 @@ int main(int argc, char **argv)
          strncpy(scoreMatrix, letterMatrix, MAXBUFF);
          break;
       default:
-         fprintf(stderr,"Error: Internal error - unknown type (%d)\n", type);
+         fprintf(stderr,"Error: Internal error - unknown type (%d)\n",
+                 type);
       }
       
 
@@ -155,7 +169,8 @@ int main(int argc, char **argv)
          }
          else
          {
-            ProcessOneName(inParam, namesFile, type, verbose, scoreMatrix, printThreshold, out);
+            ProcessOneName(inParam, namesFile, type, verbose, scoreMatrix,
+                           printThreshold, out);
          }
       }
       else
@@ -173,6 +188,27 @@ int main(int argc, char **argv)
 }
 
 /************************************************************************/
+/*>BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
+                     int *type, BOOL *doAll, BOOL *verbose, 
+                     char *namesFile, REAL *printThreshold)
+   ----------------------------------------------------------------------
+*//*
+   \param[in]  argc           Argument count
+   \param[in]  argv           Arguments
+   \param[out] inParam        Compulsory argument passed on command line
+   \param[out] outfile        Output filename or empty string
+   \param[out] type           Type of comparison (Phonetics, Boomer or 
+                              Letters)
+   \param[out] doAll          Analyze the distribution in the existing 
+                              words file
+   \param[out] verbose        Show the alignments
+   \param[out] namesFile      User-specified names file
+   \param[out] printThreshold Threshold for printing matches
+
+   Parse the command line
+
+-  18.05.18 Original   By: ACRM
+*/
 BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
                   int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
                   REAL *printThreshold)
@@ -239,14 +275,14 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
       }
       else
       {
-         /* Check there are 1 or 2 arguments left */
+         /* Check there are 1 or 2 arguments left                       */
          if((argc < 1) || (argc > 2))
             return(FALSE);
 
-         /* Copy the first (compulsory) argument */
+         /* Copy the first (compulsory) argument                        */
          strncpy(inParam, argv[0], MAXBUFF);
          
-         /* See if there is another argument left                          */
+         /* See if there is another argument left                       */
          argc--; argv++;
          if(argc)
          {
@@ -264,31 +300,63 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
 }
 
 /************************************************************************/
+/*>void Usage(void)
+   ----------------
+*//*
+   Print usage message
+
+-  18.05.18 Original   By: ACRM
+*/
 void Usage(void)
 {
    fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p|-s][-v][-g n][-x n][-t n][-n file.names] name [file.out]]\n");
+   fprintf(stderr,"\nUsage: checkname [-b|-p|-s][-v][-g n][-x n][-t n]\
+[-n file.names] name [file.out]]\n");
    fprintf(stderr,"       -or-\n");
-   fprintf(stderr,"       checkname -a [-b|-p|-s][-v][-g n][-x n] file.names [file.out]\n");
+   fprintf(stderr,"       checkname -a [-b|-p|-s][-v][-g n][-x n] \
+file.names [file.out]\n");
 
-   fprintf(stderr,"\n                  -a Check all used names against each other\n");
+   fprintf(stderr,"\n                  -a Check all used names against \
+each other\n");
    fprintf(stderr,"                  -b Check the boomers\n");
-   fprintf(stderr,"                  -p Check the Kondrak phonetics [Default]\n");
-   fprintf(stderr,"                  -s Check the Simpson letter similarity\n");
+   fprintf(stderr,"                  -p Check the Kondrak phonetics \
+[Default]\n");
+   fprintf(stderr,"                  -s Check the Simpson letter \
+similarity\n");
    fprintf(stderr,"                  -v Verbose - show alignments\n");
    fprintf(stderr,"                  -g Specify gap opening penalty\n");
    fprintf(stderr,"                  -x Specify gap extension penalty\n");
-   fprintf(stderr,"                  -n Specify the file containing antibody names\n");
-   fprintf(stderr,"                  -t Specify a threshold for printing as similar\n");
+   fprintf(stderr,"                  -n Specify the file containing \
+antibody names\n");
+   fprintf(stderr,"                  -t Specify a threshold for printing \
+as similar\n");
 
-   fprintf(stderr,"\nCheckname is a program for comparing potential antibody names against\n");
+   fprintf(stderr,"\nCheckname is a program for comparing potential \
+antibody names against\n");
    fprintf(stderr,"those already used by the WHO-INN.\n");
 
-   fprintf(stderr,"\nThe -a option is used to compare existing names to look at the \n");
+   fprintf(stderr,"\nThe -a option is used to compare existing names to \
+look at the \n");
    fprintf(stderr,"distribution of similarity scores.\n\n");
 }
 
 /************************************************************************/
+/*>BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
+                     char *scoreMatrix, FILE *out)
+   -------------------------------------------------------------
+*//*
+
+   \param[in]  namesFile   Filename of file containing existing names
+   \param[in]  type        Type of comparison to perform
+   \param[in]  verbose     Print the alignments
+   \param[in]  scoreMatrix Filename of the score matrix
+   \param[in]  out         Pointer to output file
+
+   Process the file of names comparing them all against each other to
+   obtain a score distribution.
+
+-  18.05.18 Original   By: ACRM
+*/
 BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out)
 {
@@ -299,21 +367,24 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
    
    if((fp1=fopen(namesFile, "r"))==NULL)
    {
-      fprintf(stderr,"Error: Can't open names file for first reading (%s)\n",
+      fprintf(stderr,"Error: Can't open names file for first reading \
+(%s)\n",
               namesFile);
       return(FALSE);
    }
    
    if((fp2=fopen(namesFile, "r"))==NULL)
    {
-      fprintf(stderr,"Error: Can't open names file for second reading (%s)\n",
+      fprintf(stderr,"Error: Can't open names file for second reading \
+(%s)\n",
               namesFile);
       return(FALSE);
    }
 
    if(!blReadMDM(scoreMatrix))
    {
-      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n", scoreMatrix);
+      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n",
+              scoreMatrix);
       exit(1);
    }
    
@@ -339,7 +410,8 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                CheckLetterShape(name1, name2, verbose, (REAL)0.0, out);
                break;
             default:
-               fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+               fprintf(stderr,"Internal Error: Unrecognized type (%d)\n",
+                       type);
                break;
             }
          }
@@ -352,7 +424,27 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
    return(TRUE);
 }
 
+
 /************************************************************************/
+/*>REAL RunAlignment(char *newName, char *oldName,
+                     int gapOpenPenalty, int gapExtensionPenalty, 
+                     BOOL verbose, FILE *out)
+   -----------------------------------------------
+*//*
+   \param[in]  newName             Name to be checked
+   \param[in]  oldName             Name against which to compare
+   \param[in]  gapOpenPenalty      Gap opening ppenalty
+   \param[in]  gapExtensionPenalty Gap extension penalty
+   \param[in]  verbose             Show alignments
+   \param[in]  out                 Output file pointer
+
+   \return                         Percentage score (0.0 ... 100.0)
+
+   Runs an alignment and calculate the alignment score. 
+   Prints the alignment if required.
+
+-  18.05.18 Original   By: ACRM
+*/
 REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty, 
                   BOOL verbose, FILE *out)
@@ -375,7 +467,6 @@ REAL RunAlignment(char *newName, char *oldName,
       fprintf(stderr, "Error: no memory for storing alignment\n");
       exit(1);
    }
-   
    
    oldScore = blAffinealign(oldName, strlen(oldName),
                             oldName, strlen(oldName),
@@ -414,8 +505,8 @@ REAL RunAlignment(char *newName, char *oldName,
       newNameAligned[alignmentLength] = '\0';
       oldNameAligned[alignmentLength] = '\0';
    
-      fprintf(out, "\n%s\n",   newNameAligned);
-      fprintf(out, "%s\n", oldNameAligned);
+      fprintf(out, "\n%s\n", newNameAligned);
+      fprintf(out, "%s\n",   oldNameAligned);
    }
 
    free(newNameAligned);
@@ -424,8 +515,24 @@ REAL RunAlignment(char *newName, char *oldName,
    return(finalScore);
 }
 
+
 /************************************************************************/
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
+/*>BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, 
+                    REAL printThreshold, FILE *out)
+   ------------------------------------------------------------
+*//*
+   \param[in]  newName         New name to check
+   \param[in]  oldName         Old name against which to check
+   \param[in]  verbose         Print the alignment
+   \param[in]  printThreshold  Threshold at which to print a match
+   \param[in]  out             Output file pointer
+
+   Run the alignment and print results for Boomer comparison
+
+-  18.05.18 Original   By: ACRM
+*/
+BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose,
+                 REAL printThreshold, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 1,
@@ -449,7 +556,22 @@ BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, REAL printThreshold
 }
 
 /************************************************************************/
-BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
+/*>BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, 
+                       REAL printThreshold, FILE *out)
+   ---------------------------------------------------------------
+*//*
+   \param[in]  newName         New name to check
+   \param[in]  oldName         Old name against which to check
+   \param[in]  verbose         Print the alignment
+   \param[in]  printThreshold  Threshold at which to print a match
+   \param[in]  out             Output file pointer
+
+   Run the alignment and print results for Phonetics comparison
+
+-  18.05.18 Original   By: ACRM
+*/
+BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose,
+                    REAL printThreshold, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 10,
@@ -473,7 +595,22 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, REAL printThresh
 }
 
 /************************************************************************/
-BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, REAL printThreshold, FILE *out)
+/*>BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, 
+                         REAL printThreshold, FILE *out)
+   -----------------------------------------------------------------
+*//*
+   \param[in]  newName         New name to check
+   \param[in]  oldName         Old name against which to check
+   \param[in]  verbose         Print the alignment
+   \param[in]  printThreshold  Threshold at which to print a match
+   \param[in]  out             Output file pointer
+
+   Run the alignment and print results for letter shape comparison
+
+-  18.05.18 Original   By: ACRM
+*/
+BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose,
+                      REAL printThreshold, FILE *out)
 {
    REAL score;
    int  gapOpenPenalty      = 200,
@@ -527,7 +664,27 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 
 
 /************************************************************************/
-BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *scoreMatrix, REAL printThreshold, FILE *out)
+/*>BOOL ProcessOneName(char *name, char *namesFile, int type, 
+                       BOOL verbose, char *scoreMatrix, 
+                       REAL printThreshold, FILE *out)
+   ----------------------------------------------------------
+*//*
+   \param[in]  name            A name to be tested
+   \param[in]  namesFile       Filename of the file containing existing
+                               names
+   \param[in]  type            Type of comparison
+   \param[in]  verbose         Print alignments
+   \param[in]  scoreMatrix     Filename of matrix file
+   \param[in]  printThreshold  Threshold to print a match
+   \param[in]  out             Output file handle
+   \return                     Success
+
+   Compares a single name against the existing names
+
+-  18.05.18 Original   By: ACRM
+*/
+BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
+                    char *scoreMatrix, REAL printThreshold, FILE *out)
 {
    FILE *fp = NULL;
    char oldName[MAXBUFF];
@@ -541,8 +698,9 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose, char *s
    
    if(!blReadMDM(scoreMatrix))
    {
-      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n", scoreMatrix);
-      exit(1);
+      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n",
+              scoreMatrix);
+      return(FALSE);
    }
 
    if(printThreshold < 0.0)
