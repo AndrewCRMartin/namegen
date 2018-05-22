@@ -72,6 +72,7 @@
 #define DEFAULT_PHONETICS_THRESHOLD   93.0
 #define DEFAULT_BOUMA_THRESHOLD       95.0
 #define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
+#define DATAENV                       "DATADIR"
 
 /************************************************************************/
 /* Globals
@@ -120,16 +121,29 @@ int main(int argc, char **argv)
    FILE *out    = stdout;
    char inParam[MAXBUFF],
         outFile[MAXBUFF];
-   int  type    = DEFAULT_TYPE;
+   int  type    = DEFAULT_TYPE,
+        retval  = 0;
    BOOL doAll   = FALSE,
-        verbose = FALSE;
-   char namesFile[MAXBUFF],
+        verbose = FALSE,
+        noEnv   = FALSE;
+   char *namesFile,
         scoreMatrix[MAXBUFF];
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
 
-   strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
+   if((namesFile = FindFile(DEFAULT_NAMESFILE, DATAENV, &noEnv))==NULL)
+   {
+      fprintf(stderr, "Error: names file (%s) not found.\n",
+              DEFAULT_NAMESFILE);
+      if(noEnv)
+      {
+         fprintf(stderr, "       Environment variable (%s) not set.\n",
+                 DATAENV);
+      }
+      return(1);
+   }
+   
    
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
                    namesFile, &printThreshold))
@@ -155,9 +169,6 @@ int main(int argc, char **argv)
                  type);
       }
 
-      
-      
-
       if(OpenStdFile(outFile, &out, "w"))
       {
          if(doAll)
@@ -173,7 +184,7 @@ int main(int argc, char **argv)
       else
       {
          fprintf(stderr,"Error: Unable to open input or output file\n");
-         return(1);
+         retval = 1;
       }
    }
    else
@@ -181,7 +192,8 @@ int main(int argc, char **argv)
       Usage();
    }
 
-   return(0);
+   FREE(namesFile);
+   return(retval);
 }
 
 /************************************************************************/
@@ -781,7 +793,7 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
 
 
 */
-char *FindDataFile(char *filename, char *envvar, BOOL *noenv)
+char *FindFile(char *filename, char *envvar, BOOL *noenv)
 {
    char *buffer  = NULL;
    int  nameSize = 0;
@@ -809,7 +821,7 @@ char *FindDataFile(char *filename, char *envvar, BOOL *noenv)
       return(NULL);
 
    /* If the file exists as given, simply copy it and return            */
-   if(access(filename, R_OK))
+   if(access(filename, R_OK) == 0)
    {
       strncpy(buffer, filename, nameSize);
    }
@@ -834,7 +846,7 @@ char *FindDataFile(char *filename, char *envvar, BOOL *noenv)
       sprintf(buffer,"%s:%s",envvar,filename);
 #endif
 
-      if(!access(buffer, R_OK))
+      if(access(buffer, R_OK) != 0)
       {
          FREE(buffer);
          return(NULL);
