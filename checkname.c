@@ -60,17 +60,17 @@
 /* Defines and macros
 */
 #define MAXBUFF                       160
-#define TYPE_BOOMER                   1
+#define TYPE_BOUMA                    1
 #define TYPE_PHONETICS                2
 #define TYPE_LETTERSHAPE              3
 #define DEFAULT_TYPE                  TYPE_PHONETICS
 #define DEFAULT_PHONETICS_MATRIX      "data/kondrak.mat"
-#define DEFAULT_BOOMER_MATRIX         "data/boomer.mat"
+#define DEFAULT_BOUMA_MATRIX          "data/bouma.mat"
 #define DEFAULT_LETTER_MATRIX         "data/letters.mat"
 #define GAPPEN_DUMMY                  -10000
 #define DEFAULT_NAMESFILE             "data/abnames.dat"
 #define DEFAULT_PHONETICS_THRESHOLD   93.0
-#define DEFAULT_BOOMER_THRESHOLD      95.0
+#define DEFAULT_BOUMA_THRESHOLD       95.0
 #define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
 
 /************************************************************************/
@@ -94,7 +94,7 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
 BOOL CheckNameForConflicts(char *newName, FILE *namesFp,
                            char *conflictName, int maxConflictName,
                            unsigned int *conflictType, FILE *out);
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose,
+BOOL CheckBouma(char *newName, char *oldName, BOOL verbose,
                  REAL printThreshold, FILE *out);
 BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose,
                     REAL printThreshold, FILE *out);
@@ -116,14 +116,14 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode);
 */
 int main(int argc, char **argv)
 {
-   FILE *out = stdout;
+   FILE *out    = stdout;
    char inParam[MAXBUFF],
         outFile[MAXBUFF];
-   int  type = DEFAULT_TYPE;
-   BOOL doAll = FALSE,
+   int  type    = DEFAULT_TYPE;
+   BOOL doAll   = FALSE,
         verbose = FALSE;
    char phoneticsMatrix[MAXBUFF],
-        boomerMatrix[MAXBUFF],
+        boumaMatrix[MAXBUFF],
         letterMatrix[MAXBUFF],
         namesFile[MAXBUFF],
         scoreMatrix[MAXBUFF];
@@ -132,7 +132,7 @@ int main(int argc, char **argv)
                                           */
 
    strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
-   strncpy(boomerMatrix,    DEFAULT_BOOMER_MATRIX,    MAXBUFF);
+   strncpy(boumaMatrix,     DEFAULT_BOUMA_MATRIX,    MAXBUFF);
    strncpy(letterMatrix,    DEFAULT_LETTER_MATRIX,    MAXBUFF);
    strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
    
@@ -149,8 +149,8 @@ int main(int argc, char **argv)
       case TYPE_PHONETICS:
          strncpy(scoreMatrix, phoneticsMatrix, MAXBUFF);
          break;
-      case TYPE_BOOMER:
-         strncpy(scoreMatrix, boomerMatrix, MAXBUFF);
+      case TYPE_BOUMA:
+         strncpy(scoreMatrix, boumaMatrix, MAXBUFF);
          break;
       case TYPE_LETTERSHAPE:
          strncpy(scoreMatrix, letterMatrix, MAXBUFF);
@@ -197,7 +197,7 @@ int main(int argc, char **argv)
    \param[in]  argv           Arguments
    \param[out] inParam        Compulsory argument passed on command line
    \param[out] outfile        Output filename or empty string
-   \param[out] type           Type of comparison (Phonetics, Boomer or 
+   \param[out] type           Type of comparison (Phonetics, Bouma or 
                               Letters)
    \param[out] doAll          Analyze the distribution in the existing 
                               words file
@@ -227,7 +227,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
          case 'b':
             if(setType)
                return(FALSE);
-            *type   = TYPE_BOOMER;
+            *type   = TYPE_BOUMA;
             setType = TRUE;
             break;
          case 'p':
@@ -318,7 +318,7 @@ file.names [file.out]\n");
 
    fprintf(stderr,"\n                  -a Check all used names against \
 each other\n");
-   fprintf(stderr,"                  -b Check the boomers\n");
+   fprintf(stderr,"                  -b Check the Bouma\n");
    fprintf(stderr,"                  -p Check the Kondrak phonetics \
 [Default]\n");
    fprintf(stderr,"                  -s Check the Simpson letter \
@@ -403,8 +403,8 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
             case TYPE_PHONETICS:
                CheckPhonetics(name1, name2, verbose, (REAL)0.0, out);
                break;
-            case TYPE_BOOMER:
-               CheckBoomer(name1, name2, verbose, (REAL)0.0, out);
+            case TYPE_BOUMA:
+               CheckBouma(name1, name2, verbose, (REAL)0.0, out);
                break;
             case TYPE_LETTERSHAPE:
                CheckLetterShape(name1, name2, verbose, (REAL)0.0, out);
@@ -450,10 +450,13 @@ REAL RunAlignment(char *newName, char *oldName,
                   BOOL verbose, FILE *out)
 {
    
-   int score, newScore, oldScore, maxAlnLen;
+   int  score,
+        newScore,
+        oldScore,
+        maxAlnLen;
    char *newNameAligned = NULL,
         *oldNameAligned = NULL;
-   int alignmentLength;
+   int  alignmentLength;
    REAL finalScore = 0.0;
    
    maxAlnLen = strlen(newName) + strlen(oldName) + 1;
@@ -517,7 +520,7 @@ REAL RunAlignment(char *newName, char *oldName,
 
 
 /************************************************************************/
-/*>BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose, 
+/*>BOOL CheckBouma(char *newName, char *oldName, BOOL verbose, 
                     REAL printThreshold, FILE *out)
    ------------------------------------------------------------
 *//*
@@ -527,16 +530,16 @@ REAL RunAlignment(char *newName, char *oldName,
    \param[in]  printThreshold  Threshold at which to print a match
    \param[in]  out             Output file pointer
 
-   Run the alignment and print results for Boomer comparison
+   Run the alignment and print results for Bouma comparison
 
 -  18.05.18 Original   By: ACRM
 */
-BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose,
+BOOL CheckBouma(char *newName, char *oldName, BOOL verbose,
                  REAL printThreshold, FILE *out)
 {
    REAL score;
-   int  gapOpenPenalty      = 1,
-        gapExtensionPenalty = 1;
+   int  gapOpenPenalty      = 5,
+        gapExtensionPenalty = 5;
 
    if(gUserGappen != GAPPEN_DUMMY)
       gapOpenPenalty = gUserGappen;
@@ -547,7 +550,7 @@ BOOL CheckBoomer(char *newName, char *oldName, BOOL verbose,
                         gapExtensionPenalty, verbose, out);
 
    if(score > printThreshold)
-      fprintf(out, "Boomer: %s %s %.2f\n", newName, oldName, score);
+      fprintf(out, "Bouma: %s %s %.2f\n", newName, oldName, score);
    
    if(score > printThreshold)
       return(FALSE);
@@ -710,8 +713,8 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
       case TYPE_PHONETICS:
          printThreshold = DEFAULT_PHONETICS_THRESHOLD;
          break;
-      case TYPE_BOOMER:
-         printThreshold = DEFAULT_BOOMER_THRESHOLD;
+      case TYPE_BOUMA:
+         printThreshold = DEFAULT_BOUMA_THRESHOLD;
          break;
       case TYPE_LETTERSHAPE:
          printThreshold = DEFAULT_LETTERSHAPE_THRESHOLD;
@@ -731,8 +734,8 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
       case TYPE_PHONETICS:
          CheckPhonetics(name, oldName, verbose, printThreshold, out);
          break;
-      case TYPE_BOOMER:
-         CheckBoomer(name, oldName, verbose, printThreshold, out);
+      case TYPE_BOUMA:
+         CheckBouma(name, oldName, verbose, printThreshold, out);
          break;
       case TYPE_LETTERSHAPE:
          CheckLetterShape(name, oldName, verbose, printThreshold, out);
