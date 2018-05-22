@@ -64,14 +64,15 @@
 #define TYPE_PHONETICS                2
 #define TYPE_LETTERSHAPE              3
 #define DEFAULT_TYPE                  TYPE_PHONETICS
-#define DEFAULT_PHONETICS_MATRIX      "data/kondrak.mat"
-#define DEFAULT_BOUMA_MATRIX          "data/bouma.mat"
-#define DEFAULT_LETTER_MATRIX         "data/letters.mat"
+#define DEFAULT_PHONETICS_MATRIX      "abnamedata/kondrak.mat"
+#define DEFAULT_BOUMA_MATRIX          "abnamedata/bouma.mat"
+#define DEFAULT_LETTER_MATRIX         "abnamedata/letters.mat"
 #define GAPPEN_DUMMY                  -10000
-#define DEFAULT_NAMESFILE             "data/abnames.dat"
+#define DEFAULT_NAMESFILE             "abnamedata/abnames.dat"
 #define DEFAULT_PHONETICS_THRESHOLD   93.0
 #define DEFAULT_BOUMA_THRESHOLD       95.0
 #define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
+#define DATAENV                       "DATADIR"
 
 /************************************************************************/
 /* Globals
@@ -104,6 +105,8 @@ REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
 BOOL OpenStdFile(char *file, FILE **fp, char *mode);
+char *FindFile(char *filename, char *envvar, BOOL *noenv);
+char *FindFileAndCheck(char *filename, char *message);
 
 
 /************************************************************************/
@@ -119,23 +122,16 @@ int main(int argc, char **argv)
    FILE *out    = stdout;
    char inParam[MAXBUFF],
         outFile[MAXBUFF];
-   int  type    = DEFAULT_TYPE;
+   int  type    = DEFAULT_TYPE,
+        retval  = 0;
    BOOL doAll   = FALSE,
-        verbose = FALSE;
-   char phoneticsMatrix[MAXBUFF],
-        boumaMatrix[MAXBUFF],
-        letterMatrix[MAXBUFF],
-        namesFile[MAXBUFF],
-        scoreMatrix[MAXBUFF];
+        verbose = FALSE,
+        noEnv   = FALSE;
+   char *namesFile,
+        *scoreMatrix;
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
-
-   strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
-   strncpy(boumaMatrix,     DEFAULT_BOUMA_MATRIX,    MAXBUFF);
-   strncpy(letterMatrix,    DEFAULT_LETTER_MATRIX,    MAXBUFF);
-   strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
-   
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
                    namesFile, &printThreshold))
    {
@@ -144,22 +140,34 @@ int main(int argc, char **argv)
          Usage();
       }
 
+      if((namesFile=FindFileAndCheck(DEFAULT_NAMESFILE, "names file"))
+         ==NULL)
+      return(1);
+
       switch(type)
       {
       case TYPE_PHONETICS:
-         strncpy(scoreMatrix, phoneticsMatrix, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_PHONETICS_MATRIX,
+                                          "phonetics matrix file"))
+            ==NULL)
+            return(1);
          break;
       case TYPE_BOUMA:
-         strncpy(scoreMatrix, boumaMatrix, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_BOUMA_MATRIX,
+                                          "Bouma matrix file"))
+            ==NULL)
+            return(1);
          break;
       case TYPE_LETTERSHAPE:
-         strncpy(scoreMatrix, letterMatrix, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_LETTER_MATRIX,
+                                          "Simpson letter matrix file"))
+            ==NULL)
+            return(1);
          break;
       default:
          fprintf(stderr,"Error: Internal error - unknown type (%d)\n",
                  type);
       }
-      
 
       if(OpenStdFile(outFile, &out, "w"))
       {
@@ -176,7 +184,7 @@ int main(int argc, char **argv)
       else
       {
          fprintf(stderr,"Error: Unable to open input or output file\n");
-         return(1);
+         retval = 1;
       }
    }
    else
@@ -184,7 +192,8 @@ int main(int argc, char **argv)
       Usage();
    }
 
-   return(0);
+   FREE(namesFile);
+   return(retval);
 }
 
 /************************************************************************/
@@ -750,4 +759,134 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    fclose(fp);
    return(TRUE);
 }
+
+
+/************************************************************************/
+/*>char *FindFile(char *filename, char *envvar, BOOL *noenv)
+   ---------------------------------------------------------
+*//*
+   \param[in]  filename    Basic (or complete) filename
+   \param[in]  envvar      Environment variable to search
+   \param[out] noenv       Indicates if the environment variable was
+                           not set (may be NULL)
+   \return                 Malloc'd filename or NULL if not found
+
+   This is equivalent to blOpenFile() but just returns the file name
+   rather than opening the file.
+
+   Attempts to find a filename as specified. Returns a malloc'd copy
+   of the filename if found. If this fails:
+
+   Under UNIX/MS-DOS/Mac:
+   gets the contents of the envvar environment variable and prepends
+   that to the filename and tries again. If envvar was not set, noenv
+   is set to TRUE and the routine returns a NULL pointer.
+
+   Under other OSs:
+   prepends the envvar string onto the filename and sees if that exists.
+   If it does, the malloc'd complete path/filename is returned. 
+   If not returns a NULL pointer
+
+   The return is a malloc'd string that must be freed when finished with.
+
+-  22.05.18  Original   By: ACRM
+
+
+*/
+char *FindFile(char *filename, char *envvar, BOOL *noenv)
+{
+   char *buffer  = NULL;
+   int  nameSize = 0;
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+   char *datadir = NULL;
+#endif
+
+   if(noenv != NULL) *noenv = FALSE;
+   if(filename == NULL || filename[0] == '\0')
+      return(NULL);
+
+   /* Calculate space needed for filename plus environment variable     */
+   nameSize = strlen(filename) + 2;
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+   if((datadir = getenv(envvar)) != NULL)
+   {
+      nameSize += strlen(datadir);
+   }
+#else
+   nameSize += strlen(envvar);
+#endif
+   
+   /* Allocate space for new filename                                   */
+   if((buffer=(char *)malloc(nameSize * sizeof(char)))==NULL)
+      return(NULL);
+
+   /* If the file exists as given, simply copy it and return            */
+   if(access(filename, R_OK) == 0)
+   {
+      strncpy(buffer, filename, nameSize);
+   }
+   else
+   {
+      /* Failed, so build alternative directory/filename                */
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+      if(datadir != NULL)
+      {
+         if(datadir[strlen(datadir)-1] == '/')
+            sprintf(buffer,"%s%s",datadir,filename);
+         else
+            sprintf(buffer,"%s/%s",datadir,filename);
+      }
+      else
+      {
+         if(noenv != NULL) *noenv = TRUE;
+         FREE(buffer);
+         return(NULL);
+      }
+#else
+      sprintf(buffer,"%s:%s",envvar,filename);
+#endif
+
+      if(access(buffer, R_OK) != 0)
+      {
+         FREE(buffer);
+         return(NULL);
+      }
+   }
+
+   return(buffer);
+}
+
+
+/************************************************************************/
+/*>char *FindFileAndCheck(char *filename, char *message)
+   -----------------------------------------------------
+*//*
+   \param[in]  filename    Basic filename
+   \param[in]  message     Text to be printed on error to describe
+                           the file
+
+   Wrapper to FindFile() that prints an error message if FindFile()
+   failed.
+
+-  22.05.18 Original   By: ACRM
+*/
+char *FindFileAndCheck(char *filename, char *message)
+{
+   char *newFilename = NULL;
+   BOOL noEnv = FALSE;
+   
+   if((newFilename = FindFile(filename, DATAENV, &noEnv))==NULL)
+   {
+      fprintf(stderr, "Error: %s (%s) not found.\n", message,
+              filename);
+      if(noEnv)
+      {
+         fprintf(stderr, "       Environment variable (%s) not set.\n",
+                 DATAENV);
+      }
+   }
+   return(newFilename);
+}
+
+   
 

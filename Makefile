@@ -20,3 +20,6 @@ clean :
 distclean : clean
 	\rm -f $(EXE)
 	(cd utils/MakeKondrakMatrix; make distclean)
+
+install : all
+	./install.sh
