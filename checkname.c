@@ -64,11 +64,11 @@
 #define TYPE_PHONETICS                2
 #define TYPE_LETTERSHAPE              3
 #define DEFAULT_TYPE                  TYPE_PHONETICS
-#define DEFAULT_PHONETICS_MATRIX      "data/kondrak.mat"
-#define DEFAULT_BOUMA_MATRIX          "data/bouma.mat"
-#define DEFAULT_LETTER_MATRIX         "data/letters.mat"
+#define DEFAULT_PHONETICS_MATRIX      "abnamedata/kondrak.mat"
+#define DEFAULT_BOUMA_MATRIX          "abnamedata/bouma.mat"
+#define DEFAULT_LETTER_MATRIX         "abnamedata/letters.mat"
 #define GAPPEN_DUMMY                  -10000
-#define DEFAULT_NAMESFILE             "data/abnames.dat"
+#define DEFAULT_NAMESFILE             "abnamedata/abnames.dat"
 #define DEFAULT_PHONETICS_THRESHOLD   93.0
 #define DEFAULT_BOUMA_THRESHOLD       95.0
 #define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
@@ -104,6 +104,7 @@ REAL RunAlignment(char *newName, char *oldName,
                   int gapOpenPenalty, int gapExtensionPenalty,
                   BOOL verbose, FILE *out);
 BOOL OpenStdFile(char *file, FILE **fp, char *mode);
+char *FindFile(char *filename, char *envvar, BOOL *noenv);
 
 
 /************************************************************************/
@@ -122,18 +123,12 @@ int main(int argc, char **argv)
    int  type    = DEFAULT_TYPE;
    BOOL doAll   = FALSE,
         verbose = FALSE;
-   char phoneticsMatrix[MAXBUFF],
-        boumaMatrix[MAXBUFF],
-        letterMatrix[MAXBUFF],
-        namesFile[MAXBUFF],
+   char namesFile[MAXBUFF],
         scoreMatrix[MAXBUFF];
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
 
-   strncpy(phoneticsMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
-   strncpy(boumaMatrix,     DEFAULT_BOUMA_MATRIX,    MAXBUFF);
-   strncpy(letterMatrix,    DEFAULT_LETTER_MATRIX,    MAXBUFF);
    strncpy(namesFile,       DEFAULT_NAMESFILE,        MAXBUFF);
    
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
@@ -147,18 +142,20 @@ int main(int argc, char **argv)
       switch(type)
       {
       case TYPE_PHONETICS:
-         strncpy(scoreMatrix, phoneticsMatrix, MAXBUFF);
+         strncpy(scoreMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
          break;
       case TYPE_BOUMA:
-         strncpy(scoreMatrix, boumaMatrix, MAXBUFF);
+         strncpy(scoreMatrix, DEFAULT_BOUMA_MATRIX, MAXBUFF);
          break;
       case TYPE_LETTERSHAPE:
-         strncpy(scoreMatrix, letterMatrix, MAXBUFF);
+         strncpy(scoreMatrix, DEFAULT_LETTER_MATRIX, MAXBUFF);
          break;
       default:
          fprintf(stderr,"Error: Internal error - unknown type (%d)\n",
                  type);
       }
+
+      
       
 
       if(OpenStdFile(outFile, &out, "w"))
@@ -751,3 +748,98 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    return(TRUE);
 }
 
+
+/************************************************************************/
+/*>char *FindFile(char *filename, char *envvar, BOOL *noenv)
+   ---------------------------------------------------------
+*//*
+   \param[in]  filename    Basic (or complete) filename
+   \param[in]  envvar      Environment variable to search
+   \param[out] noenv       Indicates if the environment variable was
+                           not set (may be NULL)
+   \return                 Malloc'd filename or NULL if not found
+
+   This is equivalent to blOpenFile() but just returns the file name
+   rather than opening the file.
+
+   Attempts to find a filename as specified. Returns a malloc'd copy
+   of the filename if found. If this fails:
+
+   Under UNIX/MS-DOS/Mac:
+   gets the contents of the envvar environment variable and prepends
+   that to the filename and tries again. If envvar was not set, noenv
+   is set to TRUE and the routine returns a NULL pointer.
+
+   Under other OSs:
+   prepends the envvar string onto the filename and sees if that exists.
+   If it does, the malloc'd complete path/filename is returned. 
+   If not returns a NULL pointer
+
+   The return is a malloc'd string that must be freed when finished with.
+
+-  22.05.18  Original   By: ACRM
+
+
+*/
+char *FindDataFile(char *filename, char *envvar, BOOL *noenv)
+{
+   char *buffer  = NULL;
+   int  nameSize = 0;
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+   char *datadir = NULL;
+#endif
+
+   if(noenv != NULL) *noenv = FALSE;
+   if(filename == NULL || filename[0] == '\0')
+      return(NULL);
+
+   /* Calculate space needed for filename plus environment variable     */
+   nameSize = strlen(filename) + 2;
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+   if((datadir = getenv(envvar)) != NULL)
+   {
+      nameSize += strlen(datadir);
+   }
+#else
+   nameSize += strlen(envvar);
+#endif
+   
+   /* Allocate space for new filename                                   */
+   if((buffer=(char *)malloc(nameSize * sizeof(char)))==NULL)
+      return(NULL);
+
+   /* If the file exists as given, simply copy it and return            */
+   if(access(filename, R_OK))
+   {
+      strncpy(buffer, filename, nameSize);
+   }
+   else
+   {
+      /* Failed, so build alternative directory/filename                */
+#if (unix || __unix__ || MS_WINDOWS || __unix || __MACH__ || __APPLE__)
+      if(datadir != NULL)
+      {
+         if(datadir[strlen(datadir)-1] == '/')
+            sprintf(buffer,"%s%s",datadir,filename);
+         else
+            sprintf(buffer,"%s/%s",datadir,filename);
+      }
+      else
+      {
+         if(noenv != NULL) *noenv = TRUE;
+         FREE(buffer);
+         return(NULL);
+      }
+#else
+      sprintf(buffer,"%s:%s",envvar,filename);
+#endif
+
+      if(!access(buffer, R_OK))
+      {
+         FREE(buffer);
+         return(NULL);
+      }
+   }
+
+   return(buffer);
+}
