@@ -69,9 +69,9 @@
 #define DEFAULT_LETTER_MATRIX         "abnamedata/letters.mat"
 #define GAPPEN_DUMMY                  -10000
 #define DEFAULT_NAMESFILE             "abnamedata/abnames.dat"
-#define DEFAULT_PHONETICS_THRESHOLD   93.0
+#define DEFAULT_PHONETICS_THRESHOLD   85.5
 #define DEFAULT_BOUMA_THRESHOLD       95.0
-#define DEFAULT_LETTERSHAPE_THRESHOLD 80.0
+#define DEFAULT_LETTERSHAPE_THRESHOLD 80.7
 #define DATAENV                       "DATADIR"
 
 /************************************************************************/
