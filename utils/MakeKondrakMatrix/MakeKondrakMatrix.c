@@ -1,8 +1,8 @@
 /************************************************************************/
 /**
 
-   Program:    makematrix
-   \file       makematrix.c
+   Program:    MakeKondrakMatrix
+   \file       MakeKondrakMatrix.c
    
    \version    V1.0
    \date       15.05.18   
@@ -42,6 +42,11 @@
    Usage:
    ======
 
+   Define #TEST to produce the sample data from the thesis
+   Define #AS_THESIS to use parameters in the thesis that do not match
+      what is in the code or the results shown in the matrix sample
+      in the thesis shown by defining #TEST
+
 **************************************************************************
 
    Revision History:
@@ -60,7 +65,7 @@
 /************************************************************************/
 /* Defines and macros
 */
-#include "constants.h"
+#include "KondrakConstants.h"
 #ifdef TEST
 #define MAXLETTERS 7
 #else
@@ -72,7 +77,7 @@
 #endif
 #define ISVOWEL(a) ((a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u'))
 
-/* Tables 4.30 and 4.31 */
+/* Thesis Tables 4.30 and 4.31                                          */
 typedef struct features
 {
    REAL place,
@@ -166,24 +171,37 @@ REAL CalcDelta(char p, char q, FEATURES *features)
 
    if(gotConsonant)
    {
-      delta += ABS(features[LETTER(p)].syllabic  - features[LETTER(q)].syllabic ) * SALIENCE_SYLLABIC;
-      delta += ABS(features[LETTER(p)].voice     - features[LETTER(q)].voice    ) * SALIENCE_VOICE;
-      delta += ABS(features[LETTER(p)].lateral   - features[LETTER(q)].lateral  ) * SALIENCE_LATERAL;
-      delta += ABS(features[LETTER(p)].manner    - features[LETTER(q)].manner   ) * SALIENCE_MANNER;
-      delta += ABS(features[LETTER(p)].place     - features[LETTER(q)].place    ) * SALIENCE_PLACE;
-      delta += ABS(features[LETTER(p)].nasal     - features[LETTER(q)].nasal    ) * SALIENCE_NASAL;
-      delta += ABS(features[LETTER(p)].retroflex - features[LETTER(q)].retroflex) * SALIENCE_RETROFLEX;
-      /* Plus Aspirated */
+      delta += ABS(features[LETTER(p)].syllabic  -
+                   features[LETTER(q)].syllabic ) * SALIENCE_SYLLABIC;
+      delta += ABS(features[LETTER(p)].voice     -
+                   features[LETTER(q)].voice    ) * SALIENCE_VOICE;
+      delta += ABS(features[LETTER(p)].lateral   -
+                   features[LETTER(q)].lateral  ) * SALIENCE_LATERAL;
+      delta += ABS(features[LETTER(p)].manner    -
+                   features[LETTER(q)].manner   ) * SALIENCE_MANNER;
+      delta += ABS(features[LETTER(p)].place     -
+                   features[LETTER(q)].place    ) * SALIENCE_PLACE;
+      delta += ABS(features[LETTER(p)].nasal     -
+                   features[LETTER(q)].nasal    ) * SALIENCE_NASAL;
+      delta += ABS(features[LETTER(p)].retroflex -
+                   features[LETTER(q)].retroflex) * SALIENCE_RETROFLEX;
+      /* Plus Aspirated - not used                                      */
    }
    else
    {
-      delta += ABS(features[LETTER(p)].syllabic  - features[LETTER(q)].syllabic ) * SALIENCE_SYLLABIC;
-      delta += ABS(features[LETTER(p)].high      - features[LETTER(q)].high     ) * SALIENCE_HIGH;
-      delta += ABS(features[LETTER(p)].nasal     - features[LETTER(q)].nasal    ) * SALIENCE_NASAL;
-      delta += ABS(features[LETTER(p)].back      - features[LETTER(q)].back     ) * SALIENCE_BACK;
-      delta += ABS(features[LETTER(p)].retroflex - features[LETTER(q)].retroflex) * SALIENCE_RETROFLEX;
-      delta += ABS(features[LETTER(p)].round     - features[LETTER(q)].round    ) * SALIENCE_ROUND;
-      /* Plus Long */
+      delta += ABS(features[LETTER(p)].syllabic  -
+                   features[LETTER(q)].syllabic ) * SALIENCE_SYLLABIC;
+      delta += ABS(features[LETTER(p)].high      -
+                   features[LETTER(q)].high     ) * SALIENCE_HIGH;
+      delta += ABS(features[LETTER(p)].nasal     -
+                   features[LETTER(q)].nasal    ) * SALIENCE_NASAL;
+      delta += ABS(features[LETTER(p)].back      -
+                   features[LETTER(q)].back     ) * SALIENCE_BACK;
+      delta += ABS(features[LETTER(p)].retroflex -
+                   features[LETTER(q)].retroflex) * SALIENCE_RETROFLEX;
+      delta += ABS(features[LETTER(p)].round     -
+                   features[LETTER(q)].round    ) * SALIENCE_ROUND;
+      /* Plus Long - not used                                           */
    }
    
 

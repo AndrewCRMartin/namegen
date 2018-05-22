@@ -1,11 +1,8 @@
-EXE    = checkname
-OFILES = checkname.o
+EXE    = MakeKondrakMatrix
+OFILES = MakeKondrakMatrix.o
 LIBDIR = $(HOME)/lib
 INCDIR = $(HOME)/include
 CC     = cc -L$(LIBDIR) -I$(INCDIR)
-
-all : $(EXE)
-	(cd utils/MakeKondrakMatrix; make)
 
 $(EXE) : $(OFILES)
 	$(CC) -o $@ $(OFILES) -lbiop -lgen -lm
@@ -15,8 +12,6 @@ $(EXE) : $(OFILES)
 
 clean :
 	\rm -f $(OFILES)
-	(cd utils/MakeKondrakMatrix; make clean)
 
 distclean : clean
 	\rm -f $(EXE)
-	(cd utils/MakeKondrakMatrix; make distclean)
