@@ -1,4 +1,4 @@
-data=$HOME/data/abname
+data=$HOME/data/abnamedata
 bin=$HOME/bin
 
 function makedir
@@ -39,7 +39,7 @@ makedir $bin
 makedir $data
 
 # Copy in the data files
-for file in data/*
+for file in abnamedata/*
 do
     CopyFile $file $data
 done

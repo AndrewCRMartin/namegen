@@ -106,6 +106,7 @@ REAL RunAlignment(char *newName, char *oldName,
                   BOOL verbose, FILE *out);
 BOOL OpenStdFile(char *file, FILE **fp, char *mode);
 char *FindFile(char *filename, char *envvar, BOOL *noenv);
+char *FindFileAndCheck(char *filename, char *message);
 
 
 /************************************************************************/
@@ -127,24 +128,10 @@ int main(int argc, char **argv)
         verbose = FALSE,
         noEnv   = FALSE;
    char *namesFile,
-        scoreMatrix[MAXBUFF];
+        *scoreMatrix;
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
-
-   if((namesFile = FindFile(DEFAULT_NAMESFILE, DATAENV, &noEnv))==NULL)
-   {
-      fprintf(stderr, "Error: names file (%s) not found.\n",
-              DEFAULT_NAMESFILE);
-      if(noEnv)
-      {
-         fprintf(stderr, "       Environment variable (%s) not set.\n",
-                 DATAENV);
-      }
-      return(1);
-   }
-   
-   
    if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
                    namesFile, &printThreshold))
    {
@@ -153,16 +140,29 @@ int main(int argc, char **argv)
          Usage();
       }
 
+      if((namesFile=FindFileAndCheck(DEFAULT_NAMESFILE, "names file"))
+         ==NULL)
+      return(1);
+
       switch(type)
       {
       case TYPE_PHONETICS:
-         strncpy(scoreMatrix, DEFAULT_PHONETICS_MATRIX, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_PHONETICS_MATRIX,
+                                          "phonetics matrix file"))
+            ==NULL)
+            return(1);
          break;
       case TYPE_BOUMA:
-         strncpy(scoreMatrix, DEFAULT_BOUMA_MATRIX, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_BOUMA_MATRIX,
+                                          "Bouma matrix file"))
+            ==NULL)
+            return(1);
          break;
       case TYPE_LETTERSHAPE:
-         strncpy(scoreMatrix, DEFAULT_LETTER_MATRIX, MAXBUFF);
+         if((scoreMatrix=FindFileAndCheck(DEFAULT_LETTER_MATRIX,
+                                          "Simpson letter matrix file"))
+            ==NULL)
+            return(1);
          break;
       default:
          fprintf(stderr,"Error: Internal error - unknown type (%d)\n",
@@ -855,3 +855,38 @@ char *FindFile(char *filename, char *envvar, BOOL *noenv)
 
    return(buffer);
 }
+
+
+/************************************************************************/
+/*>char *FindFileAndCheck(char *filename, char *message)
+   -----------------------------------------------------
+*//*
+   \param[in]  filename    Basic filename
+   \param[in]  message     Text to be printed on error to describe
+                           the file
+
+   Wrapper to FindFile() that prints an error message if FindFile()
+   failed.
+
+-  22.05.18 Original   By: ACRM
+*/
+char *FindFileAndCheck(char *filename, char *message)
+{
+   char *newFilename = NULL;
+   BOOL noEnv = FALSE;
+   
+   if((newFilename = FindFile(filename, DATAENV, &noEnv))==NULL)
+   {
+      fprintf(stderr, "Error: %s (%s) not found.\n", message,
+              filename);
+      if(noEnv)
+      {
+         fprintf(stderr, "       Environment variable (%s) not set.\n",
+                 DATAENV);
+      }
+   }
+   return(newFilename);
+}
+
+   
+
