@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{a4}
 \usepackage{url}
+\usepackage{psfig}
 \bibliographystyle{unsrt}
 
 \newcommand{\eg}[1]{`\emph{#1}'}
@@ -59,18 +60,18 @@ trials. The popularity of antibody-based drugs means that
 approximately one quarter of all drugs that are being assigned an INN
 are now antbodies.
 
-The WHO uses a standard stem (\emph{-mab}) for almost all
+The WHO uses a standard stem (\eg{-mab}) for almost all
 antibody-based drugs, the exception being a small number of fusions of
 antibodies with other biological drugs where the antibody is used only
 to target the active substance to the correct site. Such molecules
-have a \emph{-fusp} (`fusion protein') stem with the letter `\emph{a}'
-appearing before the \emph{-fusp} to indicate that part of the fusion
-is an antibody. Until recently, an infix before the \emph{-mab} was
-used to name the source of the antibody. For example, \emph{-zu-} was
-used to indicate the antibody had been humanized, \emph{-o-} for a
-mouse antibody, \emph{-xi-} for a chimeric and \emph{-u-} for
+have a \eg{-fusp} (`fusion protein') stem with the letter \eg{a}
+appearing before the \eg{-fusp} to indicate that part of the fusion
+is an antibody. Until recently, an infix before the \eg{-mab} was
+used to name the source of the antibody. For example, \eg{-zu-} was
+used to indicate the antibody had been humanized, \eg{-o-} for a
+mouse antibody, \eg{-xi-} for a chimeric and \eg{-u-} for
 human\cite{xxx} leading to antibody names frequently ending in
-\emph{-zumab}, \emph{-umab}, or \emph{-ximab}. However, it became
+\eg{-zumab}, \eg{-umab}, or \eg{-ximab}. However, it became
 clear that capturing the complexity of methods by which antibodies are
 now produced in a single syllable was becoming impossible. This,
 together with some controversies in the ways in which such
@@ -78,16 +79,16 @@ classifications were assigned, meant that these infixes were removed
 from antibody names assigned from May 2017\cite{xxx}. Another infix is
 also present which indicates the `target' for the antibody, although in
 some cases this is more indicative of an initial indication for the
-drug. The target substem includes \emph{-li-} for immunomodulatory,
-\emph{-ci-} for circulatory system and \emph{-ta-} (previously
-\emph{-tu-}) for tumours.
+drug. The target substem includes \eg{-li-} for immunomodulatory,
+\eg{-ci-} for circulatory system and \eg{-ta-} (previously
+\eg{-tu-}) for tumours.
 
-Thus, with the fixed stem (\emph{-mab}) and two infixes, the available
+Thus, with the fixed stem (\eg{-mab}) and two infixes, the available
 name space while trying to keep the name below five syllables was
 severely limited and this was another reason for removing the source
 infix. Even so, with the majority of antibodies targeting the immune
 system or tumours, the vast majority of antibodies now being named end
-in \emph{-limab} or \emph{-tamab} meaning that the diversity of
+in \eg{-limab} or \eg{-tamab} meaning that the diversity of
 available names is still limited. Other restrictions on named include
 the need to avoid relevant trademarks, or names that could be
 associated with a company as well as avoiding names that could be
@@ -132,15 +133,15 @@ representation of the sounds of spoken
 language\cite{macmahon:phoneticnotation} familiar to anyone who has
 looked in a dictionary that contains pronunciation guidance. For
 example, an obvious requirement would be to replace the letters
-`\emph{ph}' and `\emph{f}' with the same phonetic character
+\eg{ph} and \eg{f} with the same phonetic character
 (`{\bfseries\it f}') and this G2P translation is an essential step in
 both automatic speech recognition and text to speech applications.
 However, for the problem of comparing antibody names, this step is
 somewhat superfluous. There is no `correct' pronunciation for these
 words and dipthongs (either diagraphs representing a single sound such
-as in the word `\emph{feat}' or compound vowel character ligatures
-such as `\emph{\ae}') as well as double consonants, double vowels and
-constructions such as `\emph{ph}' are not present. Thus for our
+as in the word \eg{feat} or compound vowel character ligatures
+such as \eg{\ae}) as well as double consonants, double vowels and
+constructions such as \eg{ph} are not present. Thus for our
 purposes, the names of antibodies can be compared directly with no G2P
 translation.
 
@@ -209,18 +210,60 @@ program \verb|abnamecheck| implemented in C. \verb|abnamecheck| allows
 the analysis of all current names and allows a new name to be compared
 against existing names.
 
+XXX Gap penalties XXX
+
 From the analysis of existing names, the mean and standard deviation
 of the similarities for each of these three scoring schemes was
 calculated and a threshold of $\bar{x} + 3\sigma$ was used as a
 default for identifying names that are significantly similar to names
 already in the dataset.
 
+\begin{figure}
+%  a) \psfig{file=figures/phonetics.eps,width=0.4\linewidth}
+%  b) \psfig{file=figures/letter.eps,width=0.4\linewidth}
+%
+%  c) \psfig{file=figures/bouma.eps,width=0.4\linewidth}
+%
+  \caption{\label{fig:results} Distribution of antibody name similariry
+    scores use 5\% bins: a)~Kondrak phonetic similarity; b)~Simpson
+    letter similarity; c)~Bouma similarity.}
+\end{figure}
+
+\begin{figure}
+  \caption{\label{fig:results} Mean antibody name similariry
+    scores plotted against year.}
+\end{figure}
+
 \section{Results}
+The first antibody to be given an INN was XXXX before the \eg{-mab}
+stem was introduced; consequently this example was excluded from the
+analysis. Antibody names extracted from the proposed and recommended
+lists are shown in Supplementary Table~1 together with their list
+numbers and the year in which their names appeared in the recommended
+list or in the propsed list if they did not appeear in a recommended
+list.
+
+The distribution of similarity scores for the full data set is shown in
+Figure~\ref{fig:distrib}. 
+
+The mean similarity scores resulting from pairwise comparison of all
+antibody names, were calculated for each year in a cummulative fashion
+(for example the scores for 2010 were calculated for antibody names
+publsihed in 2010 and in all previous years). Results are shown in
+Figure~\ref{fig:results}. 
+
+The results show XXX.
 
 \section{Discussion}
 
+
 \bibliography{abbrev,checkname}
 \end{document}
+
+
+%% Supplementary Table S1 - antibody names, INN lists and years in
+%% which they appeared
+
 
 
   
