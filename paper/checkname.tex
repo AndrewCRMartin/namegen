@@ -1,6 +1,9 @@
 \documentclass{article}
 \usepackage{a4}
+\usepackage{url}
 \bibliographystyle{unsrt}
+
+\newcommand{\eg}[1]{`\emph{#1}'}
 
 \title{Non-proprietary name diversity for antibody-based drugs}
 \author{Andrew C.R.\ Martin,\\Institute of Structural and Molecular
@@ -66,24 +69,151 @@ is an antibody. Until recently, an infix before the \emph{-mab} was
 used to name the source of the antibody. For example, \emph{-zu-} was
 used to indicate the antibody had been humanized, \emph{-o-} for a
 mouse antibody, \emph{-xi-} for a chimeric and \emph{-u-} for
-human\cite{xxx}. However, the complexity of methods by which
-antibodies are produced and some controversies in the ways in which
-such classifications were assigned meant that these infixes were
-removed from May 2017\cite{xxx}.
+human\cite{xxx} leading to antibody names frequently ending in
+\emph{-zumab}, \emph{-umab}, or \emph{-ximab}. However, it became
+clear that capturing the complexity of methods by which antibodies are
+now produced in a single syllable was becoming impossible. This,
+together with some controversies in the ways in which such
+classifications were assigned, meant that these infixes were removed
+from antibody names assigned from May 2017\cite{xxx}. Another infix is
+also present which indicates the `target' for the antibody, although in
+some cases this is more indicative of an initial indication for the
+drug. The target substem includes \emph{-li-} for immunomodulatory,
+\emph{-ci-} for circulatory system and \emph{-ta-} (previously
+\emph{-tu-}) for tumours.
 
+Thus, with the fixed stem (\emph{-mab}) and two infixes, the available
+name space while trying to keep the name below five syllables was
+severely limited and this was another reason for removing the source
+infix. Even so, with the majority of antibodies targeting the immune
+system or tumours, the vast majority of antibodies now being named end
+in \emph{-limab} or \emph{-tamab} meaning that the diversity of
+available names is still limited. Other restrictions on named include
+the need to avoid relevant trademarks, or names that could be
+associated with a company as well as avoiding names that could be
+perceived to offer a commercial advantage or disadvantage (perhaps
+because they are considered rude or offensive). Since these names are
+used internationally, such considerations do not only apply in
+English.
 
-Another reason for 
-
-and sub-stems in naming antibodies, but the
-enormous number of names being assigned means that the available
+The enormous number of names being assigned means that the available
 namespace is becoming densely populated. Names that are too similar
 can lead to confusion and prescribing errors. Here we investigate the
-diversity of the antibody name space and show that the diversity has
-decreased over time. We provide a tool that allows a potential new
-antibody name to be compared with currently used names to help with
-selection of diverse names.
+diversity of the antibody name space using tools from computational
+linguistics and show that the diversity has decreased over time. We
+provide a tool that allows a potential new antibody name to be
+compared with currently used names to help with selection of diverse
+names.
 
 \section{Materials and Methods}
+Assigned antibody names were collected from the Mednet portal to the
+INN data (\url{mednet-communities.net/inn}) covering all data from
+proposed lists up to 118 and recommended lists up to 78 both released
+in autumn 2017.
+
+Comparison of names is essentially a problem of performing an optimal
+alignment of two strings and is exactly the same problem faced in
+sequence alignment. Standard dynamic programming algorithms for
+local\cite{sw:alignment} or global\cite{nw:alignment} alignment are
+employed to align two strings using appropriate scoring matrices. In
+the case of protein sequence alignment, those scoring matrices are
+generally either Dayhoff type matrices\cite{dayhoff:mdm} or BLOSUM
+matrices\cite{henikoff:blosum}. In the case of linguistics, different
+matrices may be chosen depending on the sorts of comparisons required:
+one may wish to examine the similarity of words when written or when
+spoken.
+
+When examining the sounds of words, general computational linguistics
+genetrally applies a pre-processing step known as grapheme-to-phoneme
+(G2P) translation\cite{hixon:xxx}.  Phonemes are the perceptually
+distinct units of sound that make up words. These are often written
+using the International Phonetic Alphabet (IPA), a standardized
+representation of the sounds of spoken
+language\cite{macmahon:phoneticnotation} familiar to anyone who has
+looked in a dictionary that contains pronunciation guidance. For
+example, an obvious requirement would be to replace the letters
+`\emph{ph}' and `\emph{f}' with the same phonetic character
+(`{\bfseries\it f}') and this G2P translation is an essential step in
+both automatic speech recognition and text to speech applications.
+However, for the problem of comparing antibody names, this step is
+somewhat superfluous. There is no `correct' pronunciation for these
+words and dipthongs (either diagraphs representing a single sound such
+as in the word `\emph{feat}' or compound vowel character ligatures
+such as `\emph{\ae}') as well as double consonants, double vowels and
+constructions such as `\emph{ph}' are not present. Thus for our
+purposes, the names of antibodies can be compared directly with no G2P
+translation.
+
+Kondrak introduced a phonetic similarity matrix based around the
+standard 26 letters of the
+alphabet\cite{kondrak:paper,kondrak:thesis}. This methodology is
+encoded in his ALINE program.  He classifies the base sound made by
+each letter according to xxx features: xxxxxx (see Table~xxxx of
+xxxx). Importantly, he also provides a set of saliancies (or weights)
+for the features and weights that differ depending on whether the
+comparison does or does not include a consonant. He provides a set of
+equations that can be applied to these features to calculate the
+similarity score for any pair of letters and we have implemented these
+rules in the program \verb|MakeKondrakMatrix| written in C.  Corrected
+features for the letter \eg{y} (or more strictly the non-syllabic
+vocoid or `glide' represented by the character \eg{y}) were kindly
+provided by XXXX Kondrak.
+
+As well as spoken similarity, the possibility of confusing anotibody
+names when written is also important, particularly in hand-written
+notes or in prescriptions. Simpson\cite{simpson:xxx} provides a letter
+confusion (or similarity matrix) which was downloaded as an Excel file
+from the paper's supplementary material.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llllllllllllll}\hline
+          & a & b & c & d & e & f & g & h & i & j & k & l & m \\ \hline
+Ascender  & 0 & 2 & 0 & 2 & 0 & 2 & 0 & 2 & 1 & 1 & 2 & 2 & 0 \\
+Descender & 0 & 0 & 0 & 0 & 0 & 1 & 2 & 0 & 0 & 2 & 0 & 0 & 0 \\ \hline
+          &   &   &   &   &   &   &   &   &   &   &   &   &   \\
+          & n & o & p & q & r & s & t & u & v & w & x & y & z \\ \hline
+Ascender  & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+Descender & 0 & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 \\ \hline
+\end{tabular}
+\end{center}
+  \caption{\label{tab:boumascores} Scores assigned for ascenders and
+    descenders of each of the letters. All descenders were given a
+    score of two with the exception of the letter \eg{f} whose score
+    of one represents the fact that it often appears in printed text
+    without a descender.}
+\end{table}
+
+Bouma\cite{xxx} introduced the importance of the shapes of words in
+reading text. The `Bouma' of a word written in all-capitals is always
+a rectangle, but lower-case words have ascenders and descenders
+protruding from the basic rectangle. The importance of word shape in
+learning to read and in word recognition has been widely
+discussed\cite{xxx}.  A program \verb|MakeBoumaMatrix| was written in
+Perl to generate a Bouma similarity matrix based on the equation:
+\begin{equation}
+  B_{x,y} = M - (|A_x - A_y| + |D_x - D_y|)
+\end{equation}
+\begin{equation}
+  M={\mathrm max}\{D_i, A_i\}_{(i\in \{a\ldots z\})}
+\end{equation}
+where $A_x$ is the ascender score for character $x$, $D_x$ is the
+descender score for character $x$, $M$ is the maximal ascender or
+descender score, and $B_{x,y}$ is the Bouma similarity for two letters
+$x$ and $y$. Values for the ascender and descender scores are shown in
+Table~\ref{tab:boumascores}.
+
+The Needleman and Wunsch dynamic programming sequence alignment code
+available in the BiopLib\cite{porter:bioplib} library was used in the
+program \verb|abnamecheck| implemented in C. \verb|abnamecheck| allows
+the analysis of all current names and allows a new name to be compared
+against existing names.
+
+From the analysis of existing names, the mean and standard deviation
+of the similarities for each of these three scoring schemes was
+calculated and a threshold of $\bar{x} + 3\sigma$ was used as a
+default for identifying names that are significantly similar to names
+already in the dataset.
 
 \section{Results}
 
