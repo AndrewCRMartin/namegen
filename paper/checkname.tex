@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{a4}
 \usepackage{url}
-\usepackage{psfig}
+\usepackage{epsfig}
 \bibliographystyle{unsrt}
 
 \newcommand{\eg}[1]{`\emph{#1}'}
@@ -118,7 +118,7 @@ sequence alignment. Standard dynamic programming algorithms for
 local\cite{sw:alignment} or global\cite{nw:alignment} alignment are
 employed to align two strings using appropriate scoring matrices. In
 the case of protein sequence alignment, those scoring matrices are
-generally either Dayhoff type matrices\cite{dayhoff:mdm} or BLOSUM
+generally either Dayhoff type matrices\cite{dayhoff:mdm78} or BLOSUM
 matrices\cite{henikoff:blosum}. In the case of linguistics, different
 matrices may be chosen depending on the sorts of comparisons required:
 one may wish to examine the similarity of words when written or when
@@ -130,7 +130,7 @@ genetrally applies a pre-processing step known as grapheme-to-phoneme
 distinct units of sound that make up words. These are often written
 using the International Phonetic Alphabet (IPA), a standardized
 representation of the sounds of spoken
-language\cite{macmahon:phoneticnotation} familiar to anyone who has
+language\cite{mcmahon:phoneticnotation} familiar to anyone who has
 looked in a dictionary that contains pronunciation guidance. For
 example, an obvious requirement would be to replace the letters
 \eg{ph} and \eg{f} with the same phonetic character
@@ -210,7 +210,14 @@ program \verb|abnamecheck| implemented in C. \verb|abnamecheck| allows
 the analysis of all current names and allows a new name to be compared
 against existing names.
 
-XXX Gap penalties XXX
+Non-affine gap penalties were used (i.e.\ the same penalty for
+introducing and extending a gap). Initially gap penalties were set to
+equal the maximum score seen in the respective scoring matrices and
+then reduced until acceptable alignments were observed. For the
+Kondrak phonetic alignments and Simpson letter similarity alignments,
+it was required that the stem (\eg{-mab}) was correctly aligned and
+for the Bouma alignments, it was required that the final letter \eg{b}
+was aligned for at least 99.9\% of alignments.
 
 From the analysis of existing names, the mean and standard deviation
 of the similarities for each of these three scoring schemes was
@@ -218,21 +225,44 @@ calculated and a threshold of $\bar{x} + 3\sigma$ was used as a
 default for identifying names that are significantly similar to names
 already in the dataset.
 
+The numbers of approved antibodies each year were obtained from the
+`Approved Antbodies List' maintained by Janice Reichert and available
+from the members area of the web site of the Antibody Society.
+
+
+
 \begin{figure}
-%  a) \psfig{file=figures/phonetics.eps,width=0.4\linewidth}
-%  b) \psfig{file=figures/letter.eps,width=0.4\linewidth}
-%
-%  c) \psfig{file=figures/bouma.eps,width=0.4\linewidth}
-%
-  \caption{\label{fig:results} Distribution of antibody name similariry
-    scores use 5\% bins: a)~Kondrak phonetic similarity; b)~Simpson
-    letter similarity; c)~Bouma similarity.}
+\caption{\label{fig:namesandapproved}Numbers of antibodies named each
+  year since XXX when the \eg{-mab} stem was introduced and numbers of
+  antibodies given marketing approval in Europe or the USA.}
 \end{figure}
+
+
+
+\begin{figure}
+\noindent a)\hfill b)\hfill\hfill
+
+ \psfig{file=figures/phonetics.eps,width=0.4\linewidth} \hfill
+ \psfig{file=figures/letter.eps,width=0.4\linewidth}
+ \vspace{2em}
+
+ \noindent c)
+
+ \psfig{file=figures/bouma.eps,width=0.4\linewidth}
+
+ \caption{\label{fig:distrib} Distribution of antibody name similariry
+   scores use 5\% bins: a)~Kondrak phonetic similarity; b)~Simpson
+   letter similarity; c)~Bouma similarity.}
+\end{figure}
+
+
 
 \begin{figure}
   \caption{\label{fig:results} Mean antibody name similariry
     scores plotted against year.}
 \end{figure}
+
+
 
 \section{Results}
 The first antibody to be given an INN was XXXX before the \eg{-mab}
@@ -240,8 +270,9 @@ stem was introduced; consequently this example was excluded from the
 analysis. Antibody names extracted from the proposed and recommended
 lists are shown in Supplementary Table~1 together with their list
 numbers and the year in which their names appeared in the recommended
-list or in the propsed list if they did not appeear in a recommended
-list.
+list or in the propsed list if they did not appear in a recommended
+list. The number of antibodies named and the number approved each year
+are shown in Figure~\ref{fig:namesandapproved}.
 
 The distribution of similarity scores for the full data set is shown in
 Figure~\ref{fig:distrib}. 
@@ -255,6 +286,27 @@ Figure~\ref{fig:results}.
 The results show XXX.
 
 \section{Discussion}
+Over the last 10--15 years, antibody-based drugs have become a major
+class of novel therapeutics with some 60--100 such drugs are being
+named each year. Only a small percentage of these are successful in
+gaining marketing authorizations in Europe or the USA so many of these
+names are `wasted'. The restrictions imposed by having a standard
+naming scheme means that the name space available for assigning
+non-proprietary names to these drugs is very restricted.
+
+We have shown that the name space has become more saturated over time,
+but the changes made in 2017 (removing the source infix from the
+naming scheme) has increased the diversity of names. Nonetheless, we
+expect the rate at which antibody-based drugs are developed to
+continue increasing. Extrapolating from
+Figures~\ref{fig:namesandapproved} and~\ref{fig:results} we expect it
+to be impossible to find names that are unlikely to be confused by
+XXXX.
+
+We have provided a tool that may help drug companies in suggesting
+names which can be downloaded from \url{www.bioinf.org.uk/software/}
+or from \url{www.github.com/AndrewCRMartin/XXXX}. The tool may also be
+accessed for use over the web at \url{www.bioinf.org.uk/abs/names/}
 
 
 \bibliography{abbrev,checkname}
