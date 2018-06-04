@@ -4,8 +4,8 @@
    Program:    checkname
    \file       checkname.c
    
-   \version    V1.0
-   \date       02.05.18   
+   \version    V1.1
+   \date       04.06.18   
    \brief      Checks an antibody name for possible conflicts
    
    \copyright  (c) UCL / Dr. Andrew C. R. Martin 2018
@@ -46,6 +46,9 @@
 
    Revision History:
    =================
+   V1.0  18.05.18 Initial release
+   V1.1  04.06.18 Removed output file parameter and added ability to
+                  compare two names
 
 *************************************************************************/
 /* Includes
@@ -84,7 +87,7 @@ int gUserGapExtpen = GAPPEN_DUMMY;
 /* Prototypes
 */
 int main(int argc, char **argv);
-BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outFile,
+BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
                   int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
                   REAL *printThreshold);
 void Usage(void);
@@ -107,7 +110,8 @@ REAL RunAlignment(char *newName, char *oldName,
 BOOL OpenStdFile(char *file, FILE **fp, char *mode);
 char *FindFile(char *filename, char *envvar, BOOL *noenv);
 char *FindFileAndCheck(char *filename, char *message);
-
+BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
+                     char *scoreMatrix, FILE *out);
 
 /************************************************************************/
 /*>int main(int argc, char **argv)
@@ -121,7 +125,7 @@ int main(int argc, char **argv)
 {
    FILE *out    = stdout;
    char inParam[MAXBUFF],
-        outFile[MAXBUFF];
+        abName2[MAXBUFF];
    int  type    = DEFAULT_TYPE,
         retval  = 0;
    BOOL doAll   = FALSE,
@@ -132,7 +136,7 @@ int main(int argc, char **argv)
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
-   if(ParseCmdLine(argc, argv, inParam, outFile, &type, &doAll, &verbose,
+   if(ParseCmdLine(argc, argv, inParam, abName2, &type, &doAll, &verbose,
                    namesFile, &printThreshold))
    {
       if(!inParam[0])
@@ -169,23 +173,25 @@ int main(int argc, char **argv)
                  type);
       }
 
-      if(OpenStdFile(outFile, &out, "w"))
+      if(doAll)
       {
-         if(doAll)
+         ProcessAllNames(inParam, type, verbose, scoreMatrix, stdout);
+      }
+      else
+      {
+         if(abName2[0])
          {
-            ProcessAllNames(inParam, type, verbose, scoreMatrix, out);
+            /* Second antibody name specified                          */
+            CompareTwoNames(inParam, abName2, type, verbose, scoreMatrix,
+                            stdout);
          }
          else
          {
             ProcessOneName(inParam, namesFile, type, verbose, scoreMatrix,
-                           printThreshold, out);
+                           printThreshold, stdout);
          }
       }
-      else
-      {
-         fprintf(stderr,"Error: Unable to open input or output file\n");
-         retval = 1;
-      }
+      
    }
    else
    {
@@ -196,8 +202,9 @@ int main(int argc, char **argv)
    return(retval);
 }
 
+
 /************************************************************************/
-/*>BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
+/*>BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
                      int *type, BOOL *doAll, BOOL *verbose, 
                      char *namesFile, REAL *printThreshold)
    ----------------------------------------------------------------------
@@ -205,7 +212,9 @@ int main(int argc, char **argv)
    \param[in]  argc           Argument count
    \param[in]  argv           Arguments
    \param[out] inParam        Compulsory argument passed on command line
-   \param[out] outfile        Output filename or empty string
+                              antibody name or file of names if -a 
+                              specified
+   \param[out] abName2        Optional second antibody name
    \param[out] type           Type of comparison (Phonetics, Bouma or 
                               Letters)
    \param[out] doAll          Analyze the distribution in the existing 
@@ -218,13 +227,13 @@ int main(int argc, char **argv)
 
 -  18.05.18 Original   By: ACRM
 */
-BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
+BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
                   int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
                   REAL *printThreshold)
 {
    BOOL setType = FALSE;
    
-   inParam[0] = outfile[0] = '\0';
+   inParam[0] = abName2[0] = '\0';
 
    argc--; argv++;
    while(argc)
@@ -295,7 +304,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
          argc--; argv++;
          if(argc)
          {
-            strcpy(outfile, argv[0]);
+            strcpy(abName2, argv[0]);
             argc--; argv++;
          }
          
@@ -308,6 +317,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
    return(TRUE);
 }
 
+
 /************************************************************************/
 /*>void Usage(void)
    ----------------
@@ -315,15 +325,21 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *outfile,
    Print usage message
 
 -  18.05.18 Original   By: ACRM
+-  04.06.18 V1.1
 */
 void Usage(void)
 {
-   fprintf(stderr,"\ncheckname V1.0 (c) 2018, Dr Andrew C.R. Martin\n");
-   fprintf(stderr,"\nUsage: checkname [-b|-p|-s][-v][-g n][-x n][-t n]\
-[-n file.names] name [file.out]]\n");
-   fprintf(stderr,"       -or-\n");
+   fprintf(stderr,"\ncheckname V1.1 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nUsage:\n");
+   fprintf(stderr,"    Compare name against library...\n");
+   fprintf(stderr,"       checkname [-b|-p|-s][-v][-g n][-x n][-t n]\
+[-n file.names] name [name2]]\n");
+   fprintf(stderr,"    -or- Compare two names...\n");
+   fprintf(stderr,"       checkname [-b|-p|-s][-v][-g n][-x n] \
+name1 name2\n");
+   fprintf(stderr,"    -or- Analyze library...\n");
    fprintf(stderr,"       checkname -a [-b|-p|-s][-v][-g n][-x n] \
-file.names [file.out]\n");
+file.names\n");
 
    fprintf(stderr,"\n                  -a Check all used names against \
 each other\n");
@@ -348,6 +364,7 @@ antibody names against\n");
 look at the \n");
    fprintf(stderr,"distribution of similarity scores.\n\n");
 }
+
 
 /************************************************************************/
 /*>BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
@@ -567,6 +584,7 @@ BOOL CheckBouma(char *newName, char *oldName, BOOL verbose,
    return(TRUE);
 }
 
+
 /************************************************************************/
 /*>BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose, 
                        REAL printThreshold, FILE *out)
@@ -606,6 +624,7 @@ BOOL CheckPhonetics(char *newName, char *oldName, BOOL verbose,
    return(TRUE);
 }
 
+
 /************************************************************************/
 /*>BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose, 
                          REAL printThreshold, FILE *out)
@@ -637,13 +656,15 @@ BOOL CheckLetterShape(char *newName, char *oldName, BOOL verbose,
                         gapExtensionPenalty, verbose, out);
 
    if(score > printThreshold)
-      fprintf(out, "Lettershape: %s %s %.2f\n", newName, oldName, score);
+      fprintf(out, "LetterSimilarity: %s %s %.2f\n",
+              newName, oldName, score);
    
    if(score > printThreshold)
       return(FALSE);
 
    return(TRUE);
 }
+
 
 /************************************************************************/
 /*>BOOL OpenStdFile(char *file, FILE **fp, char *mode)
@@ -757,6 +778,56 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    
    blFreeMDM();
    fclose(fp);
+   return(TRUE);
+}
+
+
+/************************************************************************/
+/*>BOOL CompareTwoNames(char *abName1, char *abName2, int type, 
+                        BOOL verbose, char *scoreMatrix, FILE *out)
+   -------------------------------------------------------------------
+*//**
+   \param[in]  abName1         A name to be tested
+   \param[in]  abName2         A name against which to test
+   \param[in]  type            Type of comparison
+   \param[in]  verbose         Print alignments
+   \param[in]  scoreMatrix     Filename of matrix file
+   \param[in]  out             Output file handle
+   \return                     Success
+
+   Compares two single names against each other
+
+-  04.06.18 Original   By: ACRM
+*/
+BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
+                     char *scoreMatrix, FILE *out)
+{
+   REAL printThreshold = (REAL)0.0;
+   
+   if(!blReadMDM(scoreMatrix))
+   {
+      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n",
+              scoreMatrix);
+      return(FALSE);
+   }
+
+   switch(type)
+   {
+   case TYPE_PHONETICS:
+      CheckPhonetics(abName1, abName2, verbose, printThreshold, out);
+      break;
+   case TYPE_BOUMA:
+      CheckBouma(abName1, abName2, verbose, printThreshold, out);
+      break;
+   case TYPE_LETTERSHAPE:
+      CheckLetterShape(abName1, abName2, verbose, printThreshold, out);
+      break;
+   default:
+      fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+      break;
+   }
+
+   blFreeMDM();
    return(TRUE);
 }
 
@@ -887,6 +958,3 @@ char *FindFileAndCheck(char *filename, char *message)
    }
    return(newFilename);
 }
-
-   
-
