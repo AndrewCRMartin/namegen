@@ -236,6 +236,10 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
    inParam[0] = abName2[0] = '\0';
 
    argc--; argv++;
+
+   if((argc < 1) || (argc > 2))
+      return(FALSE);
+
    while(argc)
    {
       if(argv[0][0] == '-')
@@ -363,6 +367,11 @@ antibody names against\n");
    fprintf(stderr,"\nThe -a option is used to compare existing names to \
 look at the \n");
    fprintf(stderr,"distribution of similarity scores.\n\n");
+
+   fprintf(stderr,"Default thesholds for printing names as too similar are:\n");
+   fprintf(stderr,"   Phonetics:        %.1f\n", DEFAULT_PHONETICS_THRESHOLD);
+   fprintf(stderr,"   LetterSimilarity: %.1f\n", DEFAULT_LETTERSHAPE_THRESHOLD);
+   fprintf(stderr,"   Bouma:            %.1f\n\n", DEFAULT_BOUMA_THRESHOLD);
 }
 
 
