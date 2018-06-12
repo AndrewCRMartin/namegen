@@ -1,0 +1,586 @@
+Collected from mednet 12.06.18
+
+PL 66 1991b
+
+        6559    tuvirumab       66     32
+                6560    sevirumab       66        32
+                6605    imciromab       66        32
+                6614    maslimomab      66        32
+                6658    nebacumab       66        32
+                6867    biciromab       66        32 
+
+
+
+PL74 1995b
+
+        7417    arcitumomab     74        36
+                7471    edrecolomab     74        36 
+
+
+PL77 1997a
+
+                7602    infliximab      77        39
+                7609    rituximab       77        39
+                7615    clenoliximab    77        39
+                7623    felvizumab      77        39 
+
+
+
+PL78 1997b
+
+                7164    daclizumab      78        40
+                7637    trastuzumab     78        40 
+
+PL79 1998a
+
+        7646    morolimumab     79        41
+                7716    natalizumab     79        41
+                7753    palivizumab     79        41 
+
+
+PL80 1998b
+
+                6964    enlimomab       80        41
+                7046    altumomab       80        41
+                7056    edobacomab      80        41
+                7156    detumomab       80        41
+                7165    votumumab       80        41
+                7200    abciximab       80        41
+                7201    capromab        80        41
+                7250    regavirumab     80        41
+                7253    inolimomab      80        41
+                7263    priliximab      80        41
+                7340    afelimomab      80        41
+                7647    atorolimumab    80        42
+                7757    vepalimomab     80        42
+                7821    minretumomab    80        42
+                7827    tositumomab     80        42 
+
+PL81 1999a
+
+        6977    satumomab       81        43
+                7364    odulimomab      81        42
+                7496    faralimomab     81        43
+                7514    bectumomab      81        42
+                7546    nerelimomab     81        42
+                7560    keliximab       81        43
+                7567    cedelizumab     81        42
+                7578    basiliximab     81        42
+                7869    rovelizumab     81        43
+                7876    mepolizumab     81        43 
+
+PL82 1999b
+                7906    cetuximab       82        44
+                7920    epratuzumab     82        44
+                7934    mitumomab       82        44 
+
+PL83 2000a
+
+                8005    alemtuzumab     83        45
+                8014    ruplizumab      83        45
+                8024    gemtuzumab      83        45 
+
+PL84 2000b
+
+                8039    omalizumab      84        46
+                8054    visilizumab     84        46
+                8060    gavilimomab     84        46
+                8061    ziralimumab     84        46
+                8076    erlizumab       84        46 
+
+PL85 2001ab (only one list)
+
+                7860    adalimumab      85        45
+                8106    reslizumab      85        47
+                8122    efalizumab      85        47
+                8127    labetuzumab     85        47 
+
+PL86 2002a
+
+                7433    igovomab        86        42
+                7513    technetium (99mTc) pintumomab   86        42
+                7519    sulesomab       86        42
+                7580    lintuzumab      86        43
+                7866    sibrotuzumab    86        48
+                7882    lerdelimumab    86        46
+                7965    bivatuzumab     86        48
+                8017    bevacizumab     86        48
+                8046    lemalesomab     86        48
+                8150    technetium (99mTc) fanolesomab  86        48
+                8153    pexelizumab     86        47
+                8183    oregovomab      86        48 
+
+PL87 2002b
+
+                8207    vapaliximab     87        49
+                8210    apolizumab      87        49
+                8211    teneliximab     87        49
+                8227    pascolizumab    87        49
+                8231    eculizumab      87        49
+                8232    toralizumab     87        49
+                8239    ecromeximab     87        49
+                8251    siplizumab      87        49
+                8264    fontolizumab    87        49 
+
+PL88 2003a
+
+        8087    metelimumab     88        49
+                8103    matuzumab       88        50
+                8291    aselizumab      88        50
+                8332    bertilimumab    88        50 
+
+PL89 2003b
+
+                8132    pritumumab      89        51
+                8339    galiximab       89        51
+                8370    talizumab       89        51
+                8371    elsilimomab     89        51
+                8380    pertuzumab      89        51
+                8381    belimumab       89        51 
+
+
+PL90 2004a
+
+        8276    urtoxazumab     90        52
+                8313    ranibizumab     90        52
+                8394    tocilizumab     90        52
+                8443    lumiliximab     90        52
+                8449    adecatumumab    90        52 
+
+PL91 2004b
+
+                8481    libivirumab     91        53
+                8497    golimumab       91        53
+                8536    exbivirumab     91        53 
+
+PL92 2004c
+
+                8298    zanolimumab     92        53
+                8451    besilesomab     92        54
+                8500    tefibazumab     92        54
+                8580    raxibacumab     92        54 
+
+PL93 2005a
+
+                8406    catumaxomab     93        55
+                8407    ertumaxomab     93        55
+                8600    volociximab     93        55
+                8605    zalutumumab     93        55
+                8606    ofatumumab      93        55
+                8624    bapineuzumab    93        55
+                8635    mapatumumab     93        55
+                8643    pagibaximab     93        55 
+
+PL94 2005b
+
+                8438    sontuzumab      94        56
+                8545    nimotuzumab     94        56
+                8568    ipilimumab      94        56
+                8651    tadocizumab     94        56
+                8653    denosumab       94        56
+                8713    iratumumab      94        56 
+
+PL95 2006a
+
+                8636    ocrelizumab     95        56
+                8658    efungumab       95        57
+                8659    abagovomab      95        57
+                8683    stamulumab      95        56
+                8693    motavizumab     95        57
+                8734    bavituximab     95        57
+                8753    lexatumumab     95        57 
+
+PL96 2006b
+
+                8499    panitumumab     96        57
+
+
+PL97 2007a
+
+                7833    epitumomab      97        44
+                8716    tremelimumab    97        59
+                8818    ibalizumab      97        59
+                8836    canakinumab     97        59
+                8869    teplizumab      97        59 
+
+PL98 2007b
+
+         8887      lucatumumab                  98        60
+                8922    milatuzumab     98        60
+                8932    veltuzumab      98        60
+                8942    anrukinzumab    98        60
+                8959    dacetuzumab     98        60
+                8979    tigatuzumab     98        60 
+
+PL 99 2008a
+
+        8832    tenatumomab     99        60
+                8862    etaracizumab    99        61
+                8864    otelixizumab    99        60
+                8941    tanezumab       99        61
+                8954    ustekinumab     99        61
+                9029    conatumumab     99        61 
+
+PL100 2008b
+
+         8888      panobacumab                  100        62
+                8998    racotumomab     100        62
+                9028    blinatumomab    100        62
+                9051    siltuximab      100        62
+                9052    rafivirumab     100        61
+                9053    foravirumab     100        61
+                9067    farletuzumab    100        62
+                9074    elotuzumab      100        62
+                9083    necitumumab     100        62
+                9085    figitumumab     100        62
+                9092    robatumumab     100        62
+                9093    vedolizumab     100        62
+                9099    cixutumumab     100        62 
+
+PL101 1009a
+
+                9114    rontalizumab    101        63
+                9116    girentuximab    101        63
+                9117    iodine (124I) girentuximab      101        63
+                9123    rilotumumab     101        63
+                9128    daratumumab     101        63
+                9134    intetumumab     101        63
+                9137    fezakinumab     101        63
+                9153    briakinumab     101        63
+                9158    fresolimumab    101        63
+                9165    lebrikizumab    101        63 
+
+PL102 2009b
+
+         9182      secukinumab                  102        64
+                9185    suvizumab       102        64
+                9199    glembatumumab   102        64
+                9233    benralizumab    102        64
+                9234    mavrilimumab    102        64
+                9235    tralokinumab    102        64 
+PL103 2010a 
+
+               9255    drozitumab      103        65
+                9300    ensituximab     103        65
+                9308    olaratumab      103        65
+                9309    foralumab       103        65
+                9321    itolizumab      103        65
+                9323    ganitumab       103        65
+                9333    olokizumab      103        65
+                9335    roledumab       103        65
+
+
+PL104 2010b
+
+                9135    sifalimumab     104        65
+                9262    enokizumab      104        66
+                9290    etrolizumab     104        66
+                9310    gevokizumab     104        66
+                9322    ponezumab       104        66
+                9334    ublituximab     104        66
+                9336    atinumab        104        66
+                9340    radretumab      104        66
+                9343    amatuximab      104        66
+                9354    enavatuzumab    104        66
+                9365    urelumab        104        66
+                9368    onartuzumab     104        66
+                9370    icrucumab       104        66
+                9372    carlumab        104        66
+                9373    fulranumab      104        66
+                9374    mogamulizumab   104        66
+                9380    vesencumab      104        66
+                9382    namilumab       104        66
+                9413    tregalizumab    104        66 
+
+PL105 2011a
+
+                9307    samalizumab     105        66
+                9320    oxelumab        105        65
+                9369    ozoralizumab    105        67
+                9428    pateclizumab    105        67
+                9430    tabalumab       105        67
+                9431    sirukumab       105        67
+                9439    vatelizumab     105        67
+                9440    blosozumab      105        67
+                9447    narnatumab      105        67
+                9465    ficlatuzumab    105        67
+                9467    ixekizumab      105        67
+                9475    brodalumab      105        67
+                9482    crenezumab      105        67 
+
+PL106 2011b
+
+                9476    sarilumab       106        68
+                9511    caplacizumab    106        68
+                9512    inclacumab      106        68
+                9520    flanvotumab     106        68
+                9533    romosozumab     106        68
+                9537    solitomab       106        68
+                9541    quilizumab      106        68
+                9549    patritumab      106        68
+
+
+PL107 2012a
+
+                9097    solanezumab     107        68
+                9200    dalotuzumab     107        68
+                9415    lirilumab       107        69
+                9567    placulumab      107        69
+                9572    demcizumab      107        69
+                9575    enoticumab      107        69
+                9578    lampalizumab    107        69
+                9589    fasinumab       107        69
+                9590    ocaratuzumab    107        69
+                9598    imgatuzumab     107        69
+                9599    clazakizumab    107        69
+                9608    bezlotoxumab    107        69
+                9611    vorsetuzumab    107        69
+                9612    futuximab       107        69
+                9620    alirocumab      107        69
+                9626    simtuzumab      107        69
+                9635    orticumab       107        69
+                9647    parsatuzumab    107        69
+                9653    ligelizumab     107        69
+
+
+PL108 2012b
+
+                8894    gantenerumab    108        59
+                9107    teprotumumab    108        63
+                9636    concizumab      108        70
+                9643    evolocumab      108        70
+                9648    perakizumab     108        69
+                9669    dupilumab       108        70
+                9672    tildrakizumab   108        70
+                9679    dusigitumab     108        70
+                9688    nesvacumab      108        70
+                9689    pidilizumab     108        70
+                9703    ozanezumab      108        70
+                9710    seribantumab    108        70
+                9723    pritoxaximab    108        70
+                9724    setoxaximab     108        70
+                9733    lodelcizumab    108        70 
+
+PL109 2013a
+
+                9043    obinutuzumab    109        69
+                9509    abituzumab      109        71
+                9519    ontuxizumab     109        71
+                9746    eldelumab       109        71
+                9754    dinutuximab     109        71
+                9757    tosatoxumab     109        71
+                9759    codrituzumab    109        71
+                9762    tarextumab      109        71
+                9774    guselkumab      109        71
+                9778    tovetumab       109        71
+                9779    vantictumab     109        71
+                9799    margetuximab    109        71
+                9800    anifrolumab     109        71
+
+
+PL110 2013b
+
+                9098    ramucirumab     110        71
+                9613    modotuximab     110        72
+                9646    duligotuzumab   110        72
+                9711    bimagrumab      110        70
+                9798    pembrolizumab   110        72
+                9832    otlertuzumab    110        72
+                9838    aducanumab      110        72
+                9840    bococizumab     110        72
+                9841    ralpancizumab   110        72
+                9854    ulocuplumab     110        72
+                9876    fletikumab      110        72
+                9878    bimekizumab     110        72
+
+
+PL111 2014a
+
+                9568    actoxumab       111        72
+                9623    nivolumab       111        72
+                9921    abrilumab       111        73
+                9922    diridavumab     111        73
+                9932    emibetuzumab    111        73
+                9933    varlilumab      111        73
+                9937    pasotuxizumab   111        73
+                9951    emactuzumab     111        73
+                9952    lumretuzumab    111        73
+                9959    begelomab       111        73
+                9961    imalumab        111        73
+                9965    lenzilumab      111        73
+                9975    firivumab       111        73
+                9982    brontictuzumab  111        73
+
+
+PL112 2014b
+
+                9814    atezolizumab    112        74
+                10002   lokivetmab      112        74
+                10010   durvalumab      112        74
+                10013   evinacumab      112        74
+                10041   elgemtumab      112        74
+                10051   tesidolumab     112        74
+                10053   brolucizumab    112        74
+                10059   dectrekumab     112        74
+                10064   nemolizumab     112        74
+                10068   isatuximab      112        74
+                10071   lilotomab       112        74
+                10082   indusatumab     112        74
+
+
+PL113 2015a
+
+                9825    obiltoxaximab   113        75
+                9950    vanucizumab     113        73
+                9976    navivumab       113        75
+                9985    inebilizumab    113        75
+                10060   pamrevlumab     113        75
+                10062   avelumab        113        75
+                10087   trevogrumab     113        75
+                10090   opicinumab      113        75
+                10113   monalizumab     113        75
+                10114   bleselumab      113        75
+                10115   emicizumab      113        75
+                10124   plozalizumab    113        75
+                10128   risankizumab    113        75
+                10142   rovalpituzumab  113        75
+                10172   tezepelumab     113        75
+                10175   rinucumab       113        75
+                10178   afasevikumab    113        75
+                10186   tisotumab       113        75
+                10188   landogrozumab   113        75 
+
+
+PL114 2015b          
+
+      10106   ascrinvacumab   114        75
+                10121   cabiralizumab   114        76
+                10129   xentuzumab      114        76
+                10174   refanezumab     114        76
+                10187   mirvetuximab    114        76
+                10194   blontuvetmab    114        76
+                10195   tamtuvetmab     114        76
+                10196   crotedumab      114        76
+                10197   rivabazumab     114        76
+                10210   vobarilizumab   114        76
+                10220   navicixizumab   114        76
+                10224   prezalumab      114        76
+                10237   laprituximab    114        76
+                10239   naratuximab     114        76
+                10242   vadastuximab    114        76
+                10244   carotuximab     114        76
+                10248   timolumab       114        76
+                10265   lanadelumab     114        76
+                10277   galcanezumab    114        76
+                10286   domagrozumab    114        76
+
+PL115 2016a
+
+                9698    idarucizumab    115        76
+                10035   andecaliximab   115        77
+                10149   ifabotuzumab    115        77
+                10213   rozanolixizumab         115        77
+                10258   lupartumab      115        77
+                10262   depatuxizumab   115        77
+                10296   erenumab        115        77
+                10299   fremanezumab    115        77
+                10301   burosumab       115        77
+                10303   suptavumab      115        77
+                10308   eptinezumab     115        77
+                10316   crizanlizumab   115        77
+                10344   elezanumab      115        77
+                10345   remtolumab      115        77
+                10347   lutikizumab     115        77
+                10364   dezamizumab     115        77
+                10366   telisotuzumab   115        77
+                10382   aprutumab       115        77
+                10385   utomilumab      115        77
+                10399   vunakizumab     115        77
+                10400   camrelizumab    115        77
+                10415   rosmantuzumab   115        77
+                10418   sacituzumab     115        77
+                10422   ranevetmab      115        77
+                10425   brazikumab      115        77 
+
+PL116 2016b
+
+                10037   olendalizumab   116        78
+                10065   satralizumab    116        78
+                10165   enoblituzumab   116        77
+                10272   vonlerolizumab  116        78
+                10319   emapalumab      116        77
+                10409   losatuxizumab   116        78
+                10427   varisacumab     116        78
+                10436   letolizumab     116        78
+                10440   frunevetmab     116        78
+                10441   suvratoxumab    116        78
+                10498   azintuxizumab   116        78
+                10506   duvortuxizumab  116        78
+                10523   selicrelumab    116        78
+                10524   lacnotuzumab    116        78
+                10528   gilvetmab       116        78
+                10535   cosfroviximab   116        78
+                10536   porgaviximab    116        78
+                10537   larcaviximab    116        78
+                10545   oleclumab       116        78 
+
+PL117 2017a
+
+                10431   istiratumab     117        79
+                10458   lesofavumab     117        78
+                10459   gedivumab       117        78
+                10468   sirtratumab     117        objection
+                10473   zolbetuximab    117        79
+                10508   talacotuzumab   117        79
+                10534   gimsilumab      117        79
+                10539   setrusumab      117        79
+                10553   tislelizumab    117        79
+                10580   ianalumab       117        79
+                10585   loncastuximab   117        79
+                10590   camidanlumab    117        79
+                10621   mosunetuzumab   117        79
+                10624   spartalizumab   117        79
+                10630   ladiratuzumab   117        79
+                10638   atidortoxumab   117        79
+                10639   berlimatoxumab  117        79
+                10644   tiragolumab     117        79
+                10646   iladatuzumab    117        objection
+                10656   tibulizumab     117        79
+                10657   mirikizumab     117        79
+                10659   ravulizumab     117        79
+                10675   cofetuzumab     117        79
+                10680   prasinezumab    117        79
+                10681   bemarituzumab   117        79 
+
+PL118 2017b
+
+
+                10334   tomuzotuximab   118        78
+                10335   timigutuzumab   118        78
+                10336   gatipotuzumab   118        78
+                10387   netakimab       118        0
+                10420   tavolimab       118        0
+                10558   cusatuzumab     118        0
+                10563   faricimab       118        0
+                10569   flotetuzumab    118        0
+                10622   romilkimab      118        0
+                10636   cibisatamab     118        0
+                10687   zenocutuzumab   118        79
+                10707   iscalimab       118        0
+                10709   bersanlimab     118        0
+                10730   vopratelimab    118        0
+                10737   sutimlimab      118        0
+                10742   etigilimab      118        0
+                10745   abrezekimab     118        0
+                10746   lenvervimab     118        0
+                10750   ravagalimab     118        0
+                10751   leronlimab      118        0
+                10753   imaprelimab     118        0
+                10757   cetrelimab      118        0
+                10758   onvatilimab     118        0
+                10764   vanalimab       118        0
+                10766   tepoditamab     118        0
+                10768   enapotamab      118        0
+                10792   samrotamab      118        0
+                10797   belantamab      118        0 
+
