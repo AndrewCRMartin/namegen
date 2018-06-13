@@ -6,36 +6,80 @@
 use strict;
 
 
-
-$::r = defined($::r)?1:0;
-$::y = defined($::y)?$::y:0;
+$::r   = defined($::r)?(($::r>0)?$::r:1):0;
+$::y   = defined($::y)?(($::y>0)?$::y:1):0;
+$::rl  = defined($::rl)?(($::rl>0)?$::rl:1):0;
+$::pl  = defined($::pl)?(($::pl>0)?$::pl:1):0;
 
 my($hNameDate, $hNamePL, $hNameRL) = GetNameList($::r);
 
-if($::y)
+if($::rl)
 {
-    ShowUptoYear($::y, $hNameDate);
-}
-else
-{
-    my @dates = uniq(values(%$hNameDate));
-    @dates = sort(@dates);
-
-    foreach my $date (@dates)
+    if($::rl > 1)
     {
-        print "# $date\n";
-        ShowUptoYear($date, $hNameDate);
-        print "\n";
+        ShowUptoVersion($::rl, $hNameRL);
+    }
+    else
+    {
+        my @rls = uniq(values(%$hNameRL));
+        @rls    = sort(@rls);
+
+        foreach my $rl (@rls)
+        {
+            print "# RL$rl\n";
+            ShowUptoVersion($::y, $hNameRL);
+            print "\n";
+        }
+    }
+}
+elsif($::pl)
+{
+    if($::pl > 1)
+    {
+        ShowUptoVersion($::pl, $hNamePL);
+    }
+    else
+    {
+        my @pls = uniq(values(%$hNamePL));
+        @pls    = sort(@pls);
+
+        foreach my $pl (@pls)
+        {
+            print "# PL$pl\n";
+            ShowUptoVersion($::y, $hNamePL);
+            print "\n";
+        }
+    }
+}
+else   # Assume $::y
+{
+    if($::y > 1)
+    {
+        ShowUptoVersion($::y, $hNameDate);
+    }
+    else
+    {
+        my @dates = uniq(values(%$hNameDate));
+        @dates = sort(@dates);
+
+        foreach my $date (@dates)
+        {
+            print "# $date\n";
+            ShowUptoVersion($date, $hNameDate);
+            print "\n";
+        }
     }
 }
 
-sub ShowUptoYear
+
+
+sub ShowUptoVersion
 {
-    my ($date, $hNameDate) = @_;
+    my ($cutoff, $hHash) = @_;
     
-    foreach my $name (keys %$hNameDate)
+    foreach my $name (keys %$hHash)
     {
-        if($$hNameDate{$name} <= $date)
+        if($$hHash{$name} <= $cutoff)
         {
             print "$name\n";
         }
