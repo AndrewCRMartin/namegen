@@ -1,25 +1,23 @@
 #!/usr/bin/perl -s
-#
-# -r Show reused names
-# -y=yyyy Show only up to specified year
 
 use strict;
 
+UsageDie() if(defined($::h));
 
-$::r   = defined($::r)?(($::r>0)?$::r:1):0;
-$::y   = defined($::y)?(($::y>0)?$::y:1):0;
-$::rl  = defined($::rl)?(($::rl>0)?$::rl:1):0;
-$::pl  = defined($::pl)?(($::pl>0)?$::pl:1):0;
+$::u = defined($::u)?(($::u>0)?$::u:1):0;
+$::y = defined($::y)?(($::y>0)?$::y:1):0;
+$::r = defined($::r)?(($::r>0)?$::r:1):0;
+$::p = defined($::p)?(($::p>0)?$::p:1):0;
 
 $::flag = 999999;
 
-my($hNameDate, $hNamePL, $hNameRL) = GetNameList($::r);
+my($hNameDate, $hNamePL, $hNameRL) = GetNameList($::u);
 
-if($::rl)
+if($::r)
 {
-    if($::rl > 1)
+    if($::r > 1)
     {
-        ShowUptoVersion($::rl, $hNameRL);
+        ShowUptoVersion($::r, $hNameRL);
     }
     else
     {
@@ -37,11 +35,11 @@ if($::rl)
         }
     }
 }
-elsif($::pl)
+elsif($::p)
 {
-    if($::pl > 1)
+    if($::p > 1)
     {
-        ShowUptoVersion($::pl, $hNamePL);
+        ShowUptoVersion($::p, $hNamePL);
     }
     else
     {
@@ -77,7 +75,7 @@ else   # Assume $::y
 }
 
 
-
+##########################################################################
 sub ShowUptoVersion
 {
     my ($cutoff, $hHash) = @_;
@@ -92,6 +90,7 @@ sub ShowUptoVersion
 }
 
 
+##########################################################################
 sub uniq
 {
     my(@array) = @_;
@@ -104,6 +103,7 @@ sub uniq
     return(@array);
 }
 
+##########################################################################
 sub GetNameList
 {
     my ($showReuse) = @_;
@@ -117,7 +117,8 @@ sub GetNameList
         chomp;
         s/^\s+//; # Removed leading spaces
         s/\s+$//; # Removed trailing spaces
-        next if(/^#/);  # Skip comments
+        s/#.*//;  # Remove comments
+        next if(!length()); # SKip blank lines
 
         # Get the fields from the record
         my ($id, $name, $pl, $rl, $date) = split(/,/);
@@ -148,6 +149,7 @@ sub GetNameList
     return(\%nameDate, \%namePL, \%nameRL);
 }
 
+##########################################################################
 sub CleanName
 {
     my($name) = @_;
@@ -157,4 +159,35 @@ sub CleanName
         return($field) if($field =~ /mab$/);
     }
     return('');
+}
+
+##########################################################################
+sub UsageDie
+{
+    print <<__EOF;
+
+namesbytime V1.0 (c) 2018 Dr. Andrew C.R. Martin, UCL
+
+Usage: namesbytime [-u][-p[=pl]|-r[=rl]|-y[=year]] names.csv
+       -u      Print info on names Used before
+       -p      Print by Proposed list
+       -p=pl   Print only up to specified Proposed list
+       -r      Print by Recommended list
+       -p=rl   Print only up to specified Recommended list
+       -y      Print by Year [default]
+       -y=year Print only up to specified Year
+
+Prints names up to the specified Proposed list, Recommended list or year.
+If no list or year is specified then they are all printed in order.
+
+The CSV input file is in the format
+   Entry,Name,PL,RL,Year
+For example:
+   6560,sevirumab,66,32,1991b
+Letters in the year field are ignored and comments (starting with #) and 
+blank lines are removed
+
+__EOF
+    
+    exit 0;
 }
