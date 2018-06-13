@@ -11,6 +11,8 @@ $::y   = defined($::y)?(($::y>0)?$::y:1):0;
 $::rl  = defined($::rl)?(($::rl>0)?$::rl:1):0;
 $::pl  = defined($::pl)?(($::pl>0)?$::pl:1):0;
 
+$::flag = 999999;
+
 my($hNameDate, $hNamePL, $hNameRL) = GetNameList($::r);
 
 if($::rl)
@@ -22,13 +24,16 @@ if($::rl)
     else
     {
         my @rls = uniq(values(%$hNameRL));
-        @rls    = sort(@rls);
+        @rls    = sort {$a <=> $b} @rls;
 
         foreach my $rl (@rls)
         {
-            print "# RL$rl\n";
-            ShowUptoVersion($::y, $hNameRL);
-            print "\n";
+            if($rl != $::flag)
+            {
+                print "# RL$rl\n";
+                ShowUptoVersion($rl, $hNameRL);
+                print "\n";
+            }
         }
     }
 }
@@ -41,12 +46,12 @@ elsif($::pl)
     else
     {
         my @pls = uniq(values(%$hNamePL));
-        @pls    = sort(@pls);
+        @pls    = sort {$a <=> $b} @pls;
 
         foreach my $pl (@pls)
         {
             print "# PL$pl\n";
-            ShowUptoVersion($::y, $hNamePL);
+            ShowUptoVersion($pl, $hNamePL);
             print "\n";
         }
     }
@@ -60,7 +65,7 @@ else   # Assume $::y
     else
     {
         my @dates = uniq(values(%$hNameDate));
-        @dates = sort(@dates);
+        @dates = sort {$a <=> $b} @dates;
 
         foreach my $date (@dates)
         {
@@ -116,6 +121,9 @@ sub GetNameList
 
         # Get the fields from the record
         my ($id, $name, $pl, $rl, $date) = split(/,/);
+
+        # Replace an RL of 'objection' with $::flag so it never gets printed
+        $rl = $::flag if($rl eq 'objection');
 
         # Remove the letter from the date
         $date =~ s/[a-zA-Z]//g;
