@@ -123,16 +123,14 @@ BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
 */
 int main(int argc, char **argv)
 {
-   FILE *out    = stdout;
    char inParam[MAXBUFF],
         abName2[MAXBUFF];
    int  type    = DEFAULT_TYPE,
         retval  = 0;
    BOOL doAll   = FALSE,
-        verbose = FALSE,
-        noEnv   = FALSE;
-   char *namesFile,
-        *scoreMatrix;
+        verbose = FALSE;
+   char *namesFile = NULL,
+        *scoreMatrix = NULL;
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
@@ -236,9 +234,6 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
    inParam[0] = abName2[0] = '\0';
 
    argc--; argv++;
-
-   if((argc < 1) || (argc > 2))
-      return(FALSE);
 
    while(argc)
    {

@@ -21,7 +21,7 @@ calcsd letter_$date.dat >> stats.txt
 $nt -y data/innlist_$date.txt > names_byyear_$date.dat
 
 # Analyze for SD, mean and sum
-$dy -s    names_byyear_$date.dat > sd_byyear_$date.dat
-$dy -m    names_byyear_$date.dat > mean_byyear_$date.dat
-$dy -s -m names_byyear_$date.dat > meanplussd_byyear_$date.dat
+$dy -s    names_byyear_$date.dat > sd_byyear_$date.csv
+$dy -m    names_byyear_$date.dat > mean_byyear_$date.csv
+$dy -s -m names_byyear_$date.dat > meanplus3sd_byyear_$date.csv
 
