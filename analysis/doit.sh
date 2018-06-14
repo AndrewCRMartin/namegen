@@ -1,5 +1,6 @@
 cn=checkname
-date=20170116
+nt=./namesovertime.pl
+date=20180614
 ab=../abnamedata/abnames_$date.dat
 $cn -a -p $ab | awk '{print $4}' >phonetics_$date.dat
 $cn -a -b $ab | awk '{print $4}' >bouma_$date.dat
@@ -14,3 +15,6 @@ echo "Bouma" >> stats.txt
 calcsd bouma_$date.dat >> stats.txt
 echo "Letter confusion" >> stats.txt
 calcsd letter_$date.dat >> stats.txt
+
+# Create the by-year file
+$nt -y data/innlist_$date.txt > namesbyyear_$date.dat
