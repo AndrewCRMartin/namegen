@@ -27,11 +27,11 @@ $dy -m    names_byyear_$date.dat > mean_byyear_$date.csv
 $dy -s -m names_byyear_$date.dat > meanplus3sd_byyear_$date.csv
 
 # Generate graphs
-$ctoa sd_byyear_$date.csv > sd_byyear_$date.amplot
+$ctoa -xlab=Year -ylab="Standard Deviation" sd_byyear_$date.csv > sd_byyear_$date.amplot
 amplot sd_byyear_$date.amplot > sd_byyear_$date.eps
 
-$ctoa mean_byyear_$date.csv > mean_byyear_$date.amplot
+$ctoa -xlab=Year -ylab="Mean" mean_byyear_$date.csv > mean_byyear_$date.amplot
 amplot mean_byyear_$date.amplot > mean_byyear_$date.eps
 
-$ctoa meanplus3sd_byyear_$date.csv > meanplus3sd_byyear_$date.amplot
+$ctoa -xlab=Year -ylab="Threshold" meanplus3sd_byyear_$date.csv > meanplus3sd_byyear_$date.amplot
 amplot meanplus3sd_byyear_$date.amplot > meanplus3sd_byyear_$date.eps
