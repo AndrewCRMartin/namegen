@@ -3,6 +3,7 @@ nt=./namesovertime.pl
 dy=./diversityOverTime.pl
 date=20180614
 ab=../abnamedata/abnames_$date.dat
+ctoa=./byyear_csv_to_amplot.pl
 $cn -a -p $ab | awk '{print $4}' >phonetics_$date.dat
 $cn -a -b $ab | awk '{print $4}' >bouma_$date.dat
 $cn -a -s $ab | awk '{print $4}' >letter_$date.dat
@@ -25,3 +26,12 @@ $dy -s    names_byyear_$date.dat > sd_byyear_$date.csv
 $dy -m    names_byyear_$date.dat > mean_byyear_$date.csv
 $dy -s -m names_byyear_$date.dat > meanplus3sd_byyear_$date.csv
 
+# Generate graphs
+$ctoa sd_byyear_$date.csv > sd_byyear_$date.amplot
+amplot sd_byyear_$date.amplot > sd_byyear_$date.eps
+
+$ctoa mean_byyear_$date.csv > mean_byyear_$date.amplot
+amplot mean_byyear_$date.amplot > mean_byyear_$date.eps
+
+$ctoa meanplus3sd_byyear_$date.csv > meanplus3sd_byyear_$date.amplot
+amplot meanplus3sd_byyear_$date.amplot > meanplus3sd_byyear_$date.eps
