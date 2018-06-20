@@ -1,7 +1,7 @@
 cn=checkname
 nt=./namesovertime.pl
 dy=./diversityOverTime.pl
-date=20180614
+date=20180620
 ab=../abnamedata/abnames_$date.dat
 ctoa=./byyear_csv_to_amplot.pl
 $cn -a -p $ab | awk '{print $4}' >phonetics_$date.dat
@@ -19,7 +19,7 @@ echo "Letter confusion" >> stats.txt
 calcsd letter_$date.dat >> stats.txt
 
 # Create the by-year file of names
-$nt -y data/innlist_$date.txt > names_byyear_$date.dat
+$nt -y data/names_$date.csv > names_byyear_$date.dat
 
 # Analyze for SD, mean and sum
 $dy -s    names_byyear_$date.dat > sd_byyear_$date.csv
