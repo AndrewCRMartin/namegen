@@ -3,6 +3,9 @@ use strict;
 
 $::xlab = (defined($::xlab))?$::xlab:"Set";
 $::ylab = (defined($::ylab))?$::ylab:"Value";
+$::xkey = (defined($::xkey))?$::xkey:0.8;
+$::ykey = (defined($::xkey))?$::ykey:0.1;
+$::bounds = (defined($::bounds))?"BOUNDS $::bounds":"";
 
 my $titleLine = <>;
 chomp $titleLine;
@@ -37,12 +40,14 @@ while(<>)
 }
 
 print <<__EOF;
+epsf
 boxed
 xlabel "$::xlab"
 ylabel "$::ylab"
+$::bounds
 __EOF
 
-printf "keypos %.2f %.2f\n", $xmin + 0.8*($xmax-$xmin), $ymin + 0.1*($ymax-$ymin);
+printf "keypos %.2f %.2f\n", $xmin + $::xkey*($xmax-$xmin), $ymin + $::ykey*($ymax-$ymin);
 
 for(my $i=1; $i<$nFields; $i++)
 {
