@@ -20,11 +20,12 @@ International Nonproprietary Name (INN) by the World Health
 Organization (WHO) are antibodies.  The restrictions of the standard
 INN naming scheme and the enormous number of names being assigned,
 means that the available namespace is becoming densely populated.
-Names that are too similar can lead to confusion and prescribing
-errors. Here we investigate the diversity of the antibody name space
-and show that the diversity has decreased over time. We provide a tool
-that allows a potential new antibody name to be compared with
-currently used names to help with selection of diverse names.
+Names that are too similar can lead to confusion and consequently to
+prescribing errors. Here we investigate the diversity of the antibody
+name space and show that the diversity has decreased over time. We
+provide a tool that allows a potential new antibody name to be
+compared with currently used names to help with selection of diverse
+names.
 \end{abstract}
 
 \section{Introduction}
@@ -32,39 +33,40 @@ Antibodies offer a number of advantages as drugs. They can act in the
 same way that conventional drugs do (generally by binding to enzymes
 or receptors and switching them on or off), but their large
 interacting surface allows them to bind to targets (such as hormones,
-growth factors and toxins) that small molecule drugs cannot bind
-effectively since they do not have pockets into which small molecules
-must bind. Secondly, antibodies can be used to trigger the iummune
-system to kill cells or viruses. Thirdly, they can act to target other
-drugs to the correct location in so-called `antibody-drug conjugates'
-(ADCs). In addition, antibody-based drugs are being engineered to
-allow cross-linking --- for example bringing cells of the immune
-system into close proximity with cancer cells. Over the last 10--15
-years, antibody-based drugs have become an incredibly important class
-of pharmaceuticals with the majority of pharmaceutical companies and
-many small biotechnology companies having antibody-based drugs in
-their development pipelines\cite{xxx}. Approximately half of the top
-ten selling blockbuster drugs are antibodiesc\cite{xxx} with
-approximately one third of drugs in development being
-antibodies\cite{xxx}.
+cytokines, growth factors and toxins) that small molecule drugs cannot
+bind effectively since these targets do not have pockets into which small
+molecules must bind. Secondly, antibodies can be used to trigger the
+iummune system to kill cells or viruses. Thirdly, they can act to
+target other drugs to the correct location in so-called `antibody-drug
+conjugates' (ADCs). In addition, antibody-based drugs are being
+engineered to allow cross-linking --- for example bringing cells of
+the immune system into close proximity with cancer cells.
+
+Over the last 10--15 years, antibody-based drugs have become an
+incredibly important class of pharmaceuticals with the majority of
+pharmaceutical companies and many small biotechnology companies having
+antibody-based drugs in their development
+pipelines\cite{xxx}. Approximately half of the top ten selling
+blockbuster drugs are antibodies\cite{xxx} with approximately one
+third of drugs in development being antibodies\cite{xxx}.
 
 The World Health Organization (WHO) assigns International
-Nonproprietary Names (INN) to drugs. An INN allows a substance to be
-identified uniquely and, when the substance comes off patent allows
-other manufacturers to identify their products. The healthcare system
-in many countries requires or encourages prescribing using
-nonproprietary names since these are often considerably more cost
-effective that original branded products. INNs are assigned to drugs
-before they are licenced, typically during phase~II clinical
-trials. The popularity of antibody-based drugs means that
-approximately one quarter of all drugs that are being assigned an INN
-are now antbodies.
+Non-proprietary Names (INNs) to drugs. An INN allows a substance to be
+identified uniquely and, when the patent for the substance expires,
+the INN allows other manufacturers to identify their products. The
+healthcare system in many countries requires or encourages prescribing
+using non-proprietary names since generic products are often
+considerably more cost effective that original branded products. INNs
+are assigned to drugs before they are licenced, typically during
+phase~II clinical trials. The popularity of antibody-based drugs means
+that approximately one quarter of all drugs that are being assigned an
+INN are now antibodies with up to 100 names being assigned per year.
 
 The WHO uses a standard stem (\eg{-mab}) for almost all
 antibody-based drugs, the exception being a small number of fusions of
-antibodies with other biological drugs where the antibody is used only
-to target the active substance to the correct site. Such molecules
-have a \eg{-fusp} (`fusion protein') stem with the letter \eg{a}
+antibodies with other biologic drugs where the antibody is used only
+to target the active substance to the correct site. These molecules
+have a \eg{-fusp} (`fusion protein') stem with the letter \eg{-a-}
 appearing before the \eg{-fusp} to indicate that part of the fusion
 is an antibody. Until recently, an infix before the \eg{-mab} was
 used to name the source of the antibody. For example, \eg{-zu-} was
@@ -83,34 +85,34 @@ drug. The target substem includes \eg{-li-} for immunomodulatory,
 \eg{-ci-} for circulatory system and \eg{-ta-} (previously
 \eg{-tu-}) for tumours.
 
-Thus, with the fixed stem (\eg{-mab}) and two infixes, the available
-name space while trying to keep the name below five syllables was
+Thus, while trying to keep the name below five syllables, having a
+fixed stem (\eg{-mab}) and two infixes, the available name space was
 severely limited and this was another reason for removing the source
 infix. Even so, with the majority of antibodies targeting the immune
 system or tumours, the vast majority of antibodies now being named end
-in \eg{-limab} or \eg{-tamab} meaning that the diversity of
-available names is still limited. Other restrictions on named include
-the need to avoid relevant trademarks, or names that could be
-associated with a company as well as avoiding names that could be
-perceived to offer a commercial advantage or disadvantage (perhaps
-because they are considered rude or offensive). Since these names are
-used internationally, such considerations do not only apply in
-English.
+in \eg{-limab} or \eg{-tamab} meaning that the diversity of available
+names is still limited. Other restrictions on names include the need
+to avoid relevant trademarks, or names that could be associated with a
+company as well as avoiding names that could be perceived to offer a
+commercial advantage or disadvantage (perhaps because they are
+considered rude or offensive). Since these names are used
+internationally, such considerations must be made across a broad range
+of languages and not just English.
 
 The enormous number of names being assigned means that the available
 namespace is becoming densely populated. Names that are too similar
-can lead to confusion and prescribing errors. Here we investigate the
-diversity of the antibody name space using tools from computational
-linguistics and show that the diversity has decreased over time. We
-provide a tool that allows a potential new antibody name to be
-compared with currently used names to help with selection of diverse
-names.
+can lead to confusion and hence to prescribing errors. Here we
+investigate the diversity of the antibody name space using tools from
+computational linguistics and show that the diversity has decreased
+over time. We provide a tool that allows a potential new antibody name
+to be compared with currently used names to help with selection of
+diverse names.
 
 \section{Materials and Methods}
 Assigned antibody names were collected from the Mednet portal to the
 INN data (\url{mednet-communities.net/inn}) covering all data from
 proposed lists up to 118 and recommended lists up to 78 both released
-in autumn 2017.
+in Autumn 2017.
 
 Comparison of names is essentially a problem of performing an optimal
 alignment of two strings and is exactly the same problem faced in
@@ -125,7 +127,7 @@ one may wish to examine the similarity of words when written or when
 spoken.
 
 When examining the sounds of words, general computational linguistics
-genetrally applies a pre-processing step known as grapheme-to-phoneme
+usually applies a pre-processing step known as grapheme-to-phoneme
 (G2P) translation\cite{hixon:xxx}.  Phonemes are the perceptually
 distinct units of sound that make up words. These are often written
 using the International Phonetic Alphabet (IPA), a standardized
@@ -133,34 +135,37 @@ representation of the sounds of spoken
 language\cite{mcmahon:phoneticnotation} familiar to anyone who has
 looked in a dictionary that contains pronunciation guidance. For
 example, an obvious requirement would be to replace the letters
-\eg{ph} and \eg{f} with the same phonetic character
-(`{\bfseries\it f}') and this G2P translation is an essential step in
-both automatic speech recognition and text to speech applications.
-However, for the problem of comparing antibody names, this step is
-somewhat superfluous. There is no `correct' pronunciation for these
-words and dipthongs (either diagraphs representing a single sound such
-as in the word \eg{feat} or compound vowel character ligatures
-such as \eg{\ae}) as well as double consonants, double vowels and
-constructions such as \eg{ph} are not present. Thus for our
-purposes, the names of antibodies can be compared directly with no G2P
-translation.
+\eg{ph} and \eg{f} with the same phonetic character (`{\bfseries\it
+  f}') and this G2P translation is an essential step in both automatic
+speech recognition and text to speech applications.  However, for the
+problem of comparing antibody names, this step is somewhat
+superfluous. There is no `correct' pronunciation for these words and
+dipthongs (either diagraphs representing a single sound such as in the
+word \eg{feat} or compound vowel character ligatures such as \eg{\ae})
+as well as double consonants, double vowels and constructions such as
+\eg{ph} are not present. Thus for our purposes, the names of
+antibodies can be compared directly with no G2P translation.
 
 Kondrak introduced a phonetic similarity matrix based around the
 standard 26 letters of the
 alphabet\cite{kondrak:paper,kondrak:thesis}. This methodology is
 encoded in his ALINE program.  He classifies the base sound made by
-each letter according to xxx features: xxxxxx (see Table~xxxx of
-xxxx). Importantly, he also provides a set of saliancies (or weights)
-for the features and weights that differ depending on whether the
-comparison does or does not include a consonant. He provides a set of
-equations that can be applied to these features to calculate the
-similarity score for any pair of letters and we have implemented these
-rules in the program \verb|MakeKondrakMatrix| written in C.  Corrected
-features for the letter \eg{y} (or more strictly the non-syllabic
-vocoid or `glide' represented by the character \eg{y}) were kindly
-provided by XXXX Kondrak.
+each letter according to 12 features: Syllabic, Place, Voice, Nasal,
+Lateral, Aspirated, High, Back, Manner, Retroflex, Long and
+Round. Some of these are binary while others are multi-valued (see
+Tables~4.28, 4.30 and~4.31 of \cite{kondrak:thesis}). Importantly, he
+also provides a set of saliancies (or weights) for the features (see
+Table~4.27 of \cite{kondrak:thesis}) and weights that differ depending
+on whether the comparison does or does not include a consonant. He
+provides a set of equations (Table~4.26 of \cite{kondrak:thesis}) that
+can be applied to these features to calculate the similarity score for
+any pair of letters and we have implemented these rules in the program
+\verb|MakeKondrakMatrix| written in C.  Corrected features for the
+letter \eg{y} (or more strictly the non-syllabic vocoid or `glide'
+represented by the character \eg{y}) were kindly provided by Grzegorz
+Kondrak.
 
-As well as spoken similarity, the possibility of confusing anotibody
+As well as spoken similarity, the possibility of confusing antibody
 names when written is also important, particularly in hand-written
 notes or in prescriptions. Simpson\cite{simpson:xxx} provides a letter
 confusion (or similarity matrix) which was downloaded as an Excel file
@@ -240,19 +245,13 @@ from the members area of the web site of the Antibody Society.
 
 
 \begin{figure}
-\noindent a)\hfill b)\hfill\hfill
-
- \psfig{file=figures/phonetics.eps,width=0.4\linewidth} \hfill
- \psfig{file=figures/letter.eps,width=0.4\linewidth}
- \vspace{2em}
-
- \noindent c)
-
- \psfig{file=figures/bouma.eps,width=0.4\linewidth}
-
- \caption{\label{fig:distrib} Distribution of antibody name similariry
-   scores use 5\% bins: a)~Kondrak phonetic similarity; b)~Simpson
-   letter similarity; c)~Bouma similarity.}
+\begin{center}
+  \psfig{file=figures/distribution.eps, width=0.7\linewidth}
+\end{center}
+ \caption{\label{fig:distrib} Distribution of antibody name similarity
+   scores using 5\% bins. Similarity is scored using Kondrak phonetic
+   similarity, Simpson letter similarity and the Bouma word-shape
+   similarity.}
 \end{figure}
 
 
