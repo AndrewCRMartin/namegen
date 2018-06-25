@@ -42,13 +42,13 @@ conjugates' (ADCs). In addition, antibody-based drugs are being
 engineered to allow cross-linking --- for example bringing cells of
 the immune system into close proximity with cancer cells.
 
-Over the last 10--15 years, antibody-based drugs have become an
-incredibly important class of pharmaceuticals with the majority of
-pharmaceutical companies and many small biotechnology companies having
-antibody-based drugs in their development
-pipelines\cite{xxx}. Approximately half of the top ten selling
-blockbuster drugs are antibodies\cite{xxx} with approximately one
-third of drugs in development being antibodies\cite{xxx}.
+Over the last 10--15 years, antibody-based drugs have grown to become
+the dominant product class within the biopharmaceutical
+market\cite{ecker:abmarket} with many pharmaceutical companies and
+small biotechnology companies having antibody-based drugs in their
+development pipelines. Half of the top ten selling blockbuster drugs
+are antibodies\cite{igea:top10:2018} with approximately one third of
+drugs in development being antibodies\cite{reichert:trends}.
 
 The World Health Organization (WHO) assigns International
 Non-proprietary Names (INNs) to drugs. An INN allows a substance to be
@@ -62,28 +62,28 @@ phase~II clinical trials. The popularity of antibody-based drugs means
 that approximately one quarter of all drugs that are being assigned an
 INN are now antibodies with up to 100 names being assigned per year.
 
-The WHO uses a standard stem (\eg{-mab}) for almost all
-antibody-based drugs, the exception being a small number of fusions of
-antibodies with other biologic drugs where the antibody is used only
-to target the active substance to the correct site. These molecules
-have a \eg{-fusp} (`fusion protein') stem with the letter \eg{-a-}
-appearing before the \eg{-fusp} to indicate that part of the fusion
-is an antibody. Until recently, an infix before the \eg{-mab} was
-used to name the source of the antibody. For example, \eg{-zu-} was
-used to indicate the antibody had been humanized, \eg{-o-} for a
-mouse antibody, \eg{-xi-} for a chimeric and \eg{-u-} for
-human\cite{xxx} leading to antibody names frequently ending in
-\eg{-zumab}, \eg{-umab}, or \eg{-ximab}. However, it became
-clear that capturing the complexity of methods by which antibodies are
-now produced in a single syllable was becoming impossible. This,
-together with some controversies in the ways in which such
-classifications were assigned, meant that these infixes were removed
-from antibody names assigned from May 2017\cite{xxx}. Another infix is
-also present which indicates the `target' for the antibody, although in
-some cases this is more indicative of an initial indication for the
-drug. The target substem includes \eg{-li-} for immunomodulatory,
-\eg{-ci-} for circulatory system and \eg{-ta-} (previously
-\eg{-tu-}) for tumours.
+The WHO uses a standard stem (\eg{-mab}) for almost all antibody-based
+drugs, the exception being a small number of fusions of antibodies
+with other biologic drugs where the antibody is used only to target
+the active substance to the correct site. These molecules have a
+\eg{-fusp} (`fusion protein') stem with the letter \eg{-a-} appearing
+before the \eg{-fusp} to indicate that part of the fusion is an
+antibody. Until recently, an infix before the \eg{-mab} was used to
+name the source of the antibody. For example, \eg{-zu-} was used to
+indicate the antibody had been humanized, \eg{-o-} for a mouse
+antibody, \eg{-xi-} for a chimeric and \eg{-u-} for
+human\cite{inn:stembook} leading to antibody names frequently ending
+in \eg{-zumab}, \eg{-umab}, or \eg{-ximab}. However, it became clear
+that capturing the complexity of methods by which antibodies are now
+produced in a single syllable was becoming impossible. This, together
+with some controversies in the ways in which such classifications were
+assigned, meant that these infixes were removed from antibody names
+assigned from May 2017\cite{inn:2017scheme,parren:names2017}. Another
+infix is also present which indicates the `target' for the antibody,
+although in some cases this is more indicative of an initial
+indication for the drug. The target substem includes \eg{-li-} for
+immunomodulatory, \eg{-ci-} for circulatory system and \eg{-ta-}
+(previously \eg{-tu-}) for tumours.
 
 Thus, while trying to keep the name below five syllables, having a
 fixed stem (\eg{-mab}) and two infixes, the available name space was
@@ -128,7 +128,7 @@ spoken.
 
 When examining the sounds of words, general computational linguistics
 usually applies a pre-processing step known as grapheme-to-phoneme
-(G2P) translation\cite{hixon:xxx}.  Phonemes are the perceptually
+(G2P) translation\cite{hixon:phoneticsimilarity}.  Phonemes are the perceptually
 distinct units of sound that make up words. These are often written
 using the International Phonetic Alphabet (IPA), a standardized
 representation of the sounds of spoken
@@ -167,9 +167,9 @@ Kondrak.
 
 As well as spoken similarity, the possibility of confusing antibody
 names when written is also important, particularly in hand-written
-notes or in prescriptions. Simpson\cite{simpson:xxx} provides a letter
-confusion (or similarity matrix) which was downloaded as an Excel file
-from the paper's supplementary material.
+notes or in prescriptions. Simpson\cite{simpson:visualsimilarity}
+provides a letter confusion (or similarity matrix) which was
+downloaded as an Excel file from the paper's supplementary material.
 
 \begin{table}
 \begin{center}
@@ -190,13 +190,30 @@ Descender & 0 & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 \\ \hline
     without a descender.}
 \end{table}
 
-Bouma\cite{xxx} introduced the importance of the shapes of words in
-reading text. The `Bouma' of a word written in all-capitals is always
-a rectangle, but lower-case words have ascenders and descenders
-protruding from the basic rectangle. The importance of word shape in
-learning to read and in word recognition has been widely
-discussed\cite{xxx}.  A program \verb|MakeBoumaMatrix| was written in
-Perl to generate a Bouma similarity matrix based on the equation:
+
+In typography, a bouma (/ˈboʊmə/ BOH-mə) is the shape of a cluster of
+letters, often a whole word. It is a reduction of "Bouma-shape", which
+was probably first used in
+
+Paul Saenger's 1997 book Space between
+Words: The Origins of Silent Reading,
+
+Saenger\cite{saenger:bouma} introduced the term `Bouma shape'
+(generally shortened to `Bouma') in typography to refer to the shape
+of a cluster of letters, or more generally to the shape of a whole
+word. This was based on earlier work on the shapes of letters by
+vision researcher Herman Bouma\cite{bouma:isolated,bouma:initial}.
+The `Bouma' of a word written all-in-capitals is always a rectangle,
+but lower-case words have ascenders and descenders protruding from the
+basic rectangle. The importance of word shape in learning to read and
+in word recognition has been discussed since the 1980s\cite[for
+  example]{haber:wordshape}. although some reading psychologists
+question its importance, instead proposing the importance of `parallel
+letterwise
+recognition'\cite{rayner:span,paap:wordshape,larson:wordrecognition},
+others still regard the Bouma as important\cite{glezer:bouma}.  A
+program \verb|MakeBoumaMatrix| was written in Perl to generate a Bouma
+similarity matrix based on the equation:
 \begin{equation}
   B_{x,y} = M - (|A_x - A_y| + |D_x - D_y|)
 \end{equation}
@@ -219,7 +236,7 @@ Non-affine gap penalties were used (i.e.\ the same penalty for
 introducing and extending a gap). Initially gap penalties were set to
 equal the maximum score seen in the respective scoring matrices and
 then reduced until acceptable alignments were observed. For the
-Kondrak phonetic alignments and Simpson letter similarity alignments,
+Kondrak phonetic alignments and Simpson visual similarity alignments,
 it was required that the stem (\eg{-mab}) was correctly aligned and
 for the Bouma alignments, it was required that the final letter \eg{b}
 was aligned for at least 99.9\% of alignments.
@@ -259,8 +276,8 @@ from the members area of the web site of the Antibody Society.
 \end{center}
  \caption{\label{fig:distrib} Distribution of antibody name similarity
    scores using 5\% bins. Similarity is scored using Kondrak phonetic
-   similarity, Simpson letter similarity and the Bouma word-shape
-   similarity.}
+   similarity, Simpson visual letter similarity and the Bouma
+   word-shape similarity.}
 \end{figure}
 
 

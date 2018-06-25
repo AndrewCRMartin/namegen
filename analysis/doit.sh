@@ -82,7 +82,7 @@ amplot sd_byyear_$date.amplot > sd_byyear_$date.eps
 $ctoa -xlab=Year -ylab="Mean" -xkey=0.8 -ykey=1.0 -bouds="1990 2020 50 90" mean_byyear_$date.csv > mean_byyear_$date.amplot
 amplot mean_byyear_$date.amplot > mean_byyear_$date.eps
 
-$ctoa -xlab=Year -ylab="Threshold" -xkey=0.8 -ykey=1.0 -bounds="1990 2020 75 110" meanplus3sd_byyear_$date.csv > meanplus3sd_byyear_$date.amplot
+$ctoa -xlab=Year -ylab="Threshold" -xkey=0.8 -ykey=1.1 -bounds="1990 2020 75 110" meanplus3sd_byyear_$date.csv > meanplus3sd_byyear_$date.amplot
 amplot meanplus3sd_byyear_$date.amplot > meanplus3sd_byyear_$date.eps
 echo "done"
 
