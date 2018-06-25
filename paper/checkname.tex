@@ -3,8 +3,11 @@
 \usepackage{url}
 \usepackage{epsfig}
 \bibliographystyle{unsrt}
+\emergencystretch 1in
 
-\newcommand{\eg}[1]{`\emph{#1}'}
+\newcommand{\eg}[1]{\mbox{`\emph{#1}'}}
+\usepackage{color}
+\newcommand{\note}[1]{\mbox{\color{red}[*** #1 ***]}}
 
 \title{Non-proprietary name diversity for antibody-based drugs}
 \author{Andrew C.R.\ Martin,\\Institute of Structural and Molecular
@@ -36,7 +39,7 @@ interacting surface allows them to bind to targets (such as hormones,
 cytokines, growth factors and toxins) that small molecule drugs cannot
 bind effectively since these targets do not have pockets into which small
 molecules must bind. Secondly, antibodies can be used to trigger the
-iummune system to kill cells or viruses. Thirdly, they can act to
+immune system to kill cells or viruses. Thirdly, they can act to
 target other drugs to the correct location in so-called `antibody-drug
 conjugates' (ADCs). In addition, antibody-based drugs are being
 engineered to allow cross-linking --- for example bringing cells of
@@ -46,26 +49,28 @@ Over the last 10--15 years, antibody-based drugs have grown to become
 the dominant product class within the biopharmaceutical
 market\cite{ecker:abmarket} with many pharmaceutical companies and
 small biotechnology companies having antibody-based drugs in their
-development pipelines. Half of the top ten selling blockbuster drugs
+development pipelines. Half of the top-ten-selling blockbuster drugs
 are antibodies\cite{igea:top10:2018} with approximately one third of
 drugs in development being antibodies\cite{reichert:trends}.
 
 The World Health Organization (WHO) assigns International
-Non-proprietary Names (INNs) to drugs. An INN allows a substance to be
+Nonproprietary Names (INNs) to drugs. An INN allows a substance to be
 identified uniquely and, when the patent for the substance expires,
-the INN allows other manufacturers to identify their products. The
-healthcare system in many countries requires or encourages prescribing
-using non-proprietary names since generic products are often
-considerably more cost effective that original branded products. INNs
-are assigned to drugs before they are licenced, typically during
-phase~II clinical trials. The popularity of antibody-based drugs means
-that approximately one quarter of all drugs that are being assigned an
-INN are now antibodies with up to 100 names being assigned per year.
+the INN allows other manufacturers to identify their products allowing
+generic prescribing. The healthcare system in many countries requires
+or encourages prescribing using nonproprietary names since generic
+products are often considerably more cost effective that original
+branded products. INNs are assigned to drugs before they are licenced,
+typically during phase~II clinical trials. The popularity of
+antibody-based drugs means that approximately one quarter of all drugs
+that are being assigned an INN are now antibodies with up to 100 names
+being assigned per year, but less than 10\% of antibodies that have
+assigned names are approved for use.
 
 The WHO uses a standard stem (\eg{-mab}) for almost all antibody-based
 drugs, the exception being a small number of fusions of antibodies
-with other biologic drugs where the antibody is used only to target
-the active substance to the correct site. These molecules have a
+with other biologic drugs where the antibody is used only to target an
+active biologic substance to the correct site. These molecules have a
 \eg{-fusp} (`fusion protein') stem with the letter \eg{-a-} appearing
 before the \eg{-fusp} to indicate that part of the fusion is an
 antibody. Until recently, an infix before the \eg{-mab} was used to
@@ -93,7 +98,7 @@ system or tumours, the vast majority of antibodies now being named end
 in \eg{-limab} or \eg{-tamab} meaning that the diversity of available
 names is still limited. Other restrictions on names include the need
 to avoid relevant trademarks, or names that could be associated with a
-company as well as avoiding names that could be perceived to offer a
+company, as well as avoiding names that could be perceived to offer a
 commercial advantage or disadvantage (perhaps because they are
 considered rude or offensive). Since these names are used
 internationally, such considerations must be made across a broad range
@@ -191,27 +196,20 @@ Descender & 0 & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 \\ \hline
 \end{table}
 
 
-In typography, a bouma (/ˈboʊmə/ BOH-mə) is the shape of a cluster of
-letters, often a whole word. It is a reduction of "Bouma-shape", which
-was probably first used in
-
-Paul Saenger's 1997 book Space between
-Words: The Origins of Silent Reading,
-
 Saenger\cite{saenger:bouma} introduced the term `Bouma shape'
 (generally shortened to `Bouma') in typography to refer to the shape
-of a cluster of letters, or more generally to the shape of a whole
+of a cluster of letters, or more often to the shape of a whole
 word. This was based on earlier work on the shapes of letters by
 vision researcher Herman Bouma\cite{bouma:isolated,bouma:initial}.
-The `Bouma' of a word written all-in-capitals is always a rectangle,
+The `Bouma' of a word written all in capitals is always a rectangle,
 but lower-case words have ascenders and descenders protruding from the
 basic rectangle. The importance of word shape in learning to read and
 in word recognition has been discussed since the 1980s\cite[for
-  example]{haber:wordshape}. although some reading psychologists
-question its importance, instead proposing the importance of `parallel
+  example]{haber:wordshape}. Although some reading psychologists
+question its importance (instead proposing the importance of `parallel
 letterwise
-recognition'\cite{rayner:span,paap:wordshape,larson:wordrecognition},
-others still regard the Bouma as important\cite{glezer:bouma}.  A
+recognition'\cite{rayner:span,paap:wordshape,larson:wordrecognition})
+others still regard the Bouma as important\cite{glezer:bouma}.  The
 program \verb|MakeBoumaMatrix| was written in Perl to generate a Bouma
 similarity matrix based on the equation:
 \begin{equation}
@@ -232,14 +230,15 @@ program \verb|abnamecheck| implemented in C. \verb|abnamecheck| allows
 the analysis of all current names and allows a new name to be compared
 against existing names.
 
-Non-affine gap penalties were used (i.e.\ the same penalty for
-introducing and extending a gap). Initially gap penalties were set to
-equal the maximum score seen in the respective scoring matrices and
-then reduced until acceptable alignments were observed. For the
-Kondrak phonetic alignments and Simpson visual similarity alignments,
-it was required that the stem (\eg{-mab}) was correctly aligned and
-for the Bouma alignments, it was required that the final letter \eg{b}
-was aligned for at least 99.9\% of alignments.
+As is common practice in computational linguistics, non-affine gap
+penalties were used (i.e.\ the same penalty for introducing and
+extending a gap). Initially gap penalties were set to equal the
+maximum score seen in the respective scoring matrices and then reduced
+until acceptable alignments were observed. For the Kondrak phonetic
+alignments and Simpson visual similarity alignments, it was required
+that the stem (\eg{-mab}) was correctly aligned and for the Bouma
+alignments, it was required that the final letter \eg{b} was aligned
+for at least 99.9\% of alignments.
 
 From the analysis of existing names, the mean and standard deviation
 of the similarities for each of these three scoring schemes was
@@ -247,10 +246,10 @@ calculated and a threshold of $\bar{x} + 3\sigma$ was used as a
 default for identifying names that are significantly similar to names
 already in the dataset.
 
-The numbers of approved antibodies each year were obtained from the
-`Approved Antbodies List' maintained by Janice Reichert and available
-from the members area of the web site of the Antibody Society.
-
+\note{Need to download and use this!}  The numbers of approved
+antibodies each year were obtained from the `Approved Antbodies List'
+maintained by Janice Reichert and available from the members area of
+the web site of the Antibody Society.
 
 
 \begin{figure}
@@ -263,9 +262,8 @@ from the members area of the web site of the Antibody Society.
   !!!TODO!!!
   
   \caption{\label{fig:namesandapproved}Cummulative number of antibodies
-  named each year since 1981 when the \eg{-mab} stem was introduced and
-  numbers of antibodies given marketing approval in Europe or the
-  USA.}
+  a) named each year since 1991 when the \eg{-mab} stem was introduced and
+  b) first given marketing approval in Europe or the USA.}
 \end{figure}
 
 
@@ -304,20 +302,22 @@ from the members area of the web site of the Antibody Society.
   
   \caption{\label{fig:results} Antibody name similariry
     scores plotted against year. a)~the mean score; b)~the standard
-    deviation; c)~a threshold defined as $\bar{x}+3\sigma$}
+    deviation; c)~a threshold defined as
+    $\bar{x}+3\sigma$. \note{Check that the 1991 data point is not
+      just one antibody. Fix the legends to match Figure~2}}
 \end{figure}
 
 
 
 \section{Results}
-The first antibody to be given an INN was XXXX before the \eg{-mab}
-stem was introduced; consequently this example was excluded from the
-analysis. Antibody names extracted from the proposed and recommended
-lists are shown in Supplementary Table~1 together with their list
-numbers and the year in which their names appeared in the recommended
-list or in the propsed list if they did not appear in a recommended
-list. The number of antibodies named and the number approved each year
-are shown in Figure~\ref{fig:namesandapproved}.
+The first antibody to be given an INN was muromonab in 1986 before the
+\eg{-mab} stem was introduced; consequently this example was excluded
+from the analysis. Antibody names extracted from the proposed and
+recommended lists are shown in \note{Supplementary Table~1} together
+with their list numbers and the year in which their names first
+appeared in the proposed list. The cummulative number of antibodies
+named and approved each year are shown in
+Figure~\ref{fig:namesandapproved}.
 
 The distribution of similarity scores for the full data set is shown in
 Figure~\ref{fig:distrib}. 
@@ -328,7 +328,7 @@ antibody names, were calculated for each year in a cummulative fashion
 publsihed in 2010 and in all previous years). Results are shown in
 Figure~\ref{fig:results}. 
 
-The results show XXX.
+\note{The results show XXX.}
 
 \section{Discussion}
 Over the last 10--15 years, antibody-based drugs have become a major
@@ -337,21 +337,19 @@ named each year. Only a small percentage of these are successful in
 gaining marketing authorizations in Europe or the USA so many of these
 names are `wasted'. The restrictions imposed by having a standard
 naming scheme means that the name space available for assigning
-non-proprietary names to these drugs is very restricted.
+nonproprietary names to these drugs is very restricted.
 
 We have shown that the name space has become more saturated over time,
 but the changes made in 2017 (removing the source infix from the
 naming scheme) has increased the diversity of names. Nonetheless, we
 expect the rate at which antibody-based drugs are developed to
-continue increasing. Extrapolating from
-Figures~\ref{fig:namesandapproved} and~\ref{fig:results} we expect it
-to be impossible to find names that are unlikely to be confused by
-XXXX.
+continue increasing. The change in naming scheme in 2017 made no
+perceptable change to the trends in diversity scores.
 
 We have provided a tool that may help drug companies in suggesting
 names which can be downloaded from \url{www.bioinf.org.uk/software/}
-or from \url{www.github.com/AndrewCRMartin/XXXX}. The tool may also be
-accessed for use over the web at \url{www.bioinf.org.uk/abs/names/}
+or from \note{\url{www.github.com/AndrewCRMartin/XXXX}}. The tool may also be
+accessed for use over the web at \note{\url{www.bioinf.org.uk/abs/names/}}.
 
 
 \bibliography{abbrev,checkname}
