@@ -58,7 +58,7 @@ sub doAnalyze
 {
     my($file, $result, $flag, $mean, $sd) = @_;
 
-    `checkname -a $flag $file | awk '{print \$4}' > $result`;
+    `abcheckname -a $flag $file | awk '{print \$4}' > $result`;
     my $meansd = `calcsd $result`;
     $meansd =~ s/^\s+//;
     $meansd =~ s/\s+$//;

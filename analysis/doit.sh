@@ -1,6 +1,6 @@
 date=20180620
 paperdir=../paper/figures
-cn=checkname
+cn=abcheckname
 nt=./namesovertime.pl
 dy=./diversityOverTime.pl
 ctoa=./byyear_csv_to_amplot.pl

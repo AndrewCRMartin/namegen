@@ -1,5 +1,5 @@
-EXE    = checkname
-OFILES = checkname.o
+EXE    = abcheckname
+OFILES = abcheckname.o
 LIBDIR = $(HOME)/lib
 INCDIR = $(HOME)/include
 CC     = cc -L$(LIBDIR) -I$(INCDIR) -O3

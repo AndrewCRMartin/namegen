@@ -1,8 +1,8 @@
 /************************************************************************/
 /**
 
-   Program:    checkname
-   \file       checkname.c
+   Program:    abcheckname
+   \file       abcheckname.c
    
    \version    V1.1
    \date       04.06.18   
@@ -328,16 +328,16 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 */
 void Usage(void)
 {
-   fprintf(stderr,"\ncheckname V1.1 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nabcheckname V1.1 (c) 2018, Dr Andrew C.R. Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
-   fprintf(stderr,"       checkname [-b|-p|-s][-v][-g n][-x n][-t n]\
+   fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n][-t n]\
 [-n file.names] name [name2]]\n");
    fprintf(stderr,"    -or- Compare two names...\n");
-   fprintf(stderr,"       checkname [-b|-p|-s][-v][-g n][-x n] \
+   fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n] \
 name1 name2\n");
    fprintf(stderr,"    -or- Analyze library...\n");
-   fprintf(stderr,"       checkname -a [-b|-p|-s][-v][-g n][-x n] \
+   fprintf(stderr,"       abcheckname -a [-b|-p|-s][-v][-g n][-x n] \
 file.names\n");
 
    fprintf(stderr,"\n                  -a Check all used names against \
@@ -355,7 +355,7 @@ antibody names\n");
    fprintf(stderr,"                  -t Specify a threshold for printing \
 as similar\n");
 
-   fprintf(stderr,"\nCheckname is a program for comparing potential \
+   fprintf(stderr,"\nAbcheckname is a program for comparing potential \
 antibody names against\n");
    fprintf(stderr,"those already used by the WHO-INN.\n");
 

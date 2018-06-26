@@ -45,5 +45,5 @@ do
 done
 
 # Copy in the executable
-CopyFile checkname $bin
+CopyFile abcheckname $bin
 
