@@ -6,7 +6,7 @@ my $ylab = "Frequency";
 my $date = shift(@ARGV);
 
 my @fileNames = ('phonetics', 'letter',            'bouma');
-my @labels    = ('Phonetics', 'Letter similarity', 'Bouma');
+my @labels    = ('Phonetics', 'Letter-similarity', 'Bouma');
 my $count     = 0;
 my @data      = ();
 

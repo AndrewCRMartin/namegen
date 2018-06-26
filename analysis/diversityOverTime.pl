@@ -13,7 +13,7 @@ use strict;
 my $dataset = 0;
 my @names   = ();
 
-print "#set sound letter bouma\n";
+print "#set Phonetics Letter-similarity Bouma\n";
 
 while(<>)
 {
