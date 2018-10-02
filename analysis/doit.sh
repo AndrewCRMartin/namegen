@@ -17,7 +17,7 @@ fi
 
 if [ "X" != "X$1" ]; then
     date=$1
-done
+fi
 
 ab=../abnamedata/abnames_$date.dat
 
