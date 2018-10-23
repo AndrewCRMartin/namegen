@@ -1,0 +1,3 @@
+How many fall outside 2 (or 3) SD each year?
+Look at the SD in each year rather than cummulative
+
