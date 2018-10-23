@@ -130,19 +130,23 @@ int main(int argc, char **argv)
    BOOL doAll   = FALSE,
         verbose = FALSE;
    char *namesFile = NULL,
-        *scoreMatrix = NULL;
+        *scoreMatrix = NULL,
+        defNamesFile[MAXBUFF];
    REAL printThreshold = (REAL)(-1000.0); /* If negative, default will 
                                              be used 
                                           */
+
+   strncpy(defNamesFile, DEFAULT_NAMESFILE, MAXBUFF);
+
    if(ParseCmdLine(argc, argv, inParam, abName2, &type, &doAll, &verbose,
-                   namesFile, &printThreshold))
+                   defNamesFile, &printThreshold))
    {
       if(!inParam[0])
       {
          Usage();
       }
 
-      if((namesFile=FindFileAndCheck(DEFAULT_NAMESFILE, "names file"))
+      if((namesFile=FindFileAndCheck(defNamesFile, "names file"))
          ==NULL)
       return(1);
 
