@@ -4,8 +4,8 @@
    Program:    abcheckname
    \file       abcheckname.c
    
-   \version    V1.1
-   \date       04.06.18   
+   \version    V1.2
+   \date       23.10.18   
    \brief      Checks an antibody name for possible conflicts
    
    \copyright  (c) UCL / Dr. Andrew C. R. Martin 2018
@@ -49,6 +49,7 @@
    V1.0  18.05.18 Initial release
    V1.1  04.06.18 Removed output file parameter and added ability to
                   compare two names
+   V1.2  23.10.18 Fixed bug when specifying names file with -n
 
 *************************************************************************/
 /* Includes
@@ -120,6 +121,7 @@ BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
    Main program
 
 -  18.05.18 Original   By: ACRM
+-  23.10.18 Fixed bug when specifying names file with -n
 */
 int main(int argc, char **argv)
 {
@@ -329,10 +331,12 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 
 -  18.05.18 Original   By: ACRM
 -  04.06.18 V1.1
+-  23.10.18 V1.2
+
 */
 void Usage(void)
 {
-   fprintf(stderr,"\nabcheckname V1.1 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nabcheckname V1.2 (c) 2018, Dr Andrew C.R. Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
    fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n][-t n]\
