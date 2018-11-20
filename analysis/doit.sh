@@ -1,5 +1,6 @@
 date=20180620
-paperdir=../paper/figures
+paperdir=../paper
+paperfigdir=$paperdir/figures
 cn=abcheckname
 nt=./namesovertime.pl
 dy=./diversityOverTime.pl
@@ -63,6 +64,11 @@ echo -n "Generating graphs of names used per year ... "
 ./plotnamesperyear.pl -date=$date -xmaxc=70 -xmaxcc=600 data/names_$date.csv 
 echo "done"
 
+# Create the distribution of names approved per year
+echo -n "Generating graphs of names approved per year ... "
+./plotnamesperyear.pl -out=ApprovedNamesPerYear -date=$date -xmaxc=20 -xmaxcc=100 data/ApprovedNames_$date.csv 
+echo "done"
+
 # Analyze for SD, mean and sum
 echo -n "Calculating diversity over time, SD ... "
 $dy -s    names_byyear_$date.dat > sd_byyear_$date.csv
@@ -87,21 +93,30 @@ amplot meanplus3sd_byyear_$date.amplot > meanplus3sd_byyear_$date.eps
 echo "done"
 
 # Copy graphs to the paper directory
-cp distribution_$date.eps $paperdir
-(cd $paperdir; ln -sf distribution_$date.eps distribution.eps)
+cp distribution_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf distribution_$date.eps distribution.eps)
 
-cp namesperyear_$date.eps $paperdir
-(cd $paperdir; ln -sf namesperyear_$date.eps namesperyear.eps)
+cp namesperyear_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf namesperyear_$date.eps namesperyear.eps)
 
-cp namesperyear_cummulative_$date.eps $paperdir
-(cd $paperdir; ln -sf namesperyear_cummulative_$date.eps namesperyear_cummulative.eps)
+cp namesperyear_cummulative_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf namesperyear_cummulative_$date.eps namesperyear_cummulative.eps)
 
-cp sd_byyear_$date.eps $paperdir
-(cd $paperdir; ln -sf sd_byyear_$date.eps sd_byyear.eps)
+cp ApprovedNamesPerYear_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf ApprovedNamesPerYear_$date.eps NamesPerYear.eps)
 
-cp mean_byyear_$date.eps $paperdir
-(cd $paperdir; ln -sf mean_byyear_$date.eps mean_byyear.eps)
+cp ApprovedNamesPerYear_cummulative_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf ApprovedNamesPerYear_cummulative_$date.eps ApprovedNamesPerYear_cummulative.eps)
 
-cp meanplus3sd_byyear_$date.eps $paperdir
-(cd $paperdir; ln -sf meanplus3sd_byyear_$date.eps meanplus3sd_byyear.eps)
+cp sd_byyear_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf sd_byyear_$date.eps sd_byyear.eps)
 
+cp mean_byyear_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf mean_byyear_$date.eps mean_byyear.eps)
+
+cp meanplus3sd_byyear_$date.eps $paperfigdir
+(cd $paperfigdir; ln -sf meanplus3sd_byyear_$date.eps meanplus3sd_byyear.eps)
+
+# Copy data file to Supplementary Material
+mkdir -p $paperdir/SUPPLEMENTARY
+cp data/names_$date.csv $paperdir/SUPPLEMENTARY/names.csv

@@ -37,21 +37,24 @@ same way that conventional drugs do (generally by binding to enzymes
 or receptors and switching them on or off), but their large
 interacting surface allows them to bind to targets (such as hormones,
 cytokines, growth factors and toxins) that small molecule drugs cannot
-bind effectively since these targets do not have pockets into which small
-molecules must bind. Secondly, antibodies can be used to trigger the
-immune system to kill cells or viruses. Thirdly, they can act to
+bind effectively since these targets do not have pockets into which
+small molecules must bind. Secondly, antibodies can be used to trigger
+the immune system to kill cells or viruses. Thirdly, they can act to
 target other drugs to the correct location in so-called `antibody-drug
-conjugates' (ADCs). In addition, antibody-based drugs are being
-engineered to allow cross-linking --- for example bringing cells of
-the immune system into close proximity with cancer cells.
+conjugates' (ADCs). In addition, antibody-based drugs have been
+engineered to produce bi-specific and multi-specific constructs which
+allow cross-linking --- for example bringing cells of the immune
+system into close proximity with cancer cells.
 
 Over the last 10--15 years, antibody-based drugs have grown to become
 the dominant product class within the biopharmaceutical
 market\cite{ecker:abmarket} with many pharmaceutical companies and
 small biotechnology companies having antibody-based drugs in their
-development pipelines. Half of the top-ten-selling blockbuster drugs
-are antibodies\cite{igea:top10:2018} with approximately one third of
-drugs in development being antibodies\cite{reichert:trends}.
+development pipelines. It has been estimated that approximately one
+third of drugs in development being antibodies\cite{reichert:trends}
+and half of the top-ten-selling blockbuster drugs are
+antibodies\cite{igea:top10:2018} including the world's top selling
+prescription drug in 2017, with global revenues of \$18.43bn.
 
 The World Health Organization (WHO) assigns International
 Nonproprietary Names (INNs) to drugs. An INN allows a substance to be
@@ -73,22 +76,25 @@ with other biologic drugs where the antibody is used only to target an
 active biologic substance to the correct site. These molecules have a
 \eg{-fusp} (`fusion protein') stem with the letter \eg{-a-} appearing
 before the \eg{-fusp} to indicate that part of the fusion is an
-antibody. Until recently, an infix before the \eg{-mab} was used to
-name the source of the antibody. For example, \eg{-zu-} was used to
-indicate the antibody had been humanized, \eg{-o-} for a mouse
-antibody, \eg{-xi-} for a chimeric and \eg{-u-} for
-human\cite{inn:stembook} leading to antibody names frequently ending
-in \eg{-zumab}, \eg{-umab}, or \eg{-ximab}. However, it became clear
-that capturing the complexity of methods by which antibodies are now
-produced in a single syllable was becoming impossible. This, together
-with some controversies in the ways in which such classifications were
-assigned, meant that these infixes were removed from antibody names
-assigned from May 2017\cite{inn:2017scheme,parren:names2017}. Another
-infix is also present which indicates the `target' for the antibody,
-although in some cases this is more indicative of an initial
-indication for the drug. The target substem includes \eg{-li-} for
-immunomodulatory, \eg{-ci-} for circulatory system and \eg{-ta-}
-(previously \eg{-tu-}) for tumours.
+antibody. In addition, fusions where only the Fc fragment of an
+antibody is used in order to increase the drug's half life are instead
+given a prefix of \eg{ef-}. Until recently, an infix before the
+\eg{-mab} was used to name the source of the antibody. For example,
+\eg{-zu-} was used to indicate the antibody had been humanized,
+\eg{-o-} for a mouse antibody, \eg{-xi-} for a chimeric and \eg{-u-}
+for human\cite{inn:stembook} leading to antibody names frequently
+ending in \eg{-zumab}, \eg{-umab}, or \eg{-ximab}. However, it became
+clear that capturing the complexity of methods by which antibodies are
+now produced in a single syllable was becoming impossible. This,
+together with some controversies in the ways in which such
+classifications were assigned, meant that these infixes were removed
+from antibody names assigned from May
+2017\cite{inn:2017scheme,parren:names2017}. Another infix is also
+present which indicates the `target' for the antibody, although in
+some cases this is more indicative of an initial indication for the
+drug. The target substem includes \eg{-li-} for immunomodulatory,
+\eg{-ci-} for circulatory system and \eg{-ta-} (previously \eg{-tu-})
+for tumours.
 
 Thus, while trying to keep the name below five syllables, having a
 fixed stem (\eg{-mab}) and two infixes, the available name space was
@@ -108,10 +114,11 @@ The enormous number of names being assigned means that the available
 namespace is becoming densely populated. Names that are too similar
 can lead to confusion and hence to prescribing errors. Here we
 investigate the diversity of the antibody name space using tools from
-computational linguistics and show that the diversity has decreased
-over time. We provide a tool that allows a potential new antibody name
-to be compared with currently used names to help with selection of
-diverse names.
+computational linguistics and show that, surprisingly, the mean
+similarity between names has decreased over the last 10 years, but
+that the standard deviations has also decreased.  We provide a tool
+that allows a potential new antibody name to be compared with
+currently used names to help with selection of diverse names.
 
 \section{Materials and Methods}
 Assigned antibody names were collected from the Mednet portal to the
@@ -158,13 +165,14 @@ encoded in his ALINE program.  He classifies the base sound made by
 each letter according to 12 features: Syllabic, Place, Voice, Nasal,
 Lateral, Aspirated, High, Back, Manner, Retroflex, Long and
 Round. Some of these are binary while others are multi-valued (see
-Tables~4.28, 4.30 and~4.31 of \cite{kondrak:thesis}). Importantly, he
-also provides a set of saliancies (or weights) for the features (see
-Table~4.27 of \cite{kondrak:thesis}) and weights that differ depending
-on whether the comparison does or does not include a consonant. He
-provides a set of equations (Table~4.26 of \cite{kondrak:thesis}) that
-can be applied to these features to calculate the similarity score for
-any pair of letters and we have implemented these rules in the program
+Tables~4.28, 4.30 and~4.31 of Kondrak's PhD
+thesis\cite{kondrak:thesis}).  Importantly, he also provides a set of
+saliancies (or weights) for the features (see Table~4.27 of
+\cite{kondrak:thesis}) and weights that differ depending on whether
+the comparison does or does not include a consonant. He provides a set
+of equations (Table~4.26 of \cite{kondrak:thesis}) that can be applied
+to these features to calculate the similarity score for any pair of
+letters and we have implemented these rules in the program
 \verb|MakeKondrakMatrix| written in C.  Corrected features for the
 letter \eg{y} (or more strictly the non-syllabic vocoid or `glide'
 represented by the character \eg{y}) were kindly provided by Grzegorz
@@ -246,24 +254,24 @@ calculated and a threshold of $\bar{x} + 3\sigma$ was used as a
 default for identifying names that are significantly similar to names
 already in the dataset.
 
-\note{Need to download and use this!}  The numbers of approved
-antibodies each year were obtained from the `Approved Antbodies List'
-maintained by Janice Reichert and available from the members area of
-the web site of the Antibody Society.
+The numbers of approved antibodies each year were obtained from the
+`Approved Antbodies List' maintained by Janice Reichert and available
+from the members area of the web site of the Antibody Society
+(\url{www.antibodysociety.org}).
 
 
 \begin{figure}
   \noindent a)
-  
-  \psfig{file=figures/namesperyear_cummulative.eps, width=\linewidth}
-
+  \begin{center}
+     \psfig{file=figures/namesperyear_cummulative.eps, width=0.75\linewidth}
+  \end{center}
   \noindent b)
-
-  !!!TODO!!!
-  
+  \begin{center}
+     \psfig{file=figures/ApprovedNamesPerYear_cummulative.eps, width=0.75\linewidth}
+  \end{center}
   \caption{\label{fig:namesandapproved}Cummulative number of antibodies
-  a) named each year since 1991 when the \eg{-mab} stem was introduced and
-  b) first given marketing approval in Europe or the USA.}
+  a)~named each year since 1991 when the \eg{-mab} stem was introduced and
+  b)~first given marketing approval in Europe or the USA.}
 \end{figure}
 
 
@@ -272,10 +280,11 @@ the web site of the Antibody Society.
 \begin{center}
   \psfig{file=figures/distribution.eps, width=0.7\linewidth}
 \end{center}
- \caption{\label{fig:distrib} Distribution of antibody name similarity
-   scores using 5\% bins. Similarity is scored using Kondrak phonetic
-   similarity, Simpson visual letter similarity and the Bouma
-   word-shape similarity.}
+\caption{\label{fig:distrib} Distribution of antibody name similarity
+  scores from an all-by-all comparison of names in the complete
+  dataset using 5\% bins. Similarity is scored using Kondrak phonetic
+  similarity, Simpson visual letter similarity and the Bouma
+  word-shape similarity.}
 \end{figure}
 
 
@@ -303,8 +312,7 @@ the web site of the Antibody Society.
   \caption{\label{fig:results} Antibody name similariry
     scores plotted against year. a)~the mean score; b)~the standard
     deviation; c)~a threshold defined as
-    $\bar{x}+3\sigma$. \note{Check that the 1991 data point is not
-      just one antibody. Fix the legends to match Figure~2}}
+    $\bar{x}+3\sigma$. \note{Fix the legends to match Figure~2}}
 \end{figure}
 
 
@@ -312,13 +320,20 @@ the web site of the Antibody Society.
 \section{Results}
 The first antibody to be given an INN was muromonab in 1986 before the
 \eg{-mab} stem was introduced; consequently this example was excluded
-from the analysis. Antibody names extracted from the proposed and
-recommended lists are shown in \note{Supplementary Table~1} together
-with their list numbers and the year in which their names first
+from the analysis. Antibodies which are conjugates (for example with a
+toxin or with poly-ethylyne glycol) have a two-word name. For the
+purposes of this analysis, the second word (naming the conjugate) was
+removed so only the word ending in \eg{-mab} is compared.  Antibody
+names extracted from the proposed and recommended lists are shown in
+Supplementary File, {\tt names.csv} together with their INN
+identifiers, list numbers and the year in which their names first
 appeared in the proposed list. The cummulative number of antibodies
 named and approved each year are shown in
-Figure~\ref{fig:namesandapproved} and the distribution of similarity
-scores for the full data set is shown in Figure~\ref{fig:distrib}.
+Figure~\ref{fig:namesandapproved}. The accumulation of approved
+antibodies follows approximately the same trend as those being given
+names, but overall approximately 13\% of names antibodies have been
+approved. The distribution of similarity scores for the full data set
+is shown in Figure~\ref{fig:distrib}.
 
 The mean similarity scores resulting from pairwise comparison of all
 antibody names, were calculated for each year in a cummulative fashion
@@ -334,7 +349,7 @@ range of possible available names at that time, the diversity of
 chosen names was small. In fact the average phonetic similarity score
 of 62.98\% was the highest recorded as was the average
 letter-confusion similarity score (60.88\%) and the Bouma
-(85.29\%). However the standard dedviations of the phonetic similarity
+(85.29\%). However the standard deviations of the phonetic similarity
 and letter-confusion scores were also high.
 
 No more antibody names were allocated until 1995 where the diversity
@@ -348,21 +363,31 @@ somewhat different trend, showing a trend of decreasing since the late
 
 \note{The results show XXX.}
 
+\note{Do analysis within each year}
+
+\note{Do analysis of each year against all pre-existing rather than
+  all-vs-all.}
+
+\note{What about looking at $\frac{SD}{\bar{x}}$ --- i.e. SD as a
+  fraction of the mean.} 
+
 \section{Discussion}
 Over the last 10--15 years, antibody-based drugs have become a major
-class of novel therapeutics with some 60--100 such drugs are being
-named each year. Only a small percentage of these are successful in
-gaining marketing authorizations in Europe or the USA so many of these
-names are `wasted'. The restrictions imposed by having a standard
-naming scheme means that the name space available for assigning
+class of novel therapeutics with some 60--100 such drugs being named
+each year. Only a small percentage of these are successful in gaining
+marketing authorizations in Europe or the USA so many of these names
+are `wasted'. The restrictions imposed by having a standard naming
+scheme means that the name space available for assigning
 nonproprietary names to these drugs is very restricted.
 
-We have shown that the name space has become more saturated over time,
-but the changes made in 2017 (removing the source infix from the
-naming scheme) has increased the diversity of names. Nonetheless, we
-expect the rate at which antibody-based drugs are developed to
-continue increasing. The change in naming scheme in 2017 made no
-perceptable change to the trends in diversity scores.
+Surprisingly, we have shown that the name space has not become more
+saturated over time, but that names are becoming more diverse.  The
+changes made in 2017 (removing the source infix from the naming
+scheme) allows an increase in diversity, but has had no significant
+effect as yet. Nonetheless, we expect the rate at which antibody-based
+drugs are developed to continue increasing. The change in naming
+scheme in 2017 made no perceptable change to the trends in diversity
+scores.
 
 We have provided a tool that may help drug companies in suggesting
 names which can be downloaded from \url{www.bioinf.org.uk/software/}

@@ -5,14 +5,15 @@ use strict;
 $::xmaxc  =  70 if(!defined($::xmaxc));
 $::xmaxcc = 600 if(!defined($::xmaxcc));
 $::date   = defined($::date)?"_$::date":"";
+$::out    = defined($::out)?$::out:"namesperyear";
 
 my $xlab        = "Year";
 my $ylabC       = "Count";
 my $ylabCC      = "Cummulative Count";
 my $dataFile    = "npy_" . $$ . ".dat";
 my $rFile       = "DoPlot_" . $$ . ".R";
-my $countsPlot  = "namesperyear$::date.eps";
-my $cCountsPlot = "namesperyear_cummulative$::date.eps";
+my $countsPlot  = "$::out$::date.eps";
+my $cCountsPlot = "$::out" . "_cummulative$::date.eps";
 
 
 my %counts = ReadData();
@@ -60,8 +61,10 @@ sub ReadData
         if(length && !(/^#/))
         {
             my @fields = split(/\,/);
+            my $fieldNum = 4;
+            $fieldNum = 1 if(scalar(@fields) == 2);
             
-            my $year = $fields[4];
+            my $year = $fields[$fieldNum];
             $year =~ s/[a-zA-Z]//g;
             
             if(!defined($counts{$year}))
