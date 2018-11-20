@@ -110,15 +110,22 @@ considered rude or offensive). Since these names are used
 internationally, such considerations must be made across a broad range
 of languages and not just English.
 
+
 The enormous number of names being assigned means that the available
 namespace is becoming densely populated. Names that are too similar
-can lead to confusion and hence to prescribing errors. Here we
-investigate the diversity of the antibody name space using tools from
-computational linguistics and show that, surprisingly, the mean
-similarity between names has decreased over the last 10 years, but
-that the standard deviations has also decreased.  We provide a tool
-that allows a potential new antibody name to be compared with
-currently used names to help with selection of diverse names.
+can lead to confusion and hence to prescribing errors.  The US FDA
+provides a tool, POCA (Phonetic and Orthographic Computer Analysis,
+\url{https://www.fda.gov/drugs/resourcesforyou/industry/ucm400127.htm})
+which enables the comparison of potential new names with existing
+names, but it is a large and complex program requiring the Microsoft
+.Net Framework 4.0 and the Oracle 12c Database.  Here we develop a
+simple open source portable command line tool using methods from
+computational linguistics to investigate the diversity of the antibody
+name space. We show that, surprisingly, the mean similarity between
+names has decreased over the last 10 years, but that the standard
+deviations has also decreased.  The tool we have developed allows a
+potential new antibody name to be compared with currently used names
+to help with selection of diverse names.
 
 \section{Materials and Methods}
 Assigned antibody names were collected from the Mednet portal to the
