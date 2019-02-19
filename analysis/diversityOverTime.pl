@@ -2,6 +2,7 @@
 
 $::s = (defined($::s)?1:0);
 $::m = (defined($::m)?1:0);
+$::c = (defined($::c)?1:0);
 
 $::s = 1 if((!$::s) && (!$::m));  # If neither set, then set $::s
 
@@ -23,7 +24,7 @@ while(<>)
     if(/^#\s*(.*)/)      # Start of new dataset
     {
         $dataset = $1;
-        @names = ();
+        @names = () if(!$::c);
     }
     elsif(!length())     # End of dataset
     {
@@ -43,12 +44,14 @@ sub Analyze
     
     WriteFile($file, @names);
 
-    print "$dataset ";
+    my $p = doAnalyze($file, $result, '-p', $mean, $sd);
+    my $s = doAnalyze($file, $result, '-s', $mean, $sd);
+    my $b = doAnalyze($file, $result, '-b', $mean, $sd);
 
-    doAnalyze($file, $result, '-p', $mean, $sd);
-    doAnalyze($file, $result, '-s', $mean, $sd);
-    doAnalyze($file, $result, '-b', $mean, $sd);
-    print "\n";
+    if(($p > 0.0) && ($s > 0.0) && ($b > 0.0))
+    {
+        print "$dataset $p $s $b\n";
+    }
 
     unlink($file);
     unlink($result);
@@ -74,14 +77,14 @@ sub doAnalyze
     elsif($sd)
     {
         $value = $fields[3];
+        $value = 0.0 if($value =~ /nan/);
     }
     else
     {
         die("Internal error: $::s or $::m must be set");
     }
         
-    
-    printf("%.2f ", $value);
+    return(sprintf("%.2f ", $value))
 }
 
 
@@ -103,17 +106,19 @@ sub UsageDie
 {
     print <<__EOF;
 
-diversityOverTime V1.0 (c) 2018, UCL, Dr Andrew C.R Martin
+diversityOverTime V1.1 (c) 2019-19, UCL, Dr Andrew C.R Martin
 
-Usage: diversityOverTime [-s][-m] namesbyparam.dat
+Usage: diversityOverTime [-s][-m][-c] namesbyparam.dat
        -s Output standard deviation  [Default]
        -m Output mean
+       -c Calculate values cummulatively
        Output the sum of mean and standard deviation if both set
 
 Takes the output of namesOvertime - i.e. a set of names that were used
-in each year (or previous years) with each set separated by a comment
-including the year. Calculates the variation in the names and displays
-this as the mean, standard deviation or sum of the two.
+in each year (or previous years) with each set introduced by a comment
+giving the year and ended with a blank line. Calculates the variation
+in the names and displays this as the mean, standard deviation or sum
+of the two.
 
 Note that depending on the input, the groups can be by proposed list
 or recommended list instead of by year.

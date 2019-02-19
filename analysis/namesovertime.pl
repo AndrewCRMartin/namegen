@@ -8,6 +8,7 @@ $::u = defined($::u)?(($::u>0)?$::u:1):0;
 $::y = defined($::y)?(($::y>0)?$::y:1):0;
 $::r = defined($::r)?(($::r>0)?$::r:1):0;
 $::p = defined($::p)?(($::p>0)?$::p:1):0;
+$::c = defined($::c)?1:0;
 
 $::flag = 999999;
 
@@ -17,7 +18,7 @@ if($::r)
 {
     if($::r > 1)
     {
-        ShowUptoVersion($::r, $hNameRL);
+        ShowUptoVersion($::r, $hNameRL, $::c);
     }
     else
     {
@@ -29,7 +30,7 @@ if($::r)
             if($rl != $::flag)
             {
                 print "# RL$rl\n";
-                ShowUptoVersion($rl, $hNameRL);
+                ShowUptoVersion($rl, $hNameRL, $::c);
                 print "\n";
             }
         }
@@ -39,7 +40,7 @@ elsif($::p)
 {
     if($::p > 1)
     {
-        ShowUptoVersion($::p, $hNamePL);
+        ShowUptoVersion($::p, $hNamePL, $::c);
     }
     else
     {
@@ -49,7 +50,7 @@ elsif($::p)
         foreach my $pl (@pls)
         {
             print "# PL$pl\n";
-            ShowUptoVersion($pl, $hNamePL);
+            ShowUptoVersion($pl, $hNamePL, $::c);
             print "\n";
         }
     }
@@ -58,7 +59,7 @@ else   # Assume $::y
 {
     if($::y > 1)
     {
-        ShowUptoVersion($::y, $hNameDate);
+        ShowUptoVersion($::y, $hNameDate, $::c);
     }
     else
     {
@@ -68,7 +69,7 @@ else   # Assume $::y
         foreach my $date (@dates)
         {
             print "# $date\n";
-            ShowUptoVersion($date, $hNameDate);
+            ShowUptoVersion($date, $hNameDate, $::c);
             print "\n";
         }
     }
@@ -78,13 +79,23 @@ else   # Assume $::y
 ##########################################################################
 sub ShowUptoVersion
 {
-    my ($cutoff, $hHash) = @_;
+    my ($cutoff, $hHash, $cummulative) = @_;
     
     foreach my $name (keys %$hHash)
     {
-        if($$hHash{$name} <= $cutoff)
+        if($cummulative)
         {
-            print "$name\n";
+            if($$hHash{$name} <= $cutoff)
+            {
+                print "$name\n";
+            }
+        }
+        else
+        {
+            if($$hHash{$name} == $cutoff)
+            {
+                print "$name\n";
+            }
         }
     }
 }
@@ -166,9 +177,10 @@ sub UsageDie
 {
     print <<__EOF;
 
-namesbytime V1.0 (c) 2018 Dr. Andrew C.R. Martin, UCL
+namesbytime V1.1 (c) 2018-19 Dr. Andrew C.R. Martin, UCL
 
-Usage: namesbytime [-u][-p[=pl]|-r[=rl]|-y[=year]] names.csv
+Usage: namesbytime [-c][-u][-p[=pl]|-r[=rl]|-y[=year]] names.csv
+       -c      Cummulative
        -u      Print info on names Used before
        -p      Print by Proposed list
        -p=pl   Print only up to specified Proposed list
@@ -177,8 +189,9 @@ Usage: namesbytime [-u][-p[=pl]|-r[=rl]|-y[=year]] names.csv
        -y      Print by Year [default]
        -y=year Print only up to specified Year
 
-Prints names up to the specified Proposed list, Recommended list or year.
-If no list or year is specified then they are all printed in order.
+Prints names from (or up to, if -c specified) the specified Proposed
+list, Recommended list or year.  If no list or year is specified then
+they are all printed in order.
 
 The CSV input file is in the format
    Entry,Name,PL,RL,Year
