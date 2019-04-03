@@ -4,11 +4,11 @@
    Program:    abcheckname
    \file       abcheckname.c
    
-   \version    V1.2
-   \date       23.10.18   
+   \version    V1.3
+   \date       03.04.19   
    \brief      Checks an antibody name for possible conflicts
    
-   \copyright  (c) UCL / Dr. Andrew C. R. Martin 2018
+   \copyright  (c) UCL / Dr. Andrew C. R. Martin 2018-19
    \author     Dr. Andrew C. R. Martin
    \par
                Institute of Structural & Molecular Biology,
@@ -50,6 +50,7 @@
    V1.1  04.06.18 Removed output file parameter and added ability to
                   compare two names
    V1.2  23.10.18 Fixed bug when specifying names file with -n
+   V1.3  03.04.19 Allows blank lines in names file
 
 *************************************************************************/
 /* Includes
@@ -332,11 +333,12 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 -  18.05.18 Original   By: ACRM
 -  04.06.18 V1.1
 -  23.10.18 V1.2
+-  03.04.19 V1.3
 
 */
 void Usage(void)
 {
-   fprintf(stderr,"\nabcheckname V1.2 (c) 2018, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nabcheckname V1.3 (c) 2018-19, Dr Andrew C.R. Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
    fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n][-t n]\
@@ -727,6 +729,7 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
    Compares a single name against the existing names
 
 -  18.05.18 Original   By: ACRM
+-  03.05.19 Added check for blank name
 */
 BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
                     char *scoreMatrix, REAL printThreshold, FILE *out)
@@ -771,20 +774,23 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    {
       TERMINATE(oldName);
 
-      switch(type)
+      if(strlen(oldName))
       {
-      case TYPE_PHONETICS:
-         CheckPhonetics(name, oldName, verbose, printThreshold, out);
-         break;
-      case TYPE_BOUMA:
-         CheckBouma(name, oldName, verbose, printThreshold, out);
-         break;
-      case TYPE_LETTERSHAPE:
-         CheckLetterShape(name, oldName, verbose, printThreshold, out);
-         break;
-      default:
-         fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
-         break;
+         switch(type)
+         {
+         case TYPE_PHONETICS:
+            CheckPhonetics(name, oldName, verbose, printThreshold, out);
+            break;
+         case TYPE_BOUMA:
+            CheckBouma(name, oldName, verbose, printThreshold, out);
+            break;
+         case TYPE_LETTERSHAPE:
+            CheckLetterShape(name, oldName, verbose, printThreshold, out);
+            break;
+         default:
+            fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+            break;
+         }
       }
    }
    
