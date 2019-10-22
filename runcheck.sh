@@ -1,10 +1,10 @@
 #!/bin/bash
 name=$1
 
-abnames=/tmp/abnames.dat
+abnames=abnamedata/abnames_Consult69.dat
 
-if [ ! -f /tmp/abnames.dat ]; then
-    echo "You must install the abnames.dat file in /tmp ($abnames)"
+if [ ! -f $abnames ]; then
+    echo "You must install the antibody names file file ($abnames)"
 else
     echo ""
     echo "Phonetics (85.5)"
