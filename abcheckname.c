@@ -122,7 +122,7 @@ char *FindFile(char *filename, char *envvar, BOOL *noenv);
 char *FindFileAndCheck(char *filename, char *message);
 BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out);
-void PrintLongestStemMatch(char *name, FILE *out);
+void PrintStemMatches(char *name, FILE *out);
 void CheckStemMatch(char *name, char *oldName, BOOL verbose);
 int ScoreStemMatch(char *name, char *oldName);
 
@@ -851,35 +851,42 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    fclose(fp);
 
    if(type == TYPE_STEMMATCH)
-      PrintLongestStemMatch(name, out);
+      PrintStemMatches(name, out);
 
    return(TRUE);
 }
 
 
 /************************************************************************/
-void PrintLongestStemMatch(char *name, FILE *out)
+void PrintStemMatches(char *name, FILE *out)
 {
    int i,
        maxMatches = 0,
        bestMatchLength;
    char stem[MAXNAMELENGTH];
-   
 
-   for(i=0; i<strlen(name); i++)
+   for(i=4; i<=strlen(name); i++)
    {
-      if(gNMatches[i] >= maxMatches)
+      if(gNMatches[i] > 0)
       {
-         maxMatches      = gNMatches[i];
-         bestMatchLength = i;
+         strncpy(stem, name + (strlen(name)-i), i);
+         stem[i] = '\0';
+
+         if(i==strlen(name))
+         {
+            fprintf(out, "Stem match was %2d characters in %3d names (%s) \
+whole name!\n",
+                    i, gNMatches[i], stem);
+         }
+         else
+         {
+            fprintf(out, "Stem match was %2d characters in %3d names \
+(-%s)\n",
+                    i, gNMatches[i], stem);
+         }
+         
       }
    }
-
-   strncpy(stem, name + (strlen(name)-bestMatchLength), bestMatchLength);
-   stem[bestMatchLength] = '\0';
-   
-   fprintf(out, "Longest stem match was %d characters (-%s) in %d names\n",
-           bestMatchLength, stem, gNMatches[bestMatchLength]);
 }
 
       
