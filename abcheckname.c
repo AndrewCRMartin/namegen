@@ -4,12 +4,12 @@
    Program:    abcheckname
    \file       abcheckname.c
    
-   \version    V1.3
-   \date       03.04.19   
+   \version    V1.4
+   \date       23.10.19   
    \brief      Checks an antibody name for possible conflicts
    
-   \copyright  (c) UCL / Dr. Andrew C. R. Martin 2018-19
-   \author     Dr. Andrew C. R. Martin
+   \copyright  (c) UCL / Prof. Andrew C. R. Martin 2018-19
+   \author     Prof. Andrew C. R. Martin
    \par
                Institute of Structural & Molecular Biology,
                University College,
@@ -51,12 +51,14 @@
                   compare two names
    V1.2  23.10.18 Fixed bug when specifying names file with -n
    V1.3  03.04.19 Allows blank lines in names file
+   V1.4  23.10.19 Allows comments in names file
 
 *************************************************************************/
 /* Includes
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bioplib/SysDefs.h"
 #include "bioplib/macros.h"
 #include "bioplib/seq.h"
@@ -334,11 +336,13 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 -  04.06.18 V1.1
 -  23.10.18 V1.2
 -  03.04.19 V1.3
+-  23.10.19 V1.4
 
 */
 void Usage(void)
 {
-   fprintf(stderr,"\nabcheckname V1.3 (c) 2018-19, Dr Andrew C.R. Martin\n");
+   fprintf(stderr,"\nabcheckname V1.4 (c) 2018-19, Prof Andrew C.R. \
+Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
    fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n][-t n]\
@@ -730,6 +734,7 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 
 -  18.05.18 Original   By: ACRM
 -  03.05.19 Added check for blank name
+-  23.10.19 Allow commented lines and comments after names
 */
 BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
                     char *scoreMatrix, REAL printThreshold, FILE *out)
@@ -772,7 +777,16 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    
    while(fgets(oldName, MAXBUFF, fp))
    {
+      char *chp;
+      
       TERMINATE(oldName);
+      KILLTRAILSPACES(oldName);
+
+      if((chp=strchr(oldName, '#'))!=NULL)
+      {
+         *chp = '\0';
+         KILLTRAILSPACES(oldName);
+      }
 
       if(strlen(oldName))
       {
