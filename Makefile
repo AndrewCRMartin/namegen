@@ -2,7 +2,8 @@ EXE    = abcheckname
 OFILES = abcheckname.o
 LIBDIR = $(HOME)/lib
 INCDIR = $(HOME)/include
-CC     = cc -L$(LIBDIR) -I$(INCDIR) -O3
+#CC     = cc -L$(LIBDIR) -I$(INCDIR) -O3
+CC     = cc -L$(LIBDIR) -I$(INCDIR) -g
 
 all : $(EXE)
 	(cd utils/MakeKondrakMatrix; make)

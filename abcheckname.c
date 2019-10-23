@@ -4,7 +4,7 @@
    Program:    abcheckname
    \file       abcheckname.c
    
-   \version    V1.4
+   \version    V1.5
    \date       23.10.19   
    \brief      Checks an antibody name for possible conflicts
    
@@ -52,6 +52,8 @@
    V1.2  23.10.18 Fixed bug when specifying names file with -n
    V1.3  03.04.19 Allows blank lines in names file
    V1.4  23.10.19 Allows comments in names file
+   V1.5  23.10.19 Added -e but only works against database of names with
+                  -n
 
 *************************************************************************/
 /* Includes
@@ -67,9 +69,11 @@
 /* Defines and macros
 */
 #define MAXBUFF                       160
+#define MAXNAMELENGTH                 64
 #define TYPE_BOUMA                    1
 #define TYPE_PHONETICS                2
 #define TYPE_LETTERSHAPE              3
+#define TYPE_STEMMATCH                4
 #define DEFAULT_TYPE                  TYPE_PHONETICS
 #define DEFAULT_PHONETICS_MATRIX      "abnamedata/kondrak.mat"
 #define DEFAULT_BOUMA_MATRIX          "abnamedata/bouma.mat"
@@ -86,6 +90,8 @@
 */
 int gUserGappen    = GAPPEN_DUMMY;
 int gUserGapExtpen = GAPPEN_DUMMY;
+int gNMatches[MAXNAMELENGTH];
+
 
 /************************************************************************/
 /* Prototypes
@@ -116,6 +122,10 @@ char *FindFile(char *filename, char *envvar, BOOL *noenv);
 char *FindFileAndCheck(char *filename, char *message);
 BOOL CompareTwoNames(char *abName1, char *abName2, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out);
+void PrintLongestStemMatch(char *name, FILE *out);
+void CheckStemMatch(char *name, char *oldName, BOOL verbose);
+int ScoreStemMatch(char *name, char *oldName);
+
 
 /************************************************************************/
 /*>int main(int argc, char **argv)
@@ -131,7 +141,8 @@ int main(int argc, char **argv)
    char inParam[MAXBUFF],
         abName2[MAXBUFF];
    int  type    = DEFAULT_TYPE,
-        retval  = 0;
+        retval  = 0,
+        i;
    BOOL doAll   = FALSE,
         verbose = FALSE;
    char *namesFile = NULL,
@@ -174,6 +185,12 @@ int main(int argc, char **argv)
                                           "Simpson letter matrix file"))
             ==NULL)
             return(1);
+         break;
+      case TYPE_STEMMATCH:
+         for(i=0; i<MAXNAMELENGTH; i++)
+         {
+            gNMatches[i] = 0;
+         }
          break;
       default:
          fprintf(stderr,"Error: Internal error - unknown type (%d)\n",
@@ -233,6 +250,7 @@ int main(int argc, char **argv)
    Parse the command line
 
 -  18.05.18 Original   By: ACRM
+-  23.10.19 Added -e TYPE_STEMMATCH
 */
 BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
                   int *type, BOOL *doAll, BOOL *verbose, char *namesFile,
@@ -266,6 +284,12 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
             if(setType)
                return(FALSE);
             *type   = TYPE_LETTERSHAPE;
+            setType = TRUE;
+            break;
+         case 'e':
+            if(setType)
+               return(FALSE);
+            *type   = TYPE_STEMMATCH;
             setType = TRUE;
             break;
          case 'a':
@@ -303,7 +327,10 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
       {
          /* Check there are 1 or 2 arguments left                       */
          if((argc < 1) || (argc > 2))
+         {
             return(FALSE);
+         }
+         
 
          /* Copy the first (compulsory) argument                        */
          strncpy(inParam, argv[0], MAXBUFF);
@@ -322,7 +349,7 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
       argv++;
    }
    
-   return(TRUE);
+   return(FALSE);
 }
 
 
@@ -336,23 +363,23 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 -  04.06.18 V1.1
 -  23.10.18 V1.2
 -  03.04.19 V1.3
--  23.10.19 V1.4
+-  23.10.19 V1.4, V1.5
 
 */
 void Usage(void)
 {
-   fprintf(stderr,"\nabcheckname V1.4 (c) 2018-19, Prof Andrew C.R. \
+   fprintf(stderr,"\nabcheckname V1.5 (c) 2018-19, Prof Andrew C.R. \
 Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
-   fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n][-t n]\
-[-n file.names] name [name2]]\n");
+   fprintf(stderr,"       abcheckname [-b|-p|-s|-e][-v][-g n][-x n]\
+[-t n][-n file.names] name [name2]]\n");
    fprintf(stderr,"    -or- Compare two names...\n");
-   fprintf(stderr,"       abcheckname [-b|-p|-s][-v][-g n][-x n] \
+   fprintf(stderr,"       abcheckname [-b|-p|-s|-e][-v][-g n][-x n] \
 name1 name2\n");
    fprintf(stderr,"    -or- Analyze library...\n");
-   fprintf(stderr,"       abcheckname -a [-b|-p|-s][-v][-g n][-x n] \
-file.names\n");
+   fprintf(stderr,"       abcheckname -a [-b|-p|-s|-e][-v][-g n]\
+[-x n] file.names\n");
 
    fprintf(stderr,"\n                  -a Check all used names against \
 each other\n");
@@ -361,6 +388,8 @@ each other\n");
 [Default]\n");
    fprintf(stderr,"                  -s Check the Simpson letter \
 similarity\n");
+   fprintf(stderr,"                  -e Check the end similarity\n");
+   fprintf(stderr,"                     Currently only wih -n\n");
    fprintf(stderr,"                  -v Verbose - show alignments\n");
    fprintf(stderr,"                  -g Specify gap opening penalty\n");
    fprintf(stderr,"                  -x Specify gap extension penalty\n");
@@ -735,6 +764,7 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 -  18.05.18 Original   By: ACRM
 -  03.05.19 Added check for blank name
 -  23.10.19 Allow commented lines and comments after names
+-           Added TYPE_STEMMATCH
 */
 BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
                     char *scoreMatrix, REAL printThreshold, FILE *out)
@@ -748,13 +778,17 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
               namesFile);
       return(FALSE);
    }
-   
-   if(!blReadMDM(scoreMatrix))
+
+   if(type != TYPE_STEMMATCH)
    {
-      fprintf(stderr,"Error: Can't read scoring matrix (%s)\n",
-              scoreMatrix);
-      return(FALSE);
+      if(!blReadMDM(scoreMatrix))
+      {
+         fprintf(stderr,"Error: Can't read scoring matrix (%s)\n",
+                 scoreMatrix);
+         return(FALSE);
+      }
    }
+   
 
    if(printThreshold < 0.0)
    {
@@ -768,6 +802,8 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
          break;
       case TYPE_LETTERSHAPE:
          printThreshold = DEFAULT_LETTERSHAPE_THRESHOLD;
+         break;
+      case TYPE_STEMMATCH:
          break;
       default:
          fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
@@ -801,6 +837,9 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
          case TYPE_LETTERSHAPE:
             CheckLetterShape(name, oldName, verbose, printThreshold, out);
             break;
+         case TYPE_STEMMATCH:
+            CheckStemMatch(name, oldName, verbose);
+            break;
          default:
             fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
             break;
@@ -810,9 +849,76 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    
    blFreeMDM();
    fclose(fp);
+
+   if(type == TYPE_STEMMATCH)
+      PrintLongestStemMatch(name, out);
+
    return(TRUE);
 }
 
+
+/************************************************************************/
+void PrintLongestStemMatch(char *name, FILE *out)
+{
+   int i,
+       maxMatches = 0,
+       bestMatchLength;
+   char stem[MAXNAMELENGTH];
+   
+
+   for(i=0; i<strlen(name); i++)
+   {
+      if(gNMatches[i] >= maxMatches)
+      {
+         maxMatches      = gNMatches[i];
+         bestMatchLength = i;
+      }
+   }
+
+   strncpy(stem, name + (strlen(name)-bestMatchLength), bestMatchLength);
+   stem[bestMatchLength] = '\0';
+   
+   fprintf(out, "Longest stem match was %d characters (-%s) in %d names\n",
+           bestMatchLength, stem, gNMatches[bestMatchLength]);
+}
+
+      
+/************************************************************************/
+void CheckStemMatch(char *name, char *oldName, BOOL verbose)
+{
+   int nMatch;
+
+   if((nMatch = ScoreStemMatch(name, oldName)) >= MAXNAMELENGTH)
+   {
+      fprintf(stderr, "Name is too long (%d characters). Increase \
+MAXNAMELENGTH\n", nMatch);
+      exit(1);
+   }
+   
+   gNMatches[nMatch]++;
+}
+
+/************************************************************************/
+int ScoreStemMatch(char *name, char *oldName)
+{
+   int nameLast,
+       oldNameLast,
+       nMatch  = 0;
+
+   nameLast    = strlen(name)    - 1;
+   oldNameLast = strlen(oldName) - 1;
+
+   while(((nameLast    - nMatch) >= 0) &&
+         ((oldNameLast - nMatch) >= 0) &&
+         (name[nameLast-nMatch] == oldName[oldNameLast-nMatch]))
+   {
+      nMatch++;
+   }
+
+   return(nMatch);
+}
+
+      
 
 /************************************************************************/
 /*>BOOL CompareTwoNames(char *abName1, char *abName2, int type, 
