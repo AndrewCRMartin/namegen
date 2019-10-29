@@ -85,7 +85,6 @@ camidanlumab
 camrelizumab
 canakinumab
 cantuzumab
-capinolimab
 caplacizumab
 capromab
 carfavimab
@@ -170,7 +169,6 @@ emactuzumab
 emapalumab
 emibetuzumab
 emicizumab
-emuratamab
 enapotamab
 enavatuzumab
 encelimab
@@ -249,7 +247,6 @@ guselkumab
 ianalumab
 ibalizumab
 ibritumomab
-icamalimab
 icrucumab
 idactamab
 idarucizumab
@@ -258,7 +255,6 @@ ifabotuzumab
 igomactamab
 igovomab
 iladatuzumab
-ilicantamab
 imalumab
 imaprelimab
 imciromab
@@ -293,7 +289,6 @@ laprituximab
 larcaviximab
 lebrikizumab
 lecanemab
-ledafilimab
 lemalesomab
 lenvervimab
 lenzilumab
@@ -680,8 +675,8 @@ divozilimab # replaces livozitamab
 nadunolimab # replaces nidanilimab
 
 # Amgen bispecifics that they have rejected
-eluvixtamab
-emerfetemab
+eluvixtamab #
+emerfetemab #
 pancanalotamab
-avurutamab
+avurutamab #
 

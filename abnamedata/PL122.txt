@@ -1,0 +1,45 @@
+11074  felzartamab        
+11188  ongericimab       
+11192  icatolimab           
+11194  lecanemab          
+11198  docaravimab      
+11199  miromavimab    
+11200  cudarolimab       
+11211  demupitamab   
+11212  ripertamab         
+11215  nipocalimab        
+11218  datopotamab deruxtecan            
+11224  bepranemab      
+11234  quavonlimab      
+11236  urabrelimab       
+11241  giloralimab          
+11242  revdofilimab      
+11247  idactamab tesirine           
+11249  tesnatilimab       
+11255  nomogakimab   
+11256  sabatolimab       
+11258  cevostamab       
+11267  tilogotamab        
+11273  telazorlimab       
+11280  ragifilimab           
+11300  adebrelimab      
+11301  alsevalimab        
+11302  miptenalimab    
+11303  ezabenlimab      
+11304  vilobelimab         
+11308  vulinacimab        
+11309  pimurutamab    
+11310  opucolimab        
+11311  feladilimab          
+11315  isecarosmab       
+11324  igomactamab     
+11328  bexmarilimab    
+11330  sugemalimab     
+11331  zuberitamab      
+11333  itepekimab         
+11334  rosopatamab tetraxetan 
+11335  rosopatamab     
+11338  tebotelimab       
+11344  upifitamab          
+11347  datopotamab    
+11348  idactamab           
