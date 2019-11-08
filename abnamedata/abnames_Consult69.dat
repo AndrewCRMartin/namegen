@@ -634,12 +634,12 @@ omodenbamab
 vixarelimab
 melrilimab
 tusamitamab
-letaplimab
-ebarcetamab
+letaraplimab #letaplimab
+barecetamab #ebarcetamab
 daxdilimab
 bentracimab
 enibarcimab
-zimberelimab
+zimbirelimab #zimberelimab
 mipasetamab
 zelusalimab
 coprelotamab
@@ -653,7 +653,6 @@ tusamitamab
 apitegromab
 sotigalimab
 ebronucimab
-mipasetamab
 grisnilimab
 dafsolimab
 finotonlimab
@@ -663,13 +662,13 @@ recaticimab
 bapotulimab
 etevritamab
 tarlatamab
-azurtamab
+acapatamab #azurtamab
 alnectamab
 vudalimab
 pavunalimab
-zurabulimab
-netimatamab
-abrindatamab
+izuralimab #zurabulimab
+netimotamab #netimatamab
+obrindatamab #abrindatamab
 upifitamab
 divozilimab # replaces livozitamab
 nadunolimab # replaces nidanilimab
@@ -678,5 +677,5 @@ nadunolimab # replaces nidanilimab
 eluvixtamab #
 emerfetemab #
 pancanalotamab
-avurutamab #
+pavurutamab #avurutamab
 
