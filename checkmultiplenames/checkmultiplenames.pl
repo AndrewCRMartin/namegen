@@ -89,8 +89,8 @@ sub ProcessName
 
     my $pParams = "-t 82";
     my $sParams = "-t 77";
-    $pParams = '';
-    $sParams = '';
+#    $pParams = '';
+#    $sParams = '';
     
     print "\n*** Processing $reqID : $name ***\n\n";
     

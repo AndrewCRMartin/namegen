@@ -1,7 +1,7 @@
 #!/bin/bash
 name=$1
 
-abnames=abnamedata/abnames_covid.dat
+abnames=abnamedata/abnames.dat
 
 if [ ! -f $abnames ]; then
     echo "You must install the antibody names file file ($abnames)"
