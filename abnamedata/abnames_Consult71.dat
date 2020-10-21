@@ -198,7 +198,7 @@ ezabenlimab
 fanolesomab
 faralimomab
 faricimab
-farletuzumab
+farletuzumab   # also 11877
 fasinumab
 felvizumab
 felzartamab
@@ -764,16 +764,15 @@ gresonitamab  # 11798
 rocatinlimab  # 11800
 ivonescimab   # 11809
 manfidokimab  # 11811
-# 11822
-# 11825
-# 11836/11837
-# 11838
-# 11840
-# 11842
-# 11851
-# 11857
-# 11877
-# 11878
-# 11879
-# 11881
-# 11892
+vepsitamab    # 11822
+ormutivimab   # 11825
+brubometamab  # 11836/11837 Capped cysteines deferred naked ab
+elranatamab   # 11838
+gumoselimab   # 11840
+barzelvolimab # 11842
+bafisontamab  # 11851
+clesrovimab   # 11857
+teropavimab   # 11878
+inetrovimab   # 11879
+eblasakimab   # 11881
+nofasinlimab  # 11892
