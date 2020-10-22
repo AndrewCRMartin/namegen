@@ -694,18 +694,18 @@ latozinemab
 nivatrotamab
 plonmarlimab
 uliledlimab
-tosramtamab
+# tosramtamab - rejected by applicant
 ponsegromab
 anbenitamab
 erfonrilimab
 # neligikimab - rejected by applicant
-gipovinasmab
+# gipolenimab - rejected by applicant
 zilovertamab
 lonigutamab
 tozorakimab
 sudubrilimab
 tirnovetmab
-avbotamab
+# avbotamab - rejected by applicant
 lemzoparlimab
 ansuvimab
 botensilimab
@@ -766,13 +766,18 @@ ivonescimab   # 11809
 manfidokimab  # 11811
 vepsitamab    # 11822
 ormutivimab   # 11825
-brubometamab  # 11836/11837 Capped cysteines deferred naked ab
+brubometamab  # 11836/11837 Capped cysteines - deferred naked ab
 elranatamab   # 11838
 gumoselimab   # 11840
 barzelvolimab # 11842
 bafisontamab  # 11851
 clesrovimab   # 11857
 teropavimab   # 11878
-inetrovimab   # 11879
+inetravimab   # 11879
 eblasakimab   # 11881
 nofasinlimab  # 11892
+pibocalimab   # 11192 was icatolimab
+ginisortamab  # 11604 was tosramtamab
+xeligikimab   # 11625 was neligikimab
+galegenimab   # 11632 was gipolenimab  -eni- enzyme
+sotevtamab    # 11666 was avbotamab
