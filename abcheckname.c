@@ -4,11 +4,11 @@
    Program:    abcheckname
    \file       abcheckname.c
    
-   \version    V1.5
-   \date       23.10.19   
+   \version    V1.5.1
+   \date       08.12.20
    \brief      Checks an antibody name for possible conflicts
    
-   \copyright  (c) UCL / Prof. Andrew C. R. Martin 2018-19
+   \copyright  (c) UCL / Prof. Andrew C. R. Martin 2018-20
    \author     Prof. Andrew C. R. Martin
    \par
                Institute of Structural & Molecular Biology,
@@ -46,14 +46,16 @@
 
    Revision History:
    =================
-   V1.0  18.05.18 Initial release
-   V1.1  04.06.18 Removed output file parameter and added ability to
-                  compare two names
-   V1.2  23.10.18 Fixed bug when specifying names file with -n
-   V1.3  03.04.19 Allows blank lines in names file
-   V1.4  23.10.19 Allows comments in names file
-   V1.5  23.10.19 Added -e but only works against database of names with
-                  -n
+   V1.0   18.05.18 Initial release
+   V1.1   04.06.18 Removed output file parameter and added ability to
+                   compare two names
+   V1.2   23.10.18 Fixed bug when specifying names file with -n
+   V1.3   03.04.19 Allows blank lines in names file
+   V1.4   23.10.19 Allows comments in names file
+   V1.5   23.10.19 Added -e but only works against database of names with
+                   -n
+   V1.5.1 08.12.20 Comments now work for analysis of the data file as 
+                   well as individual names
 
 *************************************************************************/
 /* Includes
@@ -364,11 +366,11 @@ BOOL ParseCmdLine(int argc, char **argv, char *inParam, char *abName2,
 -  23.10.18 V1.2
 -  03.04.19 V1.3
 -  23.10.19 V1.4, V1.5
-
+-  08.12.20 V1.5.1
 */
 void Usage(void)
 {
-   fprintf(stderr,"\nabcheckname V1.5 (c) 2018-19, Prof Andrew C.R. \
+   fprintf(stderr,"\nabcheckname V1.5.1 (c) 2018-20, Prof Andrew C.R. \
 Martin\n");
    fprintf(stderr,"\nUsage:\n");
    fprintf(stderr,"    Compare name against library...\n");
@@ -406,10 +408,14 @@ antibody names against\n");
 look at the \n");
    fprintf(stderr,"distribution of similarity scores.\n\n");
 
-   fprintf(stderr,"Default thesholds for printing names as too similar are:\n");
-   fprintf(stderr,"   Phonetics:        %.1f\n", DEFAULT_PHONETICS_THRESHOLD);
-   fprintf(stderr,"   LetterSimilarity: %.1f\n", DEFAULT_LETTERSHAPE_THRESHOLD);
-   fprintf(stderr,"   Bouma:            %.1f\n\n", DEFAULT_BOUMA_THRESHOLD);
+   fprintf(stderr,"Default thesholds for printing names as too similar \
+are:\n");
+   fprintf(stderr,"   Phonetics:        %.1f\n",
+           DEFAULT_PHONETICS_THRESHOLD);
+   fprintf(stderr,"   LetterSimilarity: %.1f\n",
+           DEFAULT_LETTERSHAPE_THRESHOLD);
+   fprintf(stderr,"   Bouma:            %.1f\n\n",
+           DEFAULT_BOUMA_THRESHOLD);
 }
 
 
@@ -429,6 +435,7 @@ look at the \n");
    obtain a score distribution.
 
 -  18.05.18 Original   By: ACRM
+-  08.12.20 Terminates at # in data file
 */
 BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
                      char *scoreMatrix, FILE *out)
@@ -464,28 +471,40 @@ BOOL ProcessAllNames(char *namesFile, int type, BOOL verbose,
    while(fgets(name1, MAXBUFF, fp1))
    {
       TERMINATE(name1);
-      rewind(fp2);
-      while(fgets(name2, MAXBUFF, fp2))
+      TERMAT(name1, '#');
+      KILLTRAILSPACES(name1);
+      if(strlen(name1))
       {
-         TERMINATE(name2);
-         
-         if(strcmp(name1, name2))
+         rewind(fp2);
+         while(fgets(name2, MAXBUFF, fp2))
          {
-            switch(type)
+            TERMINATE(name2);
+            TERMAT(name2, '#');
+            KILLTRAILSPACES(name2);
+            if(strlen(name2))
             {
-            case TYPE_PHONETICS:
-               CheckPhonetics(name1, name2, verbose, (REAL)0.0, out);
-               break;
-            case TYPE_BOUMA:
-               CheckBouma(name1, name2, verbose, (REAL)0.0, out);
-               break;
-            case TYPE_LETTERSHAPE:
-               CheckLetterShape(name1, name2, verbose, (REAL)0.0, out);
-               break;
-            default:
-               fprintf(stderr,"Internal Error: Unrecognized type (%d)\n",
-                       type);
-               break;
+               if(strcmp(name1, name2))
+               {
+                  switch(type)
+                  {
+                  case TYPE_PHONETICS:
+                     CheckPhonetics(name1, name2, verbose,
+                                    (REAL)0.0, out);
+                     break;
+                  case TYPE_BOUMA:
+                     CheckBouma(name1, name2, verbose,
+                                (REAL)0.0, out);
+                     break;
+                  case TYPE_LETTERSHAPE:
+                     CheckLetterShape(name1, name2, verbose,
+                                      (REAL)0.0, out);
+                     break;
+                  default:
+                     fprintf(stderr,"Internal Error: Unrecognized \
+type (%d)\n", type);
+                     break;
+                  }
+               }
             }
          }
       }
@@ -765,6 +784,7 @@ BOOL OpenStdFile(char *file, FILE **fp, char *mode)
 -  03.05.19 Added check for blank name
 -  23.10.19 Allow commented lines and comments after names
 -           Added TYPE_STEMMATCH
+-  08.12.20 Modified to use TERMAT()
 */
 BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
                     char *scoreMatrix, REAL printThreshold, FILE *out)
@@ -813,16 +833,9 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
    
    while(fgets(oldName, MAXBUFF, fp))
    {
-      char *chp;
-      
       TERMINATE(oldName);
+      TERMAT(oldName, '#');
       KILLTRAILSPACES(oldName);
-
-      if((chp=strchr(oldName, '#'))!=NULL)
-      {
-         *chp = '\0';
-         KILLTRAILSPACES(oldName);
-      }
 
       if(strlen(oldName))
       {
@@ -841,7 +854,8 @@ BOOL ProcessOneName(char *name, char *namesFile, int type, BOOL verbose,
             CheckStemMatch(name, oldName, verbose);
             break;
          default:
-            fprintf(stderr,"Internal Error: Unrecognized type (%d)\n", type);
+            fprintf(stderr,"Internal Error: Unrecognized type (%d)\n",
+                    type);
             break;
          }
       }
@@ -874,8 +888,8 @@ void PrintStemMatches(char *name, FILE *out)
 
          if(i==strlen(name))
          {
-            fprintf(out, "Stem match was %2d characters in %3d names (%s) \
-whole name!\n",
+            fprintf(out, "Stem match was %2d characters in %3d names \
+(%s) whole name!\n",
                     i, gNMatches[i], stem);
          }
          else
@@ -905,6 +919,7 @@ MAXNAMELENGTH\n", nMatch);
    gNMatches[nMatch]++;
 }
 
+
 /************************************************************************/
 int ScoreStemMatch(char *name, char *oldName)
 {
@@ -926,7 +941,6 @@ int ScoreStemMatch(char *name, char *oldName)
 }
 
       
-
 /************************************************************************/
 /*>BOOL CompareTwoNames(char *abName1, char *abName2, int type, 
                         BOOL verbose, char *scoreMatrix, FILE *out)
