@@ -97,7 +97,7 @@ cendakimab
 cergutuzumab
 certolizumab
 cetrelimab
-cetuximab
+cetuximab   # ????? (82/44) / 19074 (120/82)
 cevostamab
 cibisatamab
 cipanemab
@@ -650,7 +650,7 @@ nadunolimab # replaces nidanilimab
 obrindatamab #abrindatamab
 ociperlimab
 omodenbamab
-pavunalimab
+# pavunalimab # 11465 rejected
 penpulimab
 pimivalimab
 recaticimab
@@ -737,10 +737,10 @@ tagitanlimab  # 11843
 burfiralimab  # 11669 (not really a li)
 fidasimtamab  # 11670
 socazolimab   # 11672
-crefmirtamab  # 11678
+# crefmirtamab  # 11678 (rejected - and made a -li-)
 ubamatamab    # 11679
 suciraslimab  # 11682
-mafancavimab  # 11685
+# mafancavimab  # 11685 (rejected - mafan in Chinese means trouble)
 tanigiblimab  # 11690
 pivekimab     # 11693/11695
 ulenistamab   # 11699
@@ -768,9 +768,9 @@ elranatamab   # 11838
 gumoselimab   # 11840
 barzelvolimab # 11842
 bafisontamab  # 11851
-clesrovimab   # 11857
+clesrovimab   # 11857 Consult72 - pending from usan
 teropavimab   # 11878
-inetravimab   # 11879
+# inetravimab   # 11879 rejected (etravine too close)
 eblasakimab   # 11881
 nofasinlimab  # 11892
 pibocalimab   # 11192 was icatolimab
@@ -778,3 +778,65 @@ ginisortamab  # 11604 was tosramtamab
 xeligikimab   # 11625 was neligikimab
 galegenimab   # 11632 was gipolenimab  -eni- enzyme
 sotevtamab    # 11666 was avbotamab
+# Consult 72
+pelgifatamab  # 11920
+betifisolimab # 11926
+osemitamab    # 11927
+ifinatamab    # 11954/55
+cirevetmab    # 11970
+posdinemab    # 11987
+fazpilodemab  # 12017
+luveltamab    # 12040/41 (has non-natural AAs)
+visugromab    # 12044
+imvotamab     # 12054
+trosunilimab  # 12071
+gorpefecimab  # 12086
+vicasinab     # 11940 (second table)
+linvoseltamab # 12104
+reozalimab    # 11904
+izenivetmab   # 11906
+anivovetmab   # 11907
+rosnilimab    # 11909
+lesabelimab   # 11914
+litifilimab   # 11943
+mupadolimab   # 11944
+mecbotamab    # 11946 / 11951
+ozuriftamab   # 11947 / 11952
+boserolimab   # 11948
+almezolimab   # 11957
+peresolimab   # 11958
+beludavimab   # 11961
+frexalimab    # 11963
+upanovimab    # 11966 (mine)
+acrixolimab   # 11969
+cifurtilimab  # 11973
+gefurulimab   # 11982
+amubarvimab   # 11988 with 11992 for SARS
+romlusevimab  # 11992 SARS
+lomtegovimab  # 12001
+golocdacimab  # 12003 sars
+enuzovimab    # 12009 sars
+alipasvimab   # 12011
+izalontamab   # 12022
+emfizatamab   # 12023
+adintrevimab  # 12026
+emirodatamab  # 12028
+rimteravimab  # 12047 SARS
+fiztasovimab  # 12050
+vobramitamab  # 12056 / 12057
+camoteskimab  # 12062 (camote is sweet potato in Spanish)
+irbotevimab   # 12070 sars
+ispectamab    # 12079
+tarpaxutamab  # 12082
+inezetamab    # 12088
+omdatovimab   # 12094 sars
+quisovalimab  # 12100
+dresbuxelimab # 12115
+trontinemab   # 12120
+briquilimab   # 12124
+# 11669 rejected with no reason but retained
+crefmirlimab  # 11678 replacement name
+semzuvolimab  # 11685 replacement name
+zinlirvimab   # 11879 replacement name
+bavunalimab   # 11465 replacement name
+
