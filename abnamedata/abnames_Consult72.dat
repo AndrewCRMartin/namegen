@@ -803,7 +803,7 @@ mupadolimab   # 11944
 mecbotamab    # 11946 / 11951
 ozuriftamab   # 11947 / 11952
 boserolimab   # 11948
-almezolimab   # 11957
+almepolimab   # 11957 
 peresolimab   # 11958
 beludavimab   # 11961
 frexalimab    # 11963
@@ -816,7 +816,7 @@ romlusevimab  # 11992 SARS
 lomtegovimab  # 12001
 golocdacimab  # 12003 sars
 enuzovimab    # 12009 sars
-alipasvimab   # 12011
+aliprasvimab   # 12011 (mine)
 izalontamab   # 12022
 emfizatamab   # 12023
 adintrevimab  # 12026
@@ -825,7 +825,7 @@ rimteravimab  # 12047 SARS
 fiztasovimab  # 12050
 vobramitamab  # 12056 / 12057
 camoteskimab  # 12062 (camote is sweet potato in Spanish)
-irbotevimab   # 12070 sars
+ivatrevimab   # 12070 sars
 ispectamab    # 12079
 tarpaxutamab  # 12082
 inezetamab    # 12088
@@ -839,4 +839,3 @@ crefmirlimab  # 11678 replacement name
 semzuvolimab  # 11685 replacement name
 zinlirvimab   # 11879 replacement name
 bavunalimab   # 11465 replacement name
-
