@@ -886,8 +886,8 @@ ralzapastomab  # 12340
 forimtamig     # 12346
 crexavibart    # 12362
 rilvegostomig  # 12387
-tuparstobart   # 12389
-doblustobart   # 12392
+bextrestobart  # 12389
+lipustobart    # 12392
 ulviprubart    # 12298 
 izeltabart     # 12302, 12303 izeltabart tapatansine
 zigakibart     # 12304 
@@ -896,29 +896,37 @@ riltovetbart   # 12311
 raludotatug    # 12314 -durextecan / 12315 naked
 tobemstomig    # 12318
 lomvastomig    # 12319
-# tulgafafust alfa # 12332
+# tulgafafusp alfa # 12332
 ogatecibart    # 12333
 narlumosbart   # 12344
 dargistotug    # 12349
-fepixnebart # 12352
-belrestotug # 12360
-ogalvibart # 12361
-anzurstobart # 12363
-caplunetug # 12364
-tulisokibart # 12368
-xotrakibart # 12372
-cindoprubart # 12373
-nisevokitug # 12374
-pradustobart # 12375
-exlinkibart # 12376
-dalnistobart # 12377
-rilsovakimig # 12378
-porustobart # 12381
-lextuvostobart # 12383
-tonlenvibart # 12386
-taquistobart # 12390
-becotatug # 12391
-lipustobart # 12393
-tivepontabart # 12396 / 12397 -paquemicin
-delpacibart # 12399 / 12400 -etedesiran
-mulincakibart # 12401
+fepixnebart    # 12352
+belrestotug    # 12360
+ogalvibart     # 12361
+anzurstobart   # 12363
+caplunetug     # 12364
+tulisokibart   # 12368
+xotrakibart    # 12372
+cindoprubart   # 12373
+nisevokitug    # 12374
+pradusinstobart # 12375
+exlinkibart     # 12376
+dalnicastobart  # 12377
+rilsovakimig    # 12378
+porustobart     # 12381
+lextuvostobart  # 12383
+tonlenvibart    # 12386
+taquistobart    # 12390
+becotatug       # 12391
+lipustobart     # 12393
+tivepontabart   # 12396 / 12397 -paquemicin
+delpacibart     # 12399 / 12400 -etedesiran
+mulincakibart   # 12401
+
+
+
+
+# 12389 bextrestobart instead of tuparstobart
+#12392 lipustobart
+#12390 taquistobart
+#12389 was tuparstobart
