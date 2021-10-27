@@ -569,7 +569,7 @@ tosatoxumab
 tositumomab
 tovetumab
 tralokinumab
-trastuzumab   # 12243 trastuzumab rezetecan
+trastuzumab   # 12243 trastuzumab rezetecan  # 12382 trastuzumab ocsetolimod
 tregalizumab
 tremelimumab
 trevogrumab
@@ -900,25 +900,25 @@ lomvastomig    # 12319
 ogatecibart    # 12333
 narlumosbart   # 12344
 dargistotug    # 12349
- # 12352
- # 12360
- # 12363
- # 12364
- # 12368
- # 12372
- # 12373
- # 12374
- # 12375
- # 12376
- # 12377
- # 12378
- # 12381
- # 12382 trastuzumab ocsetolimod
- # 12383
- # 12386
- # 12390
- # 12391
- # 12393
- # 12396/12397
- # 12399/12400
- # 12401
+fepixnebart # 12352
+belrestotug # 12360
+ogalvibart # 12361
+anzurstobart # 12363
+caplunetug # 12364
+tulisokibart # 12368
+xotrakibart # 12372
+cindoprubart # 12373
+nisevokitug # 12374
+pradustobart # 12375
+exlinkibart # 12376
+dalnistobart # 12377
+rilsovakimig # 12378
+porustobart # 12381
+lextuvostobart # 12383
+tonlenvibart # 12386
+taquistobart # 12390
+becotatug # 12391
+lipustobart # 12393
+tivepontabart # 12396 / 12397 -paquemicin
+delpacibart # 12399 / 12400 -etedesiran
+mulincakibart # 12401
