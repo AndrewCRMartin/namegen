@@ -712,18 +712,18 @@ vixtimotamab  # replaces netimotamab & netimatamab
 runimotamab   # munistamab
 # 11340 to be decided - ismidolimab?
 # New names for Covid
-sotrovimab
-tixagevimab
-cilgavimab
-zansecimab
-casirivimab
-zecricevimab  # Not published till clinical trials
-imdevimab
-aninavimab  # Not published till clinical trials
-atibuclimab
-etesevimab
-bamlanivimab
-regdanvimab
+sotrovimab   # 11766
+tixagevimab  # 11776
+cilgavimab   # 11777
+zansecimab   # 11797
+casirivimab  # 11861
+zecricevimab # 11862 Not published till clinical trials
+imdevimab    # 11863
+aninavimab   # 11864 Not published till clinical trials
+atibuclimab  # 11865
+etesevimab   # 11873
+bamlanivimab # 11876
+regdanvimab  # 11883
 # Consult 71
 ivicentamab   # 11702
 voxalatamab   # 11734
@@ -790,7 +790,7 @@ luveltamab    # 12040/41 (has non-natural AAs)
 visugromab    # 12044
 imvotamab     # 12054
 trosunilimab  # 12071
-gorpefecimab  # 12086
+danivrocimig  # 12086 (was gorpefecimab)
 vicasinab     # 11940 (second table)
 linvoseltamab # 12104
 reozalimab    # 11904
@@ -886,7 +886,7 @@ ralzapastomab  # 12340
 forimtamig     # 12346
 crexavibart    # 12362
 rilvegostomig  # 12387
-bextrestobart  # 12389
+tuparstobart   # 12389
 lipustobart    # 12392
 ulviprubart    # 12298 
 izeltabart     # 12302, 12303 izeltabart tapatansine
@@ -909,9 +909,9 @@ tulisokibart   # 12368
 xotrakibart    # 12372
 cindoprubart   # 12373
 nisevokitug    # 12374
-pradusinstobart # 12375
+pradusinstobart # 12375 (was pradustobart)
 exlinkibart     # 12376
-dalnicastobart  # 12377
+dalnicastobart  # 12377 (was dalnistobart)
 rilsovakimig    # 12378
 porustobart     # 12381
 lextuvostobart  # 12383
