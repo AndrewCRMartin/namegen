@@ -59,7 +59,7 @@ bermekimab
 bersanlimab
 bertilimumab
 besilesomab
-bevacizumab
+bevacizumab # 11918 gamma
 bexmarilimab
 bezlotoxumab
 biciromab
@@ -569,7 +569,7 @@ tosatoxumab
 tositumomab
 tovetumab
 tralokinumab
-trastuzumab   # 12243 trastuzumab rezetecan  # 12382 trastuzumab ocsetolimod
+trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin
 tregalizumab
 tremelimumab
 trevogrumab
@@ -803,7 +803,6 @@ mupadolimab   # 11944
 mecbotamab    # 11946 / 11951
 ozuriftamab   # 11947 / 11952
 boserolimab   # 11948
-almepolimab   # 11957 
 peresolimab   # 11958
 beludavimab   # 11961
 frexalimab    # 11963
@@ -854,17 +853,17 @@ danburstotug   # 12191
 danvilostomig  # 12198
 ciduvectamig   # 12199
 tarperprumig   # 12204
-giltufestobart # 12205
-rolrizedetug   # 12218
+benmelstobart  # 12205 was giltufestobart 
+ersodetug      # 12218 was rolrizedetug  
 zeripatamig    # 12219
-amufekibart    # 12231
+temtokibart    # 12231 was amufekibart
 paridiprubart  # 12233
 masavibart     # 12234
 nepuvibart     # 12235
 # lunaxafusp     # 12236
 bempikibart    # 12242
 resugosbart    # 12244
-tirnekibart    # 12247 (mine)
+trabikibart    # 12247 was tirnekibart (mine)
 polzastobart   # 12249
 freneslerbart  # 12255  (-ler- for allergen - I objected to -lergi-)
 mevonlerbart   # 12256
@@ -877,9 +876,9 @@ perenostobart  # 12269
 anvatabart     # 12271 -pactil (naked modified); 12272 -opadotin
 empasiprubart  # 12277
 linavonkibart  # 12283
-nelitrinstotug # 12286
+nelistotug     # 12286 was nelitrinstotug
 umizortamig    # 12292
-dacdotabart    # 12297 / 12296 - dacdotabart ravtansine
+oberotabart    # 12297 / 12296 - oberotabart ravtansine was dacdotabart 
 tobevibart     # 12316
 # eciskafusp alfa # 12317
 ralzapastomab  # 12340
@@ -887,7 +886,7 @@ forimtamig     # 12346
 crexavibart    # 12362
 rilvegostomig  # 12387
 tuparstobart   # 12389
-lipustobart    # 12392
+lipustobart    # 12392 /12393 lipustobart xxx
 ulviprubart    # 12298 
 izeltabart     # 12302, 12303 izeltabart tapatansine
 zigakibart     # 12304 
@@ -896,15 +895,15 @@ riltovetbart   # 12311
 raludotatug    # 12314 -durextecan / 12315 naked
 tobemstomig    # 12318
 lomvastomig    # 12319
-# tulgafafusp alfa # 12332
-ogatecibart    # 12333
+gulgafafusp    # 12332 alpha - was tulgafafusp
+patecibart     # 12333 was ogatecibart
 narlumosbart   # 12344
 dargistotug    # 12349
 fepixnebart    # 12352
 belrestotug    # 12360
 ogalvibart     # 12361
 anzurstobart   # 12363
-caplunetug     # 12364
+remternetug    # 12364 was caplunetug
 tulisokibart   # 12368
 xotrakibart    # 12372
 cindoprubart   # 12373
@@ -912,16 +911,15 @@ nisevokitug    # 12374
 pradusinstobart # 12375 (was pradustobart)
 exlinkibart     # 12376
 dalnicastobart  # 12377 (was dalnistobart)
-rilsovakimig    # 12378
+rilsovakimig    # 12378 rejected but no new suggestions as yet
 porustobart     # 12381
-lextuvostobart  # 12383
+gotistobart     # 12383 was lextuvostobart 
 tonlenvibart    # 12386
-taquistobart    # 12390
+verzistobart    # 12390 was taquistobart 
 becotatug       # 12391
-lipustobart     # 12393
 tivepontabart   # 12396 / 12397 -paquemicin
 delpacibart     # 12399 / 12400 -etedesiran
-mulincakibart   # 12401
+rademikibart    # 12401 was mulincakibart
 #Consult74
 cemavafusp      # 12432 
 renvistobart    # 12465 
@@ -930,7 +928,6 @@ vonsetamig      # 12494
 nebratamig      # 12499 
 dazukibart      # 12518 
 vensobafusp     # 12527 alfa
-trastuzumab     # 12531 vedotin
 tegoprubart     # 12545 
 omivontamig     # 12549 
 obertamig       # 12551 
@@ -951,14 +948,13 @@ oloctinebart    # 12421
 simaravibart    # 12423
 suvemcitug      # 12428
 eurestobart     # 12434
-trastuzumab     # 12435 botidotin
 stapokibart     # 12443
 sabestomig      # 12457
 # 12472 Defer tegatatug
 davutamig       # 12481
 acimtamig       # 12484
 sabirnebart     # 12509
-pomzakitug      # 12512
+pruzikitug      # 12512 (Was pomzakitug, Pomz - bombs)
 puxitatug       # 12514 / 12513 samrotecan
 etentamig       # 12522
 brenetafusp     # 12532
@@ -970,6 +966,19 @@ veligrotug      # 12548
 timdarpacept    # 12555
 vopikitug       # 12559
 duvakitug       # 12561
+erzotabart      # 12562
+rolistobart     # 12567
+tegpostobart    # 12568
+firastotug      # 12569
+muzastotug      # 12573
+pascostotug     # 12576
+nezutatug       # 12596
+gorivitug       # 12616
+englumafusp     # 11793 alfa
+
+
+almepolimab   # 11957 ### Changed? almestobart???
+
 
 # 12389 bextrestobart instead of tuparstobart
 # 12392 lipustobart
