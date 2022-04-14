@@ -895,7 +895,7 @@ riltovetbart   # 12311
 raludotatug    # 12314 -durextecan / 12315 naked
 tobemstomig    # 12318
 lomvastomig    # 12319
-gulgafafusp    # 12332 alpha - was tulgafafusp
+gulgafafusp    # 12332 alfa - was tulgafafusp
 patecibart     # 12333 was ogatecibart
 narlumosbart   # 12344
 dargistotug    # 12349
@@ -911,7 +911,7 @@ nisevokitug    # 12374
 pradusinstobart # 12375 (was pradustobart)
 exlinkibart     # 12376
 dalnicastobart  # 12377 (was dalnistobart)
-rilsovakimig    # 12378 rejected but no new suggestions as yet
+rilsovakimig    # 12378 (rejected but no new suggestions so retained)
 porustobart     # 12381
 gotistobart     # 12383 was lextuvostobart 
 tonlenvibart    # 12386
@@ -943,7 +943,7 @@ sotiburafusp    # 12407 alfa
 enlonstobart    # 12413
 enrustomig      # 12416
 ozekibart       # 12417 (tentative)
-picankibart     # 12419 (or facankibart)
+picankibart     # 12419
 oloctinebart    # 12421
 simaravibart    # 12423
 suvemcitug      # 12428
@@ -975,9 +975,7 @@ pascostotug     # 12576
 nezutatug       # 12596
 gorivitug       # 12616
 englumafusp     # 11793 alfa
-
-
-almepolimab   # 11957 ### Changed? almestobart???
+almepostomab    # 11957 
 
 
 # 12389 bextrestobart instead of tuparstobart
