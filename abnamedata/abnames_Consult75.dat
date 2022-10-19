@@ -233,7 +233,7 @@ gevokizumab
 giloralimab
 gilvetmab
 gimsilumab
-girentuximab
+girentuximab   # ????? # 12714 zirconium89 girentuximab sumidoxam  
 glembatumumab
 glenzocimab
 glofitamab
@@ -478,7 +478,7 @@ rozanolixizumab
 ruplizumab
 ruvalvetmab
 sabatolimab
-sacituzumab
+sacituzumab    # 12801 tirumotecan
 samalizumab
 samrotamab
 sarilumab
@@ -569,7 +569,7 @@ tosatoxumab
 tositumomab
 tovetumab
 tralokinumab
-trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin
+trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin # 12677 brengitecan
 tregalizumab
 tremelimumab
 trevogrumab
@@ -816,7 +816,7 @@ lomtegovimab  # 12001
 golocdacimab  # 12003 sars
 enuzovimab    # 12009 sars
 aliprasvimab  # 12011 (mine)
-izalontamab   # 12022
+izalontamab   # 12022 / 12678 brengitecan
 emfizatamab   # 12023
 adintrevimab  # 12026
 emirodatamab  # 12028
@@ -960,7 +960,7 @@ etentamig       # 12522
 brenetafusp     # 12532
 vipalanebart    # 12534
 lafuvitug       # 12541
-zeleciment      # 12542 / 12543 rostudirsen
+zeleciment      # 12542 / 12543 rostudirsen / 12713 basivarsen
 budoprubart     # 12546
 veligrotug      # 12548
 timdarpacept    # 12555
@@ -976,9 +976,66 @@ nezutatug       # 12596
 gorivitug       # 12616
 englumafusp     # 11793 alfa
 almepostomab    # 11957 
+# Consult 75
+ebrogrobart     # 12275
+gruticibart     # 12624
+sudostobart     # 12629   (mine)
+gibotamig       # 12632
+abiprubart      # 12636
+omoprubart      # 12638
+lumrotatug      # 12639
+nelmastobart    # 12640
+coramitug       # 12646
+givastomig      # 12650
+bezetabart      # 12653 / 12652 debotansine
+silevimig       # 12660
+uprevstobart    # 12670
+donzakimig      # 12679
+ibentatug       # 12688
+fanastomig      # 12694
+belsigrobart    # 12696
+ragistomig      # 12707
+pirdostotug     # 12710    # tug???   *15
+cepeprubart     # 12715
+izastobart      # 12721
+lusakibart      # 12724
+luvagrobart     # 12725
+lancastotug     # 12727   # tug??? #### CHECK THIS #####
+seniprutug      # 12735
+roconkibart     # 12736
+usilnebart      # 12743  # tug??? #### CHECK THIS #####
+tarastomig      # 12746
+
+
+#verekitug       # 12749
+solrikitug      # 12752
+ibixtatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
+#vilastobart     # 12761
+#rezostobart     # 12766
+#elivtamig       # 12767
+#vanprubart      # 12769
+reflocibart     # 12770
+sipavibart      # 12778
+#alcevibart      # 12779
+evalstotug      # 12780
+nezastomig       # 12804
+lunsekimig       # 12833
+
 
 
 # 12389 bextrestobart instead of tuparstobart
 # 12392 lipustobart
 # 12390 taquistobart
 # 12389 was tuparstobart
+
+# Rename
+# -tug
+# 12710
+# 12727
+# 12743
+# 12296
+# 
+# -bart
+# 12652
+# 12653
+# 12568
