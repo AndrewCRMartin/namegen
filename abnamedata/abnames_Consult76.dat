@@ -233,7 +233,7 @@ gevokizumab
 giloralimab
 gilvetmab
 gimsilumab
-girentuximab
+girentuximab   # ????? # 12714 zirconium89 girentuximab sumidoxam  
 glembatumumab
 glenzocimab
 glofitamab
@@ -471,14 +471,14 @@ romilkimab
 romosozumab
 rontalizumab
 rosmantuzumab
-rosopatamab
+rosopatamab   # 12996 lutetium (177lu) rosopatamab tetraxetan
 rovalpituzumab
 rovelizumab
 rozanolixizumab
 ruplizumab
 ruvalvetmab
 sabatolimab
-sacituzumab
+sacituzumab    # 12801 tirumotecan
 samalizumab
 samrotamab
 sarilumab
@@ -537,7 +537,7 @@ teclistamab
 tefibazumab
 telazorlimab
 telimomab
-telisotuzumab
+telisotuzumab   # 13001 telisotuzumab adizutecan
 temelimab
 tenatumomab
 teneliximab
@@ -569,7 +569,7 @@ tosatoxumab
 tositumomab
 tovetumab
 tralokinumab
-trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin
+trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin # 12677 brengitecan #13009 enrodotin
 tregalizumab
 tremelimumab
 trevogrumab
@@ -816,7 +816,7 @@ lomtegovimab  # 12001
 golocdacimab  # 12003 sars
 enuzovimab    # 12009 sars
 aliprasvimab  # 12011 (mine)
-izalontamab   # 12022
+izalontamab   # 12022 / 12678 brengitecan
 emfizatamab   # 12023
 adintrevimab  # 12026
 emirodatamab  # 12028
@@ -878,14 +878,14 @@ empasiprubart  # 12277
 linavonkibart  # 12283
 nelistotug     # 12286 was nelitrinstotug
 umizortamig    # 12292
-oberotabart    # 12297 / 12296 - oberotabart ravtansine was dacdotabart 
+oberotatug     # 12297 / 12296 - oberotatug ravtansine was dacdotabart 
 tobevibart     # 12316
 # eciskafusp alfa # 12317
 ralzapastomab  # 12340
 forimtamig     # 12346
 crexavibart    # 12362
 rilvegostomig  # 12387
-tuparstobart   # 12389
+bextrestobart  # 12389
 lipustobart    # 12392 /12393 lipustobart xxx
 ulviprubart    # 12298 
 izeltabart     # 12302, 12303 izeltabart tapatansine
@@ -960,7 +960,7 @@ etentamig       # 12522
 brenetafusp     # 12532
 vipalanebart    # 12534
 lafuvitug       # 12541
-zeleciment      # 12542 / 12543 rostudirsen
+zeleciment      # 12542 / 12543 rostudirsen / 12713 basivarsen
 budoprubart     # 12546
 veligrotug      # 12548
 timdarpacept    # 12555
@@ -968,7 +968,6 @@ vopikitug       # 12559
 duvakitug       # 12561
 erzotabart      # 12562
 rolistobart     # 12567
-tegpostobart    # 12568
 firastotug      # 12569
 muzastotug      # 12573
 pascostotug     # 12576
@@ -976,9 +975,84 @@ nezutatug       # 12596
 gorivitug       # 12616
 englumafusp     # 11793 alfa
 almepostomab    # 11957 
+# Consult 75
+ebrogrobart     # 12275
+gruticibart     # 12624
+sudostobart     # 12629   (mine)
+gibotamig       # 12632
+abiprubart      # 12636
+omoprubart      # 12638
+lumrotatug      # 12639
+nelmastobart    # 12640
+coramitug       # 12646
+givastomig      # 12650
+bezetabart      # 12653 / 12652 debotansine
+silevimig       # 12660
+uprevstobart    # 12670
+donzakimig      # 12679
+ibentatug       # 12688
+fanastomig      # 12694
+belsigrobart    # 12696
+ragistomig      # 12707
+pirdostotug     # 12710    # tug???   *15
+cepeprubart     # 12715
+izastobart      # 12721
+lusakibart      # 12724
+luvagrobart     # 12725
+lancastotug     # 12727   # tug??? #### CHECK THIS #####
+seniprutug      # 12735
+roconkibart     # 12736
+usilnebart      # 12743  # tug??? #### CHECK THIS #####
+tarastomig      # 12746
 
 
-# 12389 bextrestobart instead of tuparstobart
-# 12392 lipustobart
-# 12390 taquistobart
-# 12389 was tuparstobart
+solrikitug      # 12752
+ibixtatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
+reflocibart     # 12770
+sipavibart      # 12778
+evalstotug      # 12780
+nezastomig      # 12804
+lunsekimig      # 12833
+
+
+
+
+verekitug       # 12749
+vilastobart     # 12761
+rezorstobart    # 12766 
+rezetamig       # 12767 
+venanprubart    # 12769  
+# alcevibart    # 12779 the request was withdrawn by the applicant
+oberotatug      # 12297 published in PL128
+bezetabart      # 12653
+sovipostobart   # 12568  published in PL128
+
+#Consult76
+# Pre-meeting consensus names
+zaltenibart     # 12858 
+misitatug       # 12876 
+libevitug       # 12881 
+vixticibart     # 12917 
+cugrastomig     # 12924 
+rivgotamig      # 12941 
+calotatug       # 12942 / 12945 ginistinag
+emiltatug       # 12943 / 12944 ledadotin
+tazlestobart    # 12964 
+adakitug        # 12979 
+anzekitug       # 12985 
+aplitabart      # 12990 
+navenibart      # 12991 
+pegrizeprument  # 12997 
+lifatamig       # 12998 
+micvotabart     # 13004 / 13003 pelidotin
+zubotamig       # 13007 
+pemivibart      # 13017 (“pending CT start”)
+tilatamig       # 13020 / 13021 samrotecan
+rinatabart      # 13029 / 13030 sesutecan
+tecotabart      # 13031 / 13032 vedotin
+sonavibart      # 13036 
+bexatamig       # 13042 
+raxutatug       # 13058 
+# Meeting....
+
+
