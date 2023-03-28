@@ -569,7 +569,7 @@ tosatoxumab
 tositumomab
 tovetumab
 tralokinumab
-trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin # 12677 brengitecan
+trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin #12677 brengitecan
 tregalizumab
 tremelimumab
 trevogrumab
@@ -657,7 +657,7 @@ recaticimab
 sotigalimab
 tarlatamab
 tusamitamab
-upifitamab
+# upifitamab # 11344 / 11318 rejected  (fitta = 'c***' in Swedish)
 vixarelimab
 vudalimab
 # zelusalimab
@@ -905,13 +905,13 @@ ogalvibart     # 12361
 anzurstobart   # 12363
 remternetug    # 12364 was caplunetug
 tulisokibart   # 12368
-xotrakibart    # 12372
-cindoprubart   # 12373
+# xotrakibart    # 12372 (rejected)
+# cindoprubart   # 12373 (rejected)
 nisevokitug    # 12374
 pradusinstobart # 12375 (was pradustobart)
 exlinkibart     # 12376
 dalnicastobart  # 12377 (was dalnistobart)
-rilsovakimig    # 12378 (rejected but no new suggestions so retained)
+# rilsovakimig    # 12378 (rejected but no new suggestions so retained)
 porustobart     # 12381
 gotistobart     # 12383 was lextuvostobart 
 tonlenvibart    # 12386
@@ -941,7 +941,7 @@ zovostotug      # 12594
 maridebart      # 12601 / 12602 cafraglutide
 sotiburafusp    # 12407 alfa
 enlonstobart    # 12413
-enrustomig      # 12416
+# enrustomig      # 12416 (rejected - didn't like -rust-)
 ozekibart       # 12417 (tentative)
 picankibart     # 12419
 oloctinebart    # 12421
@@ -958,7 +958,6 @@ pruzikitug      # 12512 (Was pomzakitug, Pomz - bombs)
 puxitatug       # 12514 / 12513 samrotecan
 etentamig       # 12522
 brenetafusp     # 12532
-vipalanebart    # 12534
 lafuvitug       # 12541
 zeleciment      # 12542 / 12543 rostudirsen / 12713 basivarsen
 budoprubart     # 12546
@@ -980,18 +979,15 @@ almepostomab    # 11957
 ebrogrobart     # 12275
 gruticibart     # 12624
 sudostobart     # 12629   (mine)
-gibotamig       # 12632
 abiprubart      # 12636
 omoprubart      # 12638
 lumrotatug      # 12639
 nelmastobart    # 12640
 coramitug       # 12646
-givastomig      # 12650
 bezetabart      # 12653 / 12652 debotansine
 silevimig       # 12660
 uprevstobart    # 12670
 donzakimig      # 12679
-ibentatug       # 12688
 fanastomig      # 12694
 belsigrobart    # 12696
 ragistomig      # 12707
@@ -1005,28 +1001,48 @@ seniprutug      # 12735
 roconkibart     # 12736
 usilnebart      # 12743  # tug??? #### CHECK THIS #####
 tarastomig      # 12746
-
-
-#verekitug       # 12749
-solrikitug      # 12752
-ibixtatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
-#vilastobart     # 12761
-#rezostobart     # 12766
-#elivtamig       # 12767
-#vanprubart      # 12769
 reflocibart     # 12770
 sipavibart      # 12778
-#alcevibart      # 12779
 evalstotug      # 12780
-nezastomig       # 12804
-lunsekimig       # 12833
+nezastomig      # 12804
+lunsekimig      # 12833
+solrikitug      # 12752
+verekitug       # 12749
+rezorstobart    # 12766
+rezetamig       # 12767
+venanprubart    # 12769 (USAN to approve)
+alcevibart      # 12779
+traxivitug      # 12797
+alextatug       # 12819
+canrivitug      # 12823
+# Renames
+eltrekibart     # 12372
+ucenprobart     # 12373
+galvokimig      # 12378
+enristomig      # 12416
+tegatatug       # 12472
+opelkibart      # 12810 / 12811 elmanitin
+vipalanebart    # 12534 (rejected) ?????   #### CHECK THIS ONE
 
 
 
-# 12389 bextrestobart instead of tuparstobart
-# 12392 lipustobart
-# 12390 taquistobart
-# 12389 was tuparstobart
+ibixtatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
+ibentatug       # 12688
+
+gibotamig       # 12632
+givastomig      # 12650
+
+vilastobart     # 12761 .... izastobart 12721, rolistobart 12567
+
+upinitabart # 11344 / 11318 rilsodotin (to confirm as -bart)
+
+
+
+## 12389 bextrestobart instead of tuparstobart
+## 12392 lipustobart
+## 12390 taquistobart
+## 12389 was tuparstobart
+## C75 DEFER trastuzumab #12808 emtansine beta
 
 # Rename
 # -tug

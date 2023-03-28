@@ -233,7 +233,7 @@ gevokizumab
 giloralimab
 gilvetmab
 gimsilumab
-girentuximab   # ????? # 12714 zirconium89 girentuximab sumidoxam  
+girentuximab   # ????? # 12714 zirconium89 girentuximab sumidoxam   Outstanding ***
 glembatumumab
 glenzocimab
 glofitamab
@@ -570,6 +570,7 @@ tositumomab
 tovetumab
 tralokinumab
 trastuzumab #12243 rezetecan #12382 ocsetolimod #12435 botidotin #12531 vedotin # 12677 brengitecan #13009 enrodotin
+# 12808 emtansine beta Outstanding ***
 tregalizumab
 tremelimumab
 trevogrumab
@@ -800,7 +801,7 @@ rosnilimab    # 11909
 lesabelimab   # 11914
 litifilimab   # 11943
 mupadolimab   # 11944
-mecbotamab    # 11946 / 11951
+mecbotamab    # 11946 / 11951 vedotin
 ozuriftamab   # 11947 / 11952
 boserolimab   # 11948
 peresolimab   # 11958
@@ -860,7 +861,7 @@ temtokibart    # 12231 was amufekibart
 paridiprubart  # 12233
 masavibart     # 12234
 nepuvibart     # 12235
-# lunaxafusp     # 12236
+lunaxafusp     # 12236
 bempikibart    # 12242
 resugosbart    # 12244
 trabikibart    # 12247 was tirnekibart (mine)
@@ -880,7 +881,7 @@ nelistotug     # 12286 was nelitrinstotug
 umizortamig    # 12292
 oberotatug     # 12297 / 12296 - oberotatug ravtansine was dacdotabart 
 tobevibart     # 12316
-# eciskafusp alfa # 12317
+eciskafusp     # 12317 alfa
 ralzapastomab  # 12340
 forimtamig     # 12346
 crexavibart    # 12362
@@ -950,7 +951,7 @@ suvemcitug      # 12428
 eurestobart     # 12434
 stapokibart     # 12443
 sabestomig      # 12457
-# 12472 Defer tegatatug
+# 12472 Defer tegatatug   Outstanding ***
 davutamig       # 12481
 acimtamig       # 12484
 sabirnebart     # 12509
@@ -976,9 +977,9 @@ gorivitug       # 12616
 englumafusp     # 11793 alfa
 almepostomab    # 11957 
 # Consult 75
-ebrogrobart     # 12275
+ebrogrobart     # 12275         Outstanding ***
 gruticibart     # 12624
-sudostobart     # 12629   (mine)
+sudostobart     # 12629 (mine)
 gibotamig       # 12632
 abiprubart      # 12636
 omoprubart      # 12638
@@ -994,15 +995,15 @@ ibentatug       # 12688
 fanastomig      # 12694
 belsigrobart    # 12696
 ragistomig      # 12707
-pirdostotug     # 12710    # tug???   *15
+pirdostotug     # 12710 # tug???   *15   Outstanding ***
 cepeprubart     # 12715
 izastobart      # 12721
 lusakibart      # 12724
 luvagrobart     # 12725
-lancastotug     # 12727   # tug??? #### CHECK THIS #####
+lancastotug     # 12727 # tug??? #### CHECK THIS #####
 seniprutug      # 12735
 roconkibart     # 12736
-usilnebart      # 12743  # tug??? #### CHECK THIS #####
+usilnebart      # 12743 # tug??? #### CHECK THIS #####
 tarastomig      # 12746
 
 
@@ -1013,10 +1014,6 @@ sipavibart      # 12778
 evalstotug      # 12780
 nezastomig      # 12804
 lunsekimig      # 12833
-
-
-
-
 verekitug       # 12749
 vilastobart     # 12761
 rezorstobart    # 12766 
@@ -1025,16 +1022,16 @@ venanprubart    # 12769
 # alcevibart    # 12779 the request was withdrawn by the applicant
 oberotatug      # 12297 published in PL128
 bezetabart      # 12653
-sovipostobart   # 12568  published in PL128
+sovipostobart   # 12568 published in PL128
 
 #Consult76
 # Pre-meeting consensus names
 zaltenibart     # 12858 
-misitatug       # 12876 
+misitatug       # 12876 / 12877 blivedotin - vedotin with different linker
 libevitug       # 12881 
 vixticibart     # 12917 
 cugrastomig     # 12924 
-rivgotamig      # 12941 
+rigotamig       # 12941 / 12957 olatansine  (rivo... if trademark)
 calotatug       # 12942 / 12945 ginistinag
 emiltatug       # 12943 / 12944 ledadotin
 tazlestobart    # 12964 
@@ -1046,7 +1043,7 @@ pegrizeprument  # 12997
 lifatamig       # 12998 
 micvotabart     # 13004 / 13003 pelidotin
 zubotamig       # 13007 
-pemivibart      # 13017 (“pending CT start”)
+pemivibart      # 13017 (pending clinical trials start)
 tilatamig       # 13020 / 13021 samrotecan
 rinatabart      # 13029 / 13030 sesutecan
 tecotabart      # 13031 / 13032 vedotin
@@ -1054,5 +1051,58 @@ sonavibart      # 13036
 bexatamig       # 13042 
 raxutatug       # 13058 
 # Meeting....
+
+ocankitug       # 12828
+magrutatug      # 13073 / 12846 vedotin   # Must avoid -sta-
+idomistobart    # 12847
+atenakibart     # 12848
+siltartoxatug   # 12873
+### 12878
+comekibart      # 12879
+lanerkitug      # 12887
+obrixtamig      # 12889
+ebribafusp      # 12890 alfa
+vixitatug       # 12902 
+azirkitug       # 12916
+imelciment      # 12918
+### 12919
+samatatug       # 12921 / 12922 zovodotin
+umikibart       # 12925
+timcevibart     # 12929
+mozistobart     # 12949 / 12947 zoratolimod
+denikitug       # 12950
+zinitamig       # 12958
+ficerafusp      # 12962 alfa (cetuximab mAb)
+amulirafusp     # 12963 alfa
+vislarafusp     # 12965 alfa
+palverafusp     # 12967 alfa
+ozureprubart    # 12977
+farestobart     # 12978
+# 12986
+# 12996
+# 13001
+# 13002
+# 13006
+# 13071 / 13008 tucemtecan
+# 13009 enrodotin
+# 13010
+# 13011
+# 13012
+# 13014 / 13015 tesirine
+# 13018
+# 13019
+# 13026
+# 13040
+# 13048
+# 13052
+# 13053
+# 13055
+# 13060
+# 13065
+# 13069
+# 13070
+# 13071 - see 13008
+# 13072
+# 13073 - see 12846
 
 
