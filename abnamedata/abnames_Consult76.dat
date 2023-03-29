@@ -233,7 +233,7 @@ gevokizumab
 giloralimab
 gilvetmab
 gimsilumab
-girentuximab   # ????? # 12714 zirconium89 girentuximab sumidoxam   Outstanding ***
+girentuximab   # 12714 zirconium89 girentuximab sumidoxam
 glembatumumab
 glenzocimab
 glofitamab
@@ -537,7 +537,7 @@ teclistamab
 tefibazumab
 telazorlimab
 telimomab
-telisotuzumab   # 13001 telisotuzumab adizutecan
+telisotuzumab   # 13001 adizutecan
 temelimab
 tenatumomab
 teneliximab
@@ -575,7 +575,7 @@ trastuzumab
 #12435 botidotin
 #12531 vedotin
 #12677 brengitecan
-#13009 enrodotin
+#13009 envedotin
 #12808 emtansine beta Outstanding ***
 tregalizumab
 tremelimumab
@@ -777,7 +777,6 @@ barzelvolimab # 11842
 bafisontamab  # 11851
 clesrovimab   # 11857 Consult72 - pending from usan
 teropavimab   # 11878
-# inetravimab   # 11879 rejected (etravine too close)
 eblasakimab   # 11881
 nofasinlimab  # 11892
 pibocalimab   # 11192 was icatolimab
@@ -843,7 +842,7 @@ briquilimab   # 12124
 # 11669 rejected with no reason but retained
 crefmirlimab  # 11678 replacement name 12138 zirconium (89Zr) crefmirlimab berdoxam
 semzuvolimab  # 11685 replacement name
-zinlirvimab   # 11879 replacement name
+zinlirvimab   # 11879 replacement name was inetravimab
 bavunalimab   # 11465 replacement name
 # Consultation 73
 vilamakitug    # 12135
@@ -957,7 +956,7 @@ suvemcitug      # 12428
 eurestobart     # 12434
 stapokibart     # 12443
 sabestomig      # 12457
-# 12472 Defer tegatatug   Outstanding ***
+atigotatug      # 12472 (was tegatatug)
 davutamig       # 12481
 acimtamig       # 12484
 sabirnebart     # 12509
@@ -983,7 +982,7 @@ gorivitug       # 12616
 englumafusp     # 11793 alfa
 almepostomab    # 11957 
 # Consult 75
-ebrogrobart     # 12275         Outstanding ***
+obrasodebart    # 12275     ***************** Check this ************
 gruticibart     # 12624
 sudostobart     # 12629 (mine)
 gibotamig       # 12632
@@ -1010,7 +1009,7 @@ lancastotug     # 12727 # tug??? #### CHECK THIS #####
 seniprutug      # 12735
 roconkibart     # 12736
 usilnebart      # 12743 # tug??? #### CHECK THIS #####
-tarastomig      # 12746
+xirestomig      # 12746 was tarastomig  
 
 
 solrikitug      # 12752
@@ -1071,7 +1070,6 @@ ebribafusp      # 12890 alfa
 vixitatug       # 12902 
 azirkitug       # 12916
 imelciment      # 12918
-### 12919
 samatatug       # 12921 / 12922 zovodotin
 umikibart       # 12925
 timcevibart     # 12929
@@ -1084,31 +1082,29 @@ vislarafusp     # 12965 alfa
 palverafusp     # 12967 alfa
 ozureprubart    # 12977
 farestobart     # 12978
-# 12986
-# 12996
-# 13001
-# 13002
-# 13006
-# 13071 / 13008 tucemtecan
-# 13009 enrodotin
-# 13010
-# 13011
-# 13012
-# 13014 / 13015 tesirine
-# 13018
-# 13019
-# 13026
-# 13040
-# 13048
-# 13052
-# 13053
-# 13055
-# 13060
-# 13065
-# 13069
-# 13070
-# 13071 - see 13008
-# 13072
-# 13073 - see 12846
+amlenetug       # 12986
+aldastotug      # 13002
+indenebart      # 13006
+precemtabart    # 13071 / 13008 tocentecan
+dalmotamig      # 13010
+ansipastobart   # 13011
+lumistobart     # 13012
+olintatug       # 13014 / 13015 tesirine
+### 13018       ??????????????????
+brivekimig      # 13019
+linclatamig     # 13026
+balekafusp      # 13040  alfa
+cafelkibart     # 13048
+elostomig       # 13052
+donitabart      # 13053
+avitotamig      # 13055
+pacibekitug     # 13060
+gocatamig       # 13069 !!!!
+podontamig      # 13070
+crebankitug     # 13072
 
 
+### TOCHECK
+### 12275
+### 13018
+### 12808
