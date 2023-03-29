@@ -7,6 +7,9 @@ if [ ! -f $abnames ]; then
     echo "You must install the antibody names file file ($abnames)"
 else
     echo ""
+    echo "**********************************************************"
+    echo $1
+    echo ""
     echo "Phonetics (85.5)"
     echo "================"
     ./abcheckname -n $abnames -t 81 -p $name | sort -n -k4 | tail -5
@@ -18,4 +21,5 @@ else
     echo "Longest end match"
     echo "================="
     ./abcheckname -n $abnames -e $name
+    echo ""
 fi
