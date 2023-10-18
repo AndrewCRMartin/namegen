@@ -1028,7 +1028,6 @@ rezetamig       # 12767
 venanprubart    # 12769  
 # alcevibart    # 12779 the request was withdrawn by the applicant
 oberotatug      # 12297 published in PL128
-bezetabart      # 12653
 sovipostobart   # 12568 published in PL128 but discontinued, 13125 beta (defucosylated)
 
 #Consult76
@@ -1140,14 +1139,14 @@ zadoprubart     # 13268
 betinukibart    # 13289
 
 # Meeting
-turenkibart     # 12621 didn't clash with terakibart
+turenkibart     # 12621 didn't clash with terakibart <- not in my list
 nuvustotug      # 13091
 safimestomig    # 13102
 armocibart      # 13116
 lofacimig       # 13117
 birinkibart     # 13121
 # NOTE! Methoxidation can be immunogenic
-tovecimig       # 13128  surprisingly didn't clash with trovetamig
+tovecimig       # 13128  
 azerutamig      # 13130 
 telikibart      # 13144
 velinotamig     # 13145
@@ -1159,4 +1158,27 @@ imeroprubart    # 13167
 
 solnerstotug    # 13183
 eclutatug       # 13184
-# 
+afimkibart      # 13205
+amtabafusp      # 13207 alfa
+trevotamig      # 13209
+idoracibart     # 13212
+drotokibart     # 13214
+indemakitug     # 13226
+clesitamig      # 13237
+emugrobart      # 13238
+tabinafusp      # 13242 alfa (check name)
+pamlectabart    # 13244 tismanitin (13245 naked?)
+produvofusp     # 13249
+etalanetug      # 13252
+recibokibart    # 13255
+mavrostobart    # 13259
+spevatamig      # 13260
+peluntamig      # 13261
+banavibart      # 13272
+eltivutabart    # 13273
+sutacimig       # 13275
+caxmotabart     # 13277 (trastuzumab modification) / 12378 entudotin
+zamubafusp      # 13282 alfa
+tizetatug       # 13287 rezetecan (??? naked?)
+gacovetug       # 13288
+# 13294
