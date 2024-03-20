@@ -4,7 +4,6 @@ BIOP   = ./bioplib
 LFILES = $(BIOP)/align.o $(BIOP)/array2.o $(BIOP)/GetWord.o \
          $(BIOP)/OpenFile.o
 CC     = cc -I$(INCDIR) -O3
-#CC     = cc -I$(INCDIR) -g
 
 all : $(EXE)
 
@@ -17,3 +16,6 @@ $(EXE) : $(OFILES) $(LFILES)
 
 clean :
 	\rm -f *.o $(BIOP)/*.o
+
+distclean : clean
+	\rm -f $(EXE)
