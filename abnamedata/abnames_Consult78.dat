@@ -1014,7 +1014,7 @@ xirestomig      # 12746 was tarastomig
 
 
 solrikitug      # 12752
-ibixtatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
+sigvotatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
 reflocibart     # 12770
 sipavibart      # 12778
 evalstotug      # 12780
@@ -1209,7 +1209,7 @@ garetatug       # 13529 (13530 rezetecan)
 potravitug      # 13315
 opamtistomig    # 13330
 ruzaltatug      # 13336 (13337 rezetecan)
-ramantamig      # 13340  (foound clash with rezetamig 12767)
+ramantamig      # 13340  (found clash rametamig with rezetamig 12767)
 zemocimig       # 13346
 enlonstobart     # 13347
 moflerafusp     # 13348 alfa
@@ -1237,15 +1237,17 @@ trovostobart    # 13453
 cenzestotug     # 13466
 
 ciltistotug     # 13467
-#livgocibart     # 13486
-#ensparkitug     # 13492
-#arumakimig      # 13493
-#ecafikitug      # 13495
-#leventatug      # 13502  (13521 vedotin)
-#anuzestotug     # 13505
-#zavekimig       # 13515
-#ruvisetatug     # 13518 (13517 vedotin)
-#efzervufusp     # 13543 alfa
-#retavibart      # 13554
-#claeprubart     # 13138
-#idoracibart     # 13212
+baloncibart     # 13486
+enzelkitug      # 13492
+arumakimig      # 13493
+amdokitug       # 13495
+laventatug      # 13502  (13521 tivedotin)
+balertatug      # 13505
+tilrekimig      # 13516
+ixotatug        # 13518 (13517 vedotin)
+retavibart      # 13554
+claseprubart    # 13138
+#idoracibart     # 13212 deferred
+
+
+#13156 gatuzosiran for NAFLD
