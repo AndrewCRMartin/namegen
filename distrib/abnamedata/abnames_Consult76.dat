@@ -97,7 +97,7 @@ cendakimab
 cergutuzumab
 certolizumab
 cetrelimab
-cetuximab   # ????? (82/44) / 19074 (120/82) / 13083 beta
+cetuximab   # ????? (82/44) / 19074 (120/82)
 cevostamab
 cibisatamab
 cipanemab
@@ -261,7 +261,7 @@ inclacumab
 indatuximab
 indusatumab
 inebilizumab
-infliximab  # ????, 13096 beta
+infliximab
 inolimomab
 inotuzumab
 intetumumab
@@ -422,7 +422,7 @@ pinatuzumab
 pintumomab
 placulumab
 plamotamab
-plozalizumab   # (13431 plevistinag)
+plozalizumab
 polatuzumab
 ponezumab
 porgaviximab
@@ -576,8 +576,7 @@ trastuzumab
 #12531 vedotin
 #12677 brengitecan
 #13009 envedotin
-#12808 emtansine beta Outstanding *** NO INN - glycosylation much the same
-#13179 pamirtecan
+#12808 emtansine beta Outstanding ***
 tregalizumab
 tremelimumab
 trevogrumab
@@ -700,7 +699,7 @@ plonmarlimab
 uliledlimab
 # tosramtamab - rejected by applicant
 ponsegromab
-anbenitamab # (13457 repodatecan)
+anbenitamab
 erfonrilimab
 # neligikimab - rejected by applicant
 # gipolenimab - rejected by applicant
@@ -923,9 +922,9 @@ porustobart     # 12381
 gotistobart     # 12383 was lextuvostobart 
 tonlenvibart    # 12386
 verzistobart    # 12390 was taquistobart 
-becotatug       # 12391, 13230 vedotin
+becotatug       # 12391
 tivepontabart   # 12396 / 12397 -paquemicin
-delpacibart     # 12399 / 12400 -etedesiran, 13250 zotadirsen, 13251 braxlosiran
+delpacibart     # 12399 / 12400 -etedesiran
 rademikibart    # 12401 was mulincakibart
 #Consult74
 cemavafusp      # 12432 
@@ -961,7 +960,7 @@ atigotatug      # 12472 (was tegatatug)
 davutamig       # 12481
 acimtamig       # 12484
 sabirnebart     # 12509
-falbikitug      # 12512 (Was pomzakitug, Pomz - bombs)
+pruzikitug      # 12512 (Was pomzakitug, Pomz - bombs)
 puxitatug       # 12514 / 12513 samrotecan
 etentamig       # 12522
 brenetafusp     # 12532
@@ -983,7 +982,7 @@ gorivitug       # 12616
 englumafusp     # 11793 alfa
 almepostomab    # 11957 
 # Consult 75
-ebrasodebart    # 12275
+obrasodebart    # 12275     ***************** Check this ************
 gruticibart     # 12624
 sudostobart     # 12629 (mine)
 gibotamig       # 12632
@@ -1001,7 +1000,7 @@ ibentatug       # 12688
 fanastomig      # 12694
 belsigrobart    # 12696
 ragistomig      # 12707
-gimistotug      # 12710 # tug???   *15   Outstanding ***
+pirdostotug     # 12710 # tug???   *15   Outstanding ***
 cepeprubart     # 12715
 izastobart      # 12721
 lusakibart      # 12724
@@ -1020,7 +1019,6 @@ sipavibart      # 12778
 evalstotug      # 12780
 nezastomig      # 12804
 lunsekimig      # 12833
-ocankitug       # 12838
 verekitug       # 12749
 vilastobart     # 12761
 rezorstobart    # 12766 
@@ -1028,7 +1026,8 @@ rezetamig       # 12767
 venanprubart    # 12769  
 # alcevibart    # 12779 the request was withdrawn by the applicant
 oberotatug      # 12297 published in PL128
-sovipostobart   # 12568 published in PL128 but discontinued, 13125 beta (defucosylated)
+bezetabart      # 12653
+sovipostobart   # 12568 published in PL128
 
 #Consult76
 # Pre-meeting consensus names
@@ -1037,17 +1036,16 @@ misitatug       # 12876 / 12877 blivedotin - vedotin with different linker
 libevitug       # 12881 
 vixticibart     # 12917 
 cugrastomig     # 12924 
-opugotamig      # 12941 / 12957 olatansine  (rivo... if trademark)
+rigotamig       # 12941 / 12957 olatansine  (rivo... if trademark)
 calotatug       # 12942 / 12945 ginistinag
 emiltatug       # 12943 / 12944 ledadotin
-mozistobart     # 12946
 tazlestobart    # 12964 
 adakitug        # 12979 
-bosakitug       # 12985 
+anzekitug       # 12985 
 aplitabart      # 12990 
 navenibart      # 12991 
 pegrizeprument  # 12997 
-mipletamig      # 12998 
+lifatamig       # 12998 
 micvotabart     # 13004 / 13003 pelidotin
 zubotamig       # 13007 
 pemivibart      # 13017 (pending clinical trials start)
@@ -1056,40 +1054,39 @@ rinatabart      # 13029 / 13030 sesutecan
 tecotabart      # 13031 / 13032 vedotin
 sonavibart      # 13036 
 bexatamig       # 13042 
-omectatug       # 13058 (was raxutatug)
+raxutatug       # 13058 
 # Meeting....
 
 ocankitug       # 12828
-sonesitatug     # 13073 / 12846 vedotin   # Must avoid -sta- (was magrutatug)
-brivestobart    # 12847 (was idomistobart)
-atenastobart    # 12848 (was atenakibart)
+magrutatug      # 13073 / 12846 vedotin   # Must avoid -sta-
+idomistobart    # 12847
+atenakibart     # 12848
 siltartoxatug   # 12873
-verenafusp      # 12878
+### 12878
 comekibart      # 12879
 lanerkitug      # 12887
 obrixtamig      # 12889
 ebribafusp      # 12890 alfa
-dibotatug       # 12902 
+vixitatug       # 12902 
 azirkitug       # 12916
 imelciment      # 12918
-etakafusp       # 12919
 samatatug       # 12921 / 12922 zovodotin
 umikibart       # 12925
 timcevibart     # 12929
 mozistobart     # 12949 / 12947 zoratolimod
 denikitug       # 12950
-ingitamig       # 12958 (was zinitamig)
+zinitamig       # 12958
 ficerafusp      # 12962 alfa (cetuximab mAb)
 amulirafusp     # 12963 alfa
 vislarafusp     # 12965 alfa
 palverafusp     # 12967 alfa
 ozureprubart    # 12977
-zimistobart     # 12978 (was farestobart)
+farestobart     # 12978
 amlenetug       # 12986
 aldastotug      # 13002
 indenebart      # 13006
 precemtabart    # 13071 / 13008 tocentecan
-dalmitamig      # 13010
+dalmotamig      # 13010
 ansipastobart   # 13011
 lumistobart     # 13012
 olintatug       # 13014 / 13015 tesirine
@@ -1098,154 +1095,16 @@ brivekimig      # 13019
 linclatamig     # 13026
 balekafusp      # 13040  alfa
 cafelkibart     # 13048
-amostomig       # 13052
+elostomig       # 13052
 donitabart      # 13053
 avitotamig      # 13055
 pacibekitug     # 13060
-invikafusp      # 13065
 gocatamig       # 13069 !!!!
 podontamig      # 13070
 crebankitug     # 13072
-lucorafusp      # 12728
 
 
 ### TOCHECK
 ### 12275
 ### 13018
 ### 12808
-
-# Consult77
-# Premeeting consensus
-bulumtatug      # 13082, 13081 fuvedotin
-emunkitug       # 13090
-ciletatug       # 13112, 13111 vedotin
-posnafusp       # 13119
-greziprubart    # 13120
-itanistomig     # 13139
-alcestobart     # 13148
-nivisnebart     # 13157
-lotivibart      # 13158
-lunlekitug      # 13159
-alpitatug       # 13163 / 13164 225Ac - satetraxetan   
-denrakibart     # 13177
-nebokitug       # 13178
-solabafusp      # 13188
-surovatamig     # 13199
-imneskibart     # 13202
-ruxoprubart     # 13213
-imzokitug       # 13223
-felmetatug      # 13232, 13231 vedotin
-rilogrotug      # 13236
-zadoprubart     # 13268
-betinukibart    # 13289
-efdelikofusp    # 13122 alfa  
-efzilonkofusp   # 13123 alfa 
-tabirafusp      # 13243 alfa, 13242 alfa tedromer
-
-# Meeting
-turenkibart     # 12621 didn't clash with terakibart <- not in my list
-nuvustotug      # 13091
-safimestomig    # 13102
-armocibart      # 13116
-lofacimig       # 13117
-birinkibart     # 13121
-# NOTE! Methoxidation can be immunogenic
-tovecimig       # 13128  
-azerutamig      # 13130 
-telikibart      # 13144
-velinotamig     # 13145
-remzistotug     # 13149
-pasritamig      # 13153
-aletekitug      # 13155
-cizutamig       # 13166
-imeroprubart    # 13167
-
-solnerstotug    # 13183
-eclutatug       # 13184
-afimkibart      # 13205
-amtabafusp      # 13207 alfa
-trevotamig      # 13209
-#idoracibart     # 13212
-drotokibart     # 13214
-indemakitug     # 13226
-clesitamig      # 13237
-emugrobart      # 13238
-pamlectabart    # 13245, 13244 tismanitin
-produvofusp     # 13249
-etalanetug      # 13252
-recibokibart    # 13255
-mavrostobart    # 13259
-spevatamig      # 13260
-peluntamig      # 13261
-vebanvibart     # 13272
-eltivutabart    # 13273
-sutacimig       # 13275
-caxmotabart     # 13277 (trastuzumab modification) / 12378 entudotin
-zamubafusp      # 13282 alfa
-tizetatug       # 13306, 13287 rezetecan
-gacovetug       # 13288
-# 13294
-
-#CONSULTATION 78
-# Consensus
-ledostomig      # 12726
-velaprumig      # 13342
-vecantoxatug    # 13380
-cliramitug      # 13403
-#zapzavibart    # 13408 WITHDRAWN       
-cenvacibart     # 13411
-amrecibart      # 13412
-torvutatug      # 13422 (13421 samrotecan)
-adimanebart     # 13433
-futermestotug   # 13465
-tixentamig      # 13477
-lasrekibart     # 13500
-ompekimig       # 13515
-crusekitug      # 13525
-oturkibart      # 13526
-elegrobart      # 13528
-garetatug       # 13529 (13530 rezetecan)
-# Meeting
-potravitug      # 13315
-opamtistomig    # 13330
-ruzaltatug      # 13336 (13337 rezetecan)
-ramantamig      # 13340  (foound clash with rezetamig 12767)
-zemocimig       # 13346
-enlonstobart     # 13347
-moflerafusp     # 13348 alfa
-lecankitug      # 13350
-rapaprutug      # 13352
-firsekibart     # 13353
-bocunebart      # 13356
-tixestobart     # 13358
-tanruprubart    # 13359
-besufetamig     # 13363  (immunostimulant that kills T cells so suppresant)
-adezkibart      # 13365
-pumitamig       # 13367
-dalidnetug      # 13372
-gemitamig       # 13381
-inlecitug       # 13399
-etuptamig       # 13402
-exerenibart     # 13405
-ubletamig       # 13410  (CD28)
-isuventatug     # 13415
-abazistobart    # 13430
-daretabart      # 13434
-baperitamig     # 13438*
-#zoninterferon alfa-2b #13449 - stabilized by single-domain Abs
-trovostobart    # 13453
-cenzestotug     # 13466
-
-#ciltistotug     # 13467
-#livgocibart     # 13486
-#ensparkitug     # 13492
-#arumakimig      # 13493
-#ecafikitug      # 13495
-#leventatug      # 13502  (13521 vedotin)
-#anuzestotug     # 13505
-#zavekimig       # 13515
-#ruvisetatug     # 13518 (13517 vedotin)
-#efzervufusp     # 13543 alfa
-#retavibart      # 13554
-#claeprubart     # 13138
-#idoracibart     # 13212
