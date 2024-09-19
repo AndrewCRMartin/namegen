@@ -700,7 +700,7 @@ plonmarlimab
 uliledlimab
 # tosramtamab - rejected by applicant
 ponsegromab
-anbenitamab # (13457 repodatecan)
+anbenitamab # 11611 (13457 repodatecan)
 erfonrilimab
 # neligikimab - rejected by applicant
 # gipolenimab - rejected by applicant
@@ -1211,7 +1211,7 @@ opamtistomig    # 13330
 ruzaltatug      # 13336 (13337 rezetecan)
 ramantamig      # 13340  (found clash rametamig with rezetamig 12767)
 zemocimig       # 13346
-enlonstobart     # 13347
+suvonstobart    # 13347 (was enlonstobart)
 moflerafusp     # 13348 alfa
 lecankitug      # 13350
 rapaprutug      # 13352
@@ -1223,7 +1223,7 @@ besufetamig     # 13363  (immunostimulant that kills T cells so suppresant)
 adezkibart      # 13365
 pumitamig       # 13367
 dalidnetug      # 13372
-gemitamig       # 13381
+nesfrotamig     # 13381 (was gemitamig)
 inlecitug       # 13399
 etuptamig       # 13402
 exerenibart     # 13405
@@ -1235,7 +1235,6 @@ baperitamig     # 13438*
 #zoninterferon alfa-2b #13449 - stabilized by single-domain Abs
 trovostobart    # 13453
 cenzestotug     # 13466
-
 ciltistotug     # 13467
 baloncibart     # 13486
 enzelkitug      # 13492
