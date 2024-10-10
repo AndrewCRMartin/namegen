@@ -1,0 +1,35 @@
+[Defaults - Phonetics: 85.5; LetterSimilarity: 80.7]
+
+*** Processing 12159 : plutavimab ***
+Phonetics: plutavimab beludavimab 84.21
+
+*** Processing 12258 : umeso-xx-bart ***
+LetterSimilarity: umeso-xx-bart mevon-xx-bart 81.03
+
+*** Processing 12298 : tadepeprubart ***
+Phonetics: tadepeprubart paridiprubart 83.66
+
+*** Processing 12302 : itavatabart ***
+LetterSimilarity: itavatabart anvaztabart 78.18
+
+*** Processing 12361 : logevibart ***
+LetterSimilarity: logevibart tobevibart 88.03
+
+*** Processing 12368 : tanoprubart ***
+Phonetics: tanoprubart azenuprubart 86.88
+
+*** Processing 12368 : tulisoprubart ***
+LetterSimilarity: tulisoprubart ulvigaprubart 79.18
+
+*** Processing 12372 : xatrokibart ***
+LetterSimilarity: xatrokibart varokibart 82.39
+
+*** Processing 12375 : avugrestobart ***
+Phonetics: avugrestobart anzurestobart 83.38
+LetterSimilarity: avugrestobart anzurestobart 83.05
+
+*** Processing 12381 : portustobart ***
+Phonetics: portustobart perenostobart 83.94
+
+*** Processing 12390 : doblustobart ***
+LetterSimilarity: doblustobart portustobart 84.06
