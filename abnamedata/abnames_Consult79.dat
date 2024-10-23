@@ -830,7 +830,7 @@ adintrevimab  # 12026
 emirodatamab  # 12028
 rimteravimab  # 12047 SARS
 fiztasovimab  # 12050
-vobramitamab  # 12056 / 12057
+vobramitamab  # 12057 / 12056 duocarmazine / 13741 tavatecan
 camoteskimab  # 12062 (camote is sweet potato in Spanish)
 ivatrevimab   # 12070 sars
 ispectamab    # 12079 ADC / 12139 is the naked mAb (ispectamab tazide)
@@ -1279,14 +1279,34 @@ ensavatatug             # 13674
 varsetatug              # 13676 / 13675 masetecan
 olsutamig               # 13678 
 ipsoprubart             # 13680
+latarcibart             # 13690
+emzotamig               # 13697
 anflekitug              # 13698 
 camtarkibart            # 13699 
 revbekitug              # 13700 
+vasigrobart             # 13706 
+abdakibart              # 13713 
+notiretatug             # 13714 / 13715 rezetecan
 lixarkitug              # 13719 / 13720 samrotecan
-zamristobart            # 13722 
+zamristobart            # 13722
+zemlikafusp             # 13723 alfa
+povovetug               # 13732  (cat arthritis was pogo)
 tambotatug              # 13735 / 13657 pelitecan
 lazatatug               # 13736 
+invobenitug             # 13742 
 zarutatug               # 13744 / 13745 vedotin
+elatatug                # 13746 / 13747 vedotin
+roltotatug              # 13749* / 13748 vedotin
+fetrastobart            # 13769 / 13768 vedotin
+tagmokitug              # 13772 
+emaretamig              # 13773 
+nelvutamig              # 13774 
+moponebart              # 13775
+
+# mocertatug              # 13781 
+# talusitatug             # 13781 
+
+
 brevutatug              # 13783 / 13784 rezetecan
 nebaprubart             # 13788 
 selcodebart             # 13796 
@@ -1296,51 +1316,7 @@ ibramvibart             # 13806
 ordastobart             # 13557
 
 
-# setarcibart             # 13690 
-# lociracibart            # 13690
 
-# encatamig               # 13697 ?
-# encotamig               # 13697 
-
-# vasigrobart             # 13706 
-# xelogrobart             # 13706 ?
-
-# mavlekibart             # 13713 
-# obdakibart              # 13713 
-
-# teritatug               # 13715 ?
-# notiretatug             # 13715 ?
-
-# pogovetug               # 13732 ?
-# povovetug               # 13732 ?
-
-# invobenitug             # 13742 
-# onobenitug              # 13742 
-# rulazenitug             # 13742 
-
-# elatatug                # 13746 
-# vizatatug               # 13746 ?
-# vizutatug               # 13746 ?
-
-# soltotatug              # 13749 
-
-# fetrastobart            # 13769 ?
-# fetratabart             # 13769 
-
-# tagmokitug              # 13772 
-
-# blizitamig              # 13773 ?
-# emaretamig              # 13773 
-
-# elsutamig               # 13774 ?
-# ensutamig               # 13774 ?
-# nelvutamig              # 13774 
-
-# molunebart              # 13775 ?
-# moponebart              # 13775 ?
-
-# mocertatug              # 13781 
-# talusitatug             # 13781 
 
 # ridavekitug             # 12985 
 
@@ -1353,3 +1329,4 @@ ordastobart             # 13557
 # anafiltamig             # 13438 
 
 ### federelin !!!
+### sutekibart - suteki excellent in Japanese
