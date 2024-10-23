@@ -1241,17 +1241,11 @@ claseprubart    # 13138
 # 89 biosimilars in Oct 2024
 
 
-# Old names removed?
-bosakitug       # 12985 
-dalmitamig      # 13010
-#idoracibart     # 13212
-baperitamig     # 13438*
-
-
 # CONSULTATION 79
+ordastobart             # 13557
 merinetug               # 13561 
 tedintamig              # 13567 
-monrotamig              # 13568
+minritamig              # 13568
 setricibart             # 13572
 brelovitug              # 13576 
 sanritatug              # 13577 
@@ -1290,7 +1284,7 @@ notiretatug             # 13714 / 13715 rezetecan
 lixarkitug              # 13719 / 13720 samrotecan
 zamristobart            # 13722
 zemlikafusp             # 13723 alfa
-povovetug               # 13732  (cat arthritis was pogo)
+povovetug               # 13732 (cat arthritis was pogo)
 tambotatug              # 13735 / 13657 pelitecan
 lazatatug               # 13736 
 invobenitug             # 13742 
@@ -1302,31 +1296,19 @@ tagmokitug              # 13772
 emaretamig              # 13773 
 nelvutamig              # 13774 
 moponebart              # 13775
-
-# mocertatug              # 13781 
-# talusitatug             # 13781 
-
-
-brevutatug              # 13783 / 13784 rezetecan
+mocertatug              # 13781 / 13782 rezetecan
+risvutatug              # 13783 / 13784 rezetecan
 nebaprubart             # 13788 
 selcodebart             # 13796 
 gamgertamig             # 13797 
 girancitug              # 13804 
 ibramvibart             # 13806 
-ordastobart             # 13557
+bosakitug               # 12985 
+marlotamig              # 13010 was dalmitamig
+inclicibart             # 13212 was idoracibart
+anafiltamig             # 13438 was baperitamig
 
 
-
-
-# ridavekitug             # 12985 
-
-# marlotamig              # 13010 ?
-
-# cetrucibart             # 13212 
-# inclucibart             # 13212 ?
-# incrucibart             # 13212 ?
-
-# anafiltamig             # 13438 
 
 ### federelin !!!
 ### sutekibart - suteki excellent in Japanese
