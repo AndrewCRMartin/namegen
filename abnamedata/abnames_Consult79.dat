@@ -478,7 +478,7 @@ rozanolixizumab
 ruplizumab
 ruvalvetmab
 sabatolimab
-sacituzumab    # 12801 tirumotecan
+sacituzumab    # 12801 tirumotecan 13710 drozuntecan
 samalizumab
 samrotamab
 sarilumab
@@ -570,13 +570,13 @@ tositumomab
 tovetumab
 tralokinumab
 trastuzumab
+#9295 [emtansine]
 #12243 rezetecan
 #12382 ocsetolimod
 #12435 botidotin
 #12531 vedotin
 #12677 brengitecan
 #13009 envedotin
-#12808 emtansine beta Outstanding *** NO INN - glycosylation much the same
 #13179 pamirtecan
 #13660 bultecan
 tregalizumab
@@ -1039,7 +1039,7 @@ libevitug       # 12881
 vixticibart     # 12917 
 cugrastomig     # 12924 
 opugotamig      # 12941 / 12957 olatansine  (rivo... if trademark)
-calotatug       # 12942 / 12945 ginistinag
+calotatug       # 12942 / 12945 ginistinag 13777 zirastinag
 emiltatug       # 12943 / 12944 ledadotin
 mozistobart     # 12946
 tazlestobart    # 12964 
@@ -1092,7 +1092,6 @@ precemtabart    # 13071 / 13008 tocentecan
 ansipastobart   # 13011
 lumistobart     # 13012
 olintatug       # 13014 / 13015 tesirine
-### 13018       ??????????????????
 brivekimig      # 13019
 linclatamig     # 13026
 balekafusp      # 13040  alfa
@@ -1106,12 +1105,6 @@ gocatamig       # 13069 !!!!
 podontamig      # 13070
 crebankitug     # 13072
 lucorafusp      # 12728
-
-
-### TOCHECK
-### 12275
-### 13018
-### 12808
 
 # Consult77
 # Premeeting consensus
@@ -1256,21 +1249,10 @@ baperitamig     # 13438*
 
 
 # CONSULTATION 79
-
-
-# ridavekitug             # 12985 
-# marlotamig              # 13010 ?
-# cetrucibart             # 13212 
-# inclucibart             # 13212 ?
-# incrucibart             # 13212 ?
-# anafiltamig             # 13438 
-# ordastobart             # 13557 ?
-# ordestotug              # 13557 ?
-
 merinetug               # 13561 
 tedintamig              # 13567 
-monrotamig              # 13568 ?
-setricibart             # 13572 ?
+monrotamig              # 13568
+setricibart             # 13572
 brelovitug              # 13576 
 sanritatug              # 13577 
 sunakiment              # 13581 
@@ -1285,67 +1267,89 @@ ramtenebart             # 13637
 zumilokibart            # 13638
 ponumkibart             # 13641 
 felcorekibart           # 13642
-dalvaprubart            # 13649   May change to -tug
+dalvaprubart            # 13649   
 valancitug              # 13650 
-vedastotug              # 13651   May change to -pru-
+vedastotug              # 13651   ### May change to -pru-
 velvakiment             # 13655 
 gimvekibart             # 13663 
-vemzatatug              # 13666 13665 vedotin
-arcotatug               # 13669 13668 elpatecan
-turmetabart             # 13672 13671 adizutecan 
+vemzatatug              # 13666 / 13665 vedotin
+arcotatug               # 13669 / 13668 elpatecan
+turmetabart             # 13672 / 13671 adizutecan 
 ensavatatug             # 13674 
-varsetatug              # 13676   13675 masetecan
-olsutamig               # 13678 ?
+varsetatug              # 13676 / 13675 masetecan
+olsutamig               # 13678 
 ipsoprubart             # 13680
+anflekitug              # 13698 
+camtarkibart            # 13699 
+revbekitug              # 13700 
+lixarkitug              # 13719 / 13720 samrotecan
+zamristobart            # 13722 
+tambotatug              # 13735 / 13657 pelitecan
+lazatatug               # 13736 
+zarutatug               # 13744 / 13745 vedotin
+brevutatug              # 13783 / 13784 rezetecan
+nebaprubart             # 13788 
+selcodebart             # 13796 
+gamgertamig             # 13797 
+girancitug              # 13804 
+ibramvibart             # 13806 
+ordastobart             # 13557
 
 
 # setarcibart             # 13690 
 # lociracibart            # 13690
+
 # encatamig               # 13697 ?
 # encotamig               # 13697 
-anflekitug              # 13698 ?
-camtarkibart            # 13699 
-revbekitug              # 13700 
+
 # vasigrobart             # 13706 
 # xelogrobart             # 13706 ?
-sacituzumab             # 13710 drozuntecan
+
 # mavlekibart             # 13713 
 # obdakibart              # 13713 
+
 # teritatug               # 13715 ?
 # notiretatug             # 13715 ?
-lixarkitug              # 13719  13720 samrotecan
-zamristobart            # 13722 
+
 # pogovetug               # 13732 ?
 # povovetug               # 13732 ?
-tambotatug              # 13735   13657 pelitecan
-lazatatug               # 13736 
+
 # invobenitug             # 13742 
 # onobenitug              # 13742 
 # rulazenitug             # 13742 
-zarutatug               # 13744 # 745 vedotin
+
 # elatatug                # 13746 
 # vizatatug               # 13746 ?
 # vizutatug               # 13746 ?
+
 # soltotatug              # 13749 
+
 # fetrastobart            # 13769 ?
 # fetratabart             # 13769 
+
 # tagmokitug              # 13772 
+
 # blizitamig              # 13773 ?
 # emaretamig              # 13773 
+
 # elsutamig               # 13774 ?
 # ensutamig               # 13774 ?
 # nelvutamig              # 13774 
+
 # molunebart              # 13775 ?
 # moponebart              # 13775 ?
-calotatug                 # 13777 zirastinag
+
 # mocertatug              # 13781 
 # talusitatug             # 13781 
-brevutatug              # 13783    784 rezetecan
-nebaprubart             # 13788 
-selcodebart             # 13796 
-gamgertamig             # 13797 
-girancitug              # 13804 ?
-ibramvibart             # 13806 
 
+# ridavekitug             # 12985 
+
+# marlotamig              # 13010 ?
+
+# cetrucibart             # 13212 
+# inclucibart             # 13212 ?
+# incrucibart             # 13212 ?
+
+# anafiltamig             # 13438 
 
 ### federelin !!!
