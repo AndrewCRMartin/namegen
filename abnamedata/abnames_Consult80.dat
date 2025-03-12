@@ -478,7 +478,7 @@ rozanolixizumab
 ruplizumab
 ruvalvetmab
 sabatolimab
-sacituzumab    # 12801 tirumotecan
+sacituzumab    # 12801 tirumotecan 13710 drozuntecan
 samalizumab
 samrotamab
 sarilumab
@@ -570,14 +570,15 @@ tositumomab
 tovetumab
 tralokinumab
 trastuzumab
+#9295 [emtansine]
 #12243 rezetecan
 #12382 ocsetolimod
 #12435 botidotin
 #12531 vedotin
 #12677 brengitecan
 #13009 envedotin
-#12808 emtansine beta Outstanding *** NO INN - glycosylation much the same
 #13179 pamirtecan
+#13660 bultecan
 tregalizumab
 tremelimumab
 trevogrumab
@@ -786,7 +787,7 @@ xeligikimab   # 11625 was neligikimab
 galegenimab   # 11632 was gipolenimab  -eni- enzyme
 sotevtamab    # 11666 was avbotamab
 # Consult 72
-pelgifatamab  # 11920
+pelgifatamab  # 11920 # 13693 actinium (225Ac) pelgifatamab mopaxetan
 betifisolimab # 11926
 osemitamab    # 11927
 ifinatamab    # 11954/55
@@ -829,7 +830,7 @@ adintrevimab  # 12026
 emirodatamab  # 12028
 rimteravimab  # 12047 SARS
 fiztasovimab  # 12050
-vobramitamab  # 12056 / 12057
+vobramitamab  # 12057 / 12056 duocarmazine / 13741 tavatecan
 camoteskimab  # 12062 (camote is sweet potato in Spanish)
 ivatrevimab   # 12070 sars
 ispectamab    # 12079 ADC / 12139 is the naked mAb (ispectamab tazide)
@@ -1014,7 +1015,7 @@ xirestomig      # 12746 was tarastomig
 
 
 solrikitug      # 12752
-sigvotatug       # 12758 / 12757 vedotin    (close to ibentatug 12688)
+sigvotatug      # 12758 / 12757 vedotin    (close to ibentatug 12688)
 reflocibart     # 12770
 sipavibart      # 12778
 evalstotug      # 12780
@@ -1038,12 +1039,11 @@ libevitug       # 12881
 vixticibart     # 12917 
 cugrastomig     # 12924 
 opugotamig      # 12941 / 12957 olatansine  (rivo... if trademark)
-calotatug       # 12942 / 12945 ginistinag
+calotatug       # 12942 / 12945 ginistinag 13777 zirastinag
 emiltatug       # 12943 / 12944 ledadotin
-mozistobart     # 12946
+mozistobart     # 12946 (or is it 12949)
 tazlestobart    # 12964 
 adakitug        # 12979 
-bosakitug       # 12985 
 aplitabart      # 12990 
 navenibart      # 12991 
 pegrizeprument  # 12997 
@@ -1076,7 +1076,7 @@ etakafusp       # 12919
 samatatug       # 12921 / 12922 zovodotin
 umikibart       # 12925
 timcevibart     # 12929
-mozistobart     # 12949 / 12947 zoratolimod
+mozistobart     # 12949 / 12947 zoratolimod (or is it 12946)
 denikitug       # 12950
 ingitamig       # 12958 (was zinitamig)
 ficerafusp      # 12962 alfa (cetuximab mAb)
@@ -1089,11 +1089,9 @@ amlenetug       # 12986
 aldastotug      # 13002
 indenebart      # 13006
 precemtabart    # 13071 / 13008 tocentecan
-dalmitamig      # 13010
 ansipastobart   # 13011
 lumistobart     # 13012
 olintatug       # 13014 / 13015 tesirine
-### 13018       ??????????????????
 brivekimig      # 13019
 linclatamig     # 13026
 balekafusp      # 13040  alfa
@@ -1107,12 +1105,6 @@ gocatamig       # 13069 !!!!
 podontamig      # 13070
 crebankitug     # 13072
 lucorafusp      # 12728
-
-
-### TOCHECK
-### 12275
-### 13018
-### 12808
 
 # Consult77
 # Premeeting consensus
@@ -1165,7 +1157,6 @@ eclutatug       # 13184
 afimkibart      # 13205
 amtabafusp      # 13207 alfa
 trevotamig      # 13209
-inclocibart     # 13212 (was idoracibart)
 drotokibart     # 13214
 indemakitug     # 13226
 clesitamig      # 13237
@@ -1209,7 +1200,7 @@ garetatug       # 13529 (13530 rezetecan)
 potravitug      # 13315
 opamtistomig    # 13330
 ruzaltatug      # 13336 (13337 rezetecan)
-ramantamig      # 13340  (found clash rametamig with rezetamig 12767)
+ramantamig      # 13340 (found clash rametamig with rezetamig 12767)
 zemocimig       # 13346
 suvonstobart    # 13347 (was enlonstobart)
 moflerafusp     # 13348 alfa
@@ -1219,7 +1210,7 @@ firsekibart     # 13353
 bocunebart      # 13356
 tixestobart     # 13358
 tanruprubart    # 13359
-besufetamig     # 13363  (immunostimulant that kills T cells so suppresant)
+besufetamig     # 13363 (immunostimulant that kills T cells so suppresant)
 adezkibart      # 13365
 pumitamig       # 13367
 dalidnetug      # 13372
@@ -1227,11 +1218,10 @@ nesfrotamig     # 13381 (was gemitamig)
 inlecitug       # 13399
 etuptamig       # 13402
 exerenibart     # 13405
-ubletamig       # 13410  (CD28)
+ubletamig       # 13410 (CD28)
 isuventatug     # 13415
 abazistobart    # 13430
 daretabart      # 13434
-anafiltamig     # 13438* (was baperitamig)
 #zoninterferon alfa-2b #13449 - stabilized by single-domain Abs
 trovostobart    # 13453
 cenzestotug     # 13466
@@ -1240,13 +1230,88 @@ baloncibart     # 13486
 enzelkitug      # 13492
 arumakimig      # 13493
 amdokitug       # 13495
-laventatug      # 13502  (13521 tivedotin)
+laventatug      # 13502 (13521 tivedotin)
 balertatug      # 13505
 tilrekimig      # 13516
 ixotatug        # 13518 (13517 vedotin)
 retavibart      # 13554
 claseprubart    # 13138
-ordastobart     # 13557
 
 
 #13156 gatuzosiran for NAFLD
+# 89 biosimilars in Oct 2024
+
+
+# CONSULTATION 79 / PL133
+ordastobart             # 13557
+merinetug               # 13561 
+tedintamig              # 13567 
+minritamig              # 13568
+setricibart             # 13572
+brelovitug              # 13576 
+sanritatug              # 13577 
+sunakiment              # 13581 
+liscastobart            # 13585 
+lumivatamig             # 13593 
+gaspantatug             # 13602 
+tepilukimig             # 13604
+glarivibart             # 13605 
+asedebart               # 13606 
+ticalicibart            # 13627 
+ramtenebart             # 13637 
+zumilokibart            # 13638
+ponumkibart             # 13641 
+felcorekibart           # 13642
+dalvaprubart            # 13649   
+valancitug              # 13650 
+vedastotug              # 13651   ### May change to -pru-
+velvakiment             # 13655 
+gimvekibart             # 13663 
+vemzatatug              # 13666 / 13665 vedotin
+arcotatug               # 13669 / 13668 elpatecan
+turmetabart             # 13672 / 13671 adizutecan 
+ensavatatug             # 13674 
+varsetatug              # 13676 / 13675 masetecan
+olsutamig               # 13678 
+ipsoprubart             # 13680
+latarcibart             # 13690
+emzotamig               # 13697
+anflekitug              # 13698 
+camtarkibart            # 13699 
+revbekitug              # 13700
+vasigrobart             # 13706 
+abdakibart              # 13713 
+notiretatug             # 13714 / 13715 rezetecan
+lixarkitug              # 13719 / 13720 samrotecan
+zamristobart            # 13722
+zemlikafusp             # 13723 alfa
+povovetug               # 13732 (cat arthritis was pogo)
+tambotatug              # 13735 / 13657 pelitecan
+lazatatug               # 13736 
+invobenitug             # 13742 
+zarutatug               # 13744 / 13745 vedotin
+elatatug                # 13746 / 13747 vedotin
+roltotatug              # 13749* / 13748 vedotin
+fetrastobart            # 13769 / 13768 vedotin
+tagmokitug              # 13772 
+emaretamig              # 13773 
+nelvutamig              # 13774 
+moponebart              # 13775
+mocertatug              # 13781 / 13782 rezetecan
+risvutatug              # 13783 / 13784 rezetecan
+nebaprubart             # 13788 
+selcodebart             # 13796 
+gamgertamig             # 13797 
+girancitug              # 13804 
+# Not in PL133
+ibramvibart             # 13806 
+bosakitug               # 12985 
+marlotamig              # 13010 was dalmitamig
+inclocibart             # 13212 was idoracibart
+anafiltamig             # 13438 was baperitamig
+
+### federelin !!!
+### sutekibart - suteki excellent in Japanese
+
+
+# CONSUTATION 80
