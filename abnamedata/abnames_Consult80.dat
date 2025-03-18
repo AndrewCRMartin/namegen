@@ -1296,7 +1296,7 @@ fetrastobart            # 13769 / 13768 vedotin
 tagmokitug              # 13772 
 emaretamig              # 13773 
 nelvutamig              # 13774 
-moponebart              # 13775
+#moponebart              # 13775  (should be -tug)
 mocertatug              # 13781 / 13782 rezetecan
 risvutatug              # 13783 / 13784 rezetecan
 nebaprubart             # 13788 
@@ -1311,10 +1311,6 @@ inclocibart             # 13212 was idoracibart
 anafiltamig             # 13438 was baperitamig
 
 # CONSUTATION 80
-# tamirnetug              # 13775 
-# mirnetug                # 13775 
-# mopunetug               # 13775 
-
 amesotatug              # 13823 
 blidarvetug             # 13826
 runaumafusp             # 13831 alfa
@@ -1361,6 +1357,10 @@ remukibart              # 13979
 elfritatug              # 13986 
 vonaprument             # 13987 
 
+# tamirnetug              # 13775 
+# mirnetug                # 13775 
+# mopunetug               # 13775 
+
 # dasnunebart             # 13994 
 # drapsenebart            # 13994 
 
@@ -1396,3 +1396,4 @@ ladectamig              # 14008
 
 
 ### xaluritamig missing
+### Add a FASTA search to my process
