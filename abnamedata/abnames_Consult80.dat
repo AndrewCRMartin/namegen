@@ -414,7 +414,7 @@ patritumab
 pembrolizumab
 pepinemab
 perakizumab
-pertuzumab
+pertuzumab      # ?????? / 14025 beta
 petosemtamab
 pexelizumab
 pidilizumab
@@ -462,7 +462,7 @@ rilotumumab
 rinucumab
 ripertamab
 risankizumab
-rituximab
+rituximab     # sequence unclear (Roche-rituximab had the same sequence as 13874) - 13874 (beta? glycosylation looks different)
 rivabazumab
 robatumumab
 roledumab
@@ -613,7 +613,7 @@ volagidemab
 volociximab
 vonlerolizumab
 vopratelimab
-vorsetuzumab
+vorsetuzumab    # xxxxx, 13885 beta (afucosylated - enhanced ADCC) 
 votumumab
 vulinacimab
 vunakizumab
@@ -665,7 +665,7 @@ pimivalimab
 recaticimab
 sotigalimab
 tarlatamab
-tusamitamab
+tusamitamab  # 13698 sonditecan
 upifitamab
 vixarelimab
 vudalimab
@@ -1310,114 +1310,61 @@ marlotamig              # 13010 was dalmitamig
 inclocibart             # 13212 was idoracibart
 anafiltamig             # 13438 was baperitamig
 
-### federelin !!!
-### sutekibart - suteki excellent in Japanese
-
-
 # CONSUTATION 80
 # tamirnetug              # 13775 
 # mirnetug                # 13775 
 # mopunetug               # 13775 
 
-# amesortatug             # 13823 
-# amesotatug              # 13823 
-
-# blidarvetug             # 13826 
-
-# pebatocibart            # 13835 
-
-# ascuprubart             # 13837 
-
-# sutantatug              # 13838 
-
-# dulpatatug              # 13847 
-
-# lifonebart              # 13851 
-
-# nisositabart            # 13854 
-# gisedatabart            # 13854 
-
-# furtisetabart           # 13860 
-# quaseptabart            # 13860 
-
-# sacomitatug             # 13863 
-
-# becbotamig              # 13865 
-# zeclantamig             # 13865 
-
-# ritdatamig              # 13866 
-# bilnotamig              # 13866 
-
-# afivastobart            # 13876 
-
-# nilvanstomig            # 13880 
-
-# zocilurtatug            # 13883 
-
-# dercotamig              # 13892 
-# vadalentamig            # 13892 
-
-# evabosmig               # 13895 
-
-# cidneftatug             # 13896 
-# rocduntatug             # 13896 
-
-# zenlababart             # 13902 
-# fazlobabart             # 13902 
-
-# gledatabart             # 13908 
-
-# lexucitug               # 13913 
-
-# minokitug               # 13915 
-
-# beruzatatug             # 13925 
-
-# milzertamig             # 13930 
-# derzeltamig             # 13930 
-# betuztamig              # 13930 
-
-# eltokimig               # 13931 
-# aldukimig               # 13931 
-
-# zilistobart             # 13932 
-
-# solaprubart             # 13933 
-
-# laveltamig              # 13944 
-
-# dorgotabart             # 13947 
-# delrutabart             # 13947 
-# elfetabart              # 13947 
-
-# olevaprubart            # 13949 
-
-# ombetoxabart            # 13952 
-
-# betuprumig              # 13955 
-# faziprumig              # 13955 
-
-# zevontabart             # 13956 
-
-# boltaprumig             # 13958 
-
-# bulzitamig              # 13963 
-# tigritamig              # 13963 
-
-# remigromig              # 13973 
-
-# corveldebart            # 13975 
-
-# remukibart              # 13979 
-
-# elfritatug              # 13986 
-
-# vonaprument             # 13987 
+amesotatug              # 13823 
+blidarvetug             # 13826
+runaumafusp             # 13831 alfa
+pebatocibart            # 13835 
+ascuprubart             # 13837 
+sutantatug              # 13838 / 13839 envedotin
+aritinercept            # 13843
+dulpatatug              # 13847 
+lifonebart              # 13851 
+gisedatabart            # 13854 / 13853 ganirine
+furtisetabart           # 13860 
+sacomitatug             # 13863 / 13861 deruxtecan
+zeclantamig             # 13865 
+rodatamig               # 14031 / 13866 deuderuxtecan (mine)
+afivastobart            # 13876 
+nilvanstomig            # 13880 
+zocilurtatug            # 13883 / 13884 pelitecan
+# 13885   rituximab (beta?)
+vadalentamig            # 13892 
+evabosmig               # 13895 
+rocduntatug             # 13896 
+tepsababart             # 13902
+gamsitabart             # 13908 / 13909 tocentecan
+lexucitug               # 13913 
+minokitug               # 13915 
+beruzatatug             # 13925 / 13926 pelitecan
+derzeltamig             # 13930 
+aldukimig               # 13931 
+nambikibart             # 13932 
+solaprubart             # 13933 
+eftezirleukin           # 13936 alfa
+alveltamig              # 13944 
+elfetabart              # 13947 / 13946 drozuntecan
+olevaprubart            # 13949 
+ombetoxabart            # 13952 
+faziprumig              # 13955 
+zevontabart             # 13956 / 13957 vedotin
+zareprumig              # 13958 
+tigritamig              # 13963
+tonabafusp              # 13969 alfa
+remigromig              # 13973 
+corveldebart            # 13975 
+remukibart              # 13979 
+elfritatug              # 13986 
+vonaprument             # 13987 
 
 # dasnunebart             # 13994 
 # drapsenebart            # 13994 
 
-# torutamig               # 13997 
+torutamig               # 13997 
 
 # ladarsutatug            # 13998 
 
@@ -1432,10 +1379,20 @@ anafiltamig             # 13438 was baperitamig
 # paxistobart             # 14006 
 # radanstobart            # 14006 
 
-# ladectamig              # 14008 
+ladectamig              # 14008 
 
 # fozentatug              # 14026 
 # onvontatug              # 14026 
 
 # crovantatug             # 14028 
 # direntatug              # 14028 
+
+### Look at 13874
+
+### federelin !!!
+### sutekibart - suteki excellent in Japanese
+### 13857 poterepatide (mine, obesity)
+### 13927 zabopegdutide (obesity)
+
+
+### xaluritamig missing
