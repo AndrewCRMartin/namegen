@@ -570,7 +570,7 @@ tositumomab
 tovetumab
 tralokinumab
 trastuzumab
-#9295 [emtansine]
+#9295 emtansine
 #12243 rezetecan
 #12382 ocsetolimod
 #12435 botidotin
@@ -579,6 +579,7 @@ trastuzumab
 #13009 envedotin
 #13179 pamirtecan
 #13660 bultecan
+#14030 videtecan
 tregalizumab
 tremelimumab
 trevogrumab
@@ -798,6 +799,7 @@ luveltamab    # 12040/41 (has non-natural AAs)
 visugromab    # 12044
 imvotamab     # 12054
 trosunilimab  # 12071
+xaluritamig   # 12082 (missing this one until 18.03.25)
 danivrocimig  # 12086 (was gorpefecimab)
 vicasinab     # 11940 (second table)
 linvoseltamab # 12104
@@ -1231,7 +1233,7 @@ enzelkitug      # 13492
 arumakimig      # 13493
 amdokitug       # 13495
 laventatug      # 13502 (13521 tivedotin)
-balertatug      # 13505
+# balertatug      # 13505 (withdrawn)
 tilrekimig      # 13516
 ixotatug        # 13518 (13517 vedotin)
 retavibart      # 13554
@@ -1262,7 +1264,7 @@ ramtenebart             # 13637
 zumilokibart            # 13638
 ponumkibart             # 13641 
 felcorekibart           # 13642
-dalvaprubart            # 13649   
+dalvaprubart            # 13649   ### matches ofatumumab V domains, but CH1 is an artificial sequence based on PDB file
 valancitug              # 13650 
 vedastotug              # 13651   ### May change to -pru-
 velvakiment             # 13655 
@@ -1356,36 +1358,19 @@ corveldebart            # 13975
 remukibart              # 13979 
 elfritatug              # 13986 
 vonaprument             # 13987 
-
-# tamirnetug              # 13775 
-# mirnetug                # 13775 
-# mopunetug               # 13775 
-
-# dasnunebart             # 13994 
-# drapsenebart            # 13994 
-
+brapsenebart            # 13994 
 torutamig               # 13997 
+ladarutatug             # 13998 
+varzutamig              # 13999 
+eliroptamig             # 14000 (mine from -rap-)
+turigrobart             # 14005 (subject to USAN)
+radanstobart            # 14006 
+refictamig              # 14008 
+zafinafusp              # 140xx alfa
+onvontatug              # 14026 / 14027 videtecan
+renditatug              # 14028 / 14029 videtecan
+moponetug               # 13775 subject to USAN
 
-# ladarsutatug            # 13998 
-
-# varzutamig              # 13999 
-# aloretamig              # 13999 
-
-# varcatamig              # 14000 
-# eliraptamig             # 14000 
-
-# turigrobart             # 14005 
-
-# paxistobart             # 14006 
-# radanstobart            # 14006 
-
-ladectamig              # 14008 
-
-# fozentatug              # 14026 
-# onvontatug              # 14026 
-
-# crovantatug             # 14028 
-# direntatug              # 14028 
 
 ### Look at 13874
 
@@ -1397,3 +1382,8 @@ ladectamig              # 14008
 
 ### xaluritamig missing
 ### Add a FASTA search to my process
+### 13505 (balertatug) has same sequence as 9611 (vorsetuzumab)
+###    - 13505 withdrawn
+### 11973 (cifurtilimab) same as 8959 (dacetuzumab), but fucosylation changed
+###    (so 11973 should be facetuzumab beta)
+
