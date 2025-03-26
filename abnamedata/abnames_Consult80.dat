@@ -1326,7 +1326,7 @@ gisedatabart            # 13854 / 13853 ganirine
 furtisetabart           # 13860 
 sacomitatug             # 13863 / 13861 deruxtecan
 zeclantamig             # 13865 
-rodatamig               # 14031 / 13866 deuderuxtecan (mine)
+rodatamig               # 14031 / 13866 deuderuxtecan (mine) [or rolditamig]
 afivastobart            # 13876 
 nilvanstomig            # 13880 
 zocilurtatug            # 13883 / 13884 pelitecan
@@ -1378,10 +1378,7 @@ moponetug               # 13775 subject to USAN
 ### sutekibart - suteki excellent in Japanese
 ### 13857 poterepatide (mine, obesity)
 ### 13927 zabopegdutide (obesity)
-
-
-### xaluritamig missing
-### Add a FASTA search to my process
+### *** Add a FASTA search to my process ***
 ### 13505 (balertatug) has same sequence as 9611 (vorsetuzumab)
 ###    - 13505 withdrawn
 ### 11973 (cifurtilimab) same as 8959 (dacetuzumab), but fucosylation changed
