@@ -410,11 +410,11 @@ parsatuzumab
 pascolizumab
 pasotuxizumab
 pateclizumab
-patritumab
+patritumab      # 9549 / 11093 deruxtecan
 pembrolizumab
 pepinemab
 perakizumab
-pertuzumab      # ?????? / 14025 beta
+pertuzumab      # 8380 / 14025 beta / 11933 zuvotolimod
 petosemtamab
 pexelizumab
 pidilizumab
@@ -422,7 +422,7 @@ pinatuzumab
 pintumomab
 placulumab
 plamotamab
-plozalizumab   # (13431 plevistinag)
+plozalizumab   # ???? / 13431 plevistinag
 polatuzumab
 ponezumab
 porgaviximab
@@ -462,7 +462,10 @@ rilotumumab
 rinucumab
 ripertamab
 risankizumab
-rituximab     # sequence unclear (Roche-rituximab had the same sequence as 13874) - 13874 (beta? glycosylation looks different)
+rituximab  # 7609 (219A), 9955 (219A), 11212 (219V), 13874 beta (219A)
+# sequence unclear! IMGT has 219V
+# EP1469065A1 has 219A
+# US Biologic License BL103705 has 219A (Roche-rituximab)
 rivabazumab
 robatumumab
 roledumab
@@ -614,7 +617,7 @@ volagidemab
 volociximab
 vonlerolizumab
 vopratelimab
-vorsetuzumab    # xxxxx, 13885 beta (afucosylated - enhanced ADCC) 
+vorsetuzumab    # 9611 / 9610 mafdotin / 13885 beta (afucosylated - enhanced ADCC) 
 votumumab
 vulinacimab
 vunakizumab
@@ -666,7 +669,7 @@ pimivalimab
 recaticimab
 sotigalimab
 tarlatamab
-tusamitamab  # 13698 sonditecan
+tusamitamab  # 11467 / 11356 ravtansine / 13698 sonditecan
 upifitamab
 vixarelimab
 vudalimab
@@ -1023,7 +1026,6 @@ sipavibart      # 12778
 evalstotug      # 12780
 nezastomig      # 12804
 lunsekimig      # 12833
-ocankitug       # 12838
 verekitug       # 12749
 vilastobart     # 12761
 rezorstobart    # 12766 
@@ -1061,7 +1063,7 @@ bexatamig       # 13042
 omectatug       # 13058 (was raxutatug)
 # Meeting....
 
-ocankitug       # 12828
+ocankitug       # 12828 (or was it 12838?)
 sonesitatug     # 13073 / 12846 vedotin   # Must avoid -sta- (was magrutatug)
 brivestobart    # 12847 (was idomistobart)
 atenastobart    # 12848 (was atenakibart)
