@@ -898,7 +898,7 @@ ralzapastomab  # 12340
 forimtamig     # 12346
 crexavibart    # 12362
 rilvegostomig  # 12387
-bextrestobart  # 12389
+tuparstobart   # 12389 (was bextrestobart)
 lipustobart    # 12392 /12393 lipustobart xxx
 ulviprubart    # 12298 
 izeltabart     # 12302, 12303 izeltabart tapatansine
@@ -918,7 +918,7 @@ ogalvibart     # 12361
 anzurstobart   # 12363
 remternetug    # 12364 was caplunetug
 tulisokibart   # 12368
-xotrakibart    # 12372
+eltrekibart    # 12372 was xotrakibart
 cindoprubart   # 12373
 nisevokitug    # 12374
 pradusinstobart # 12375 (was pradustobart)
@@ -1251,7 +1251,7 @@ ordastobart             # 13557
 merinetug               # 13561 
 tedintamig              # 13567 
 minritamig              # 13568
-setricibart             # 13572
+# setricibart             # 13572  WITHDRAWN
 brelovitug              # 13576 
 sanritatug              # 13577 
 sunakiment              # 13581 
