@@ -1318,7 +1318,6 @@ anafiltamig             # 13438 was baperitamig
 amesotatug              # 13823 
 blidarvetug             # 13826
 runaumafusp             # 13831 alfa
-pebatocibart            # 13835 
 ascuprubart             # 13837 
 sutantatug              # 13838 / 13839 envedotin
 aritinercept            # 13843
@@ -1343,7 +1342,6 @@ minokitug               # 13915
 beruzatatug             # 13925 / 13926 pelitecan
 derzeltamig             # 13930 
 aldukimig               # 13931 
-nambikibart             # 13932 
 solaprubart             # 13933 
 eftezirleukin           # 13936 alfa
 alveltamig              # 13944 
@@ -1406,17 +1404,17 @@ glankibart           # 14185
 axelprutug           # 14188                   
 ubivertatug          # 14190 / 14191 vedotin   
 #WITHDRAWN           # 14216                   
-susitabart           # 14240 / 14241 pegnuclatansine   
+susitabart           # 14240 / 14241 ponetansine   
 afamakitug           # 14242                   
 zalbintamig          # 14251 / 14250 vedotin   
-olaviztabart         # 14255 / 14256 ciltecan
+olaviztabart         # 14255 / 14256 cilotecan
 figovetbart          # 14264  
 truzodebart          # 14265                   
 # Meeting
 dusenprubart         # 14036
 rebatatug            # 14039/14040 rezetecan
 olusonkafusp         # 14044 alfa
-rivocibart           # 14053
+rivocibart           # 14053 (conflict with Rivotril?)
 clalevibart          # 14070 (mine)
 cesalatamig          # 14085
 tasafustobart        # 14086
@@ -1426,6 +1424,7 @@ mevegtatug           # 14106 / 14105 pelitecan
 infutatug            # 14108 / 14107 pelitecan
 ezlatamig            # 14109
 tivunatamig          # 14115
+filucimod            # 14126 alfa
 sirfitamig           # 14138 (part mine)
 avrukibart           # 14140
 tadizitamig          # 14149
@@ -1439,12 +1438,15 @@ solgikibart          # 14194
 golukibart           # 14196
 zimlekitug           # 14208
 prinotatug           # 14211
-  # 14216
-  # 14220
-  # 14211
-  # 14226 / 14225 mipitecan  birsatecan
-  # 14229
-  # 14232 / 14231 225Ac satetraxetan
-  # 14258
-  # 14261
-  # 14279 / 14262 enfinatecan
+inzavetug            # 14220
+exuvetbart           # 14211
+milbunimod           # 14223 alfa
+sofetabart           # 14226 / 14225 mipitecan
+mosdaprubart         # 14229
+ulextabart           # 14232 / 14231 225Ac satetraxetan
+lonletamig           # 14258
+lenovetug            # 14261
+onvisatabart         # 14279 / 14262 birsatecan
+robatocibart         # 13835 (was pebatocibart in C80)
+nimbakibart          # 13932 (was nambikibart in C80)
+# Add code to check start and end
