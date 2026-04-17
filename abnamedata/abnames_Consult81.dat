@@ -1273,7 +1273,7 @@ velvakiment             # 13655
 gimvekibart             # 13663 
 vemzatatug              # 13666 / 13665 vedotin
 arcotatug               # 13669 / 13668 elpatecan
-turmetabart             # 13672 / 13671 adizutecan 
+# turmetabart             # 13672 / 13671 adizutecan ### Objected
 ensavatatug             # 13674 
 varsetatug              # 13676 / 13675 masetecan
 olsutamig               # 13678 
@@ -1341,7 +1341,7 @@ lexucitug               # 13913
 minokitug               # 13915 
 beruzatatug             # 13925 / 13926 pelitecan
 derzeltamig             # 13930 
-aldukimig               # 13931 
+# aldukimig               # 13931 withdrawn
 solaprubart             # 13933 
 eftezirleukin           # 13936 alfa
 alveltamig              # 13944 
@@ -1411,7 +1411,7 @@ olaviztabart         # 14255 / 14256 cilotecan
 figovetbart          # 14264  
 truzodebart          # 14265                   
 # Meeting
-dusenprubart         # 14036
+murunprubart         # 14036 was dusenprubart
 rebatatug            # 14039/14040 rezetecan
 olusonkafusp         # 14044 alfa
 rivocibart           # 14053 (conflict with Rivotril?)

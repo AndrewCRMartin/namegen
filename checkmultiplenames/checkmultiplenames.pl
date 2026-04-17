@@ -85,26 +85,31 @@ unlink($tmpNamesFile);
 sub ProcessName
 {
     my($tmpNamesFile, $nameLine) = @_;
-    my($reqID, $name) = split(/\s+/, $nameLine);
+    $nameLine =~ s/\#.*//;  # Remove comments
+    $nameLine =~ s/^\s+//;  # Remove leading spaces
+    if(length($nameLine))
+    {
+        my($reqID, $name) = split(/\s+/, $nameLine);
 
-    my $pParams = "-t 82";
-    my $sParams = "-t 77";
+        my $pParams = "-t 82";
+        my $sParams = "-t 77";
 #    $pParams = '';
 #    $sParams = '';
     
-    print "\n*** Processing $reqID : $name ***\n\n";
+        print "\n*** Processing $reqID : $name ***\n\n";
     
-    my $exe = "$::abcheckname -p -n $tmpNamesFile $pParams $name";
-    system "$exe";
+        my $exe = "$::abcheckname -p -n $tmpNamesFile $pParams $name";
+        system "$exe";
+        
+        $exe = "$::abcheckname -s -n $tmpNamesFile $sParams $name";
+        system "$exe";
+        
+        print "\n[Defaults - Phonetics: 85.5; LetterSimilarity: 80.7]\n";
+        
+        print "\n-----------------------------------------------\n";
 
-    $exe = "$::abcheckname -s -n $tmpNamesFile $sParams $name";
-    system "$exe";
-
-    print "\n[Defaults - Phonetics: 85.5; LetterSimilarity: 80.7]\n";
-    
-    print "\n-----------------------------------------------\n";
-
-    UpdateNamesFile($tmpNamesFile, $name);
+        UpdateNamesFile($tmpNamesFile, $name);
+    }
 }
 
 #*************************************************************************
