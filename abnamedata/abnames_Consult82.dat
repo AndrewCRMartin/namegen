@@ -441,7 +441,7 @@ quilizumab
 quobrivimab
 racotumomab
 radretumab
-rafivirumab
+rafivirumab      # 14346 beta
 ralpancizumab
 ramucirumab
 ranevetmab
@@ -481,7 +481,7 @@ rozanolixizumab
 ruplizumab
 ruvalvetmab
 sabatolimab
-sacituzumab    # 12801 tirumotecan 13710 drozuntecan
+sacituzumab    # 12801 tirumotecan 13710 drozuntecan 14320 fapetecan
 samalizumab
 samrotamab
 sarilumab
@@ -1327,7 +1327,7 @@ gisedatabart            # 13854 / 13853 ganirine
 furtisetabart           # 13860 
 sacomitatug             # 13863 / 13861 deruxtecan
 zeclantamig             # 13865 
-rodatamig               # 14031 / 13866 deuderuxtecan (mine) [or rolditamig]
+rolditamig               # 14031 / 13866 deuderuxtecan 
 afivastobart            # 13876 
 nilvanstomig            # 13880 
 zocilurtatug            # 13883 / 13884 pelitecan
@@ -1450,3 +1450,58 @@ onvisatabart         # 14279 / 14262 birsatecan
 robatocibart         # 13835 (was pebatocibart in C80)
 nimbakibart          # 13932 (was nambikibart in C80)
 # Add code to check start and end
+# CONSULTATION82 Consensus
+agetaprubart         # 14349 
+alarikibart          # 14329 
+casgetamig           # 14469
+copostomig           # 14325 
+filokimig            # 14498 
+ganuprutug           # 14530 
+gereltamig           # 14514 / 14441 repodatecan  
+gonzidebart          # 14422 
+inatovtabart         # 14511 
+inixutamig           # 14326 
+#miruvosmig          # 14401 WITHDRAWN  
+motuzatamig          # 14348 
+mulnokibart          # 14378 
+nibirstobart         # 14312 
+nisalekibart         # 14517 
+pavlikibart          # 14516 
+retanitamig          # 14287 
+sigrunebart          # 14369 
+tevgolokibart        # 14521 
+veluvosbart          # 14424 
+viprokimig           # 14330 
+zorenkimig           # 14528 
+#CONSULTATION82 Meeting
+seviprumig           # 14113
+ventotabart          # 14282 mine 14283 opadotin
+teminprubart         # 14300
+minperstobart        # 14307
+# note lerazepatide 14311 is a modified tirzepatide (carboxylic -> phosphonic acid)
+# note radiolabelled - Choose Option C, For elements in ASCII, 227Th/99mTc/etc
+# ...probably!
+nuvritatug           # 14347 / 14313 225Ac mopaxetan
+celvantamig          # 14371 / 14334 tocentecan
+candastomig          # 14342
+stelikimig           # 14343
+nelnivitug           # 14345
+sedivkibart          # 14351
+taridetatug          # 14356  14357 rezetecan
+pegdariciment        # 14362
+vatrotatug           # 14379 / 14380 vedotin
+ronarokitug          # 14391
+varidakitug          # 14398
+amrutamig            # 14406 / 14407 rezetecan
+senerekibart         # 14412
+gosovontamig         # 14417
+ravertabart          # 14421 / 14420 gusdetecan   mine
+doslantamig          # 14427
+cenoroltamig         # 14428
+eflogafufusp         # 14432
+aldukimig            # 14438
+mofracibart          # 14439 (-ci- in this case if blood filtering by kidneys)
+larulatamig          # 14460
+budectamig           # 14462
+imactarpacept        # 14465
+dezmicibart          # 14480
