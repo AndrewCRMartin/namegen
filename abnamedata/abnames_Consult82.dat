@@ -974,7 +974,7 @@ brenetafusp     # 12532
 vipalanebart    # 12534
 lafuvitug       # 12541
 zeleciment      # 12542 / 12543 rostudirsen / 12713 basivarsen
-budoprubart     # 12546
+budoprubart     # 12546 / # 14531 beta (afucosylated)
 veligrotug      # 12548
 timdarpacept    # 12555
 vopikitug       # 12559
@@ -1412,7 +1412,7 @@ figovetbart          # 14264
 truzodebart          # 14265                   
 # Meeting
 murunprubart         # 14036 was dusenprubart
-rebatatug            # 14039/14040 rezetecan
+rebatatug            # 14039 / 14040 rezetecan
 olusonkafusp         # 14044 alfa
 rivocibart           # 14053 (conflict with Rivotril?)
 clalevibart          # 14070 (mine)
@@ -1459,7 +1459,7 @@ filokimig            # 14498
 ganuprutug           # 14530 
 gereltamig           # 14514 / 14441 repodatecan  
 gonzidebart          # 14422 
-inatovtabart         # 14511 
+inatovtabart         # 14511 / 14512 calixtecan
 inixutamig           # 14326 
 #miruvosmig          # 14401 WITHDRAWN  
 motuzatamig          # 14348 
@@ -1487,7 +1487,7 @@ candastomig          # 14342
 stelikimig           # 14343
 nelnivitug           # 14345
 sedivkibart          # 14351
-taridetatug          # 14356  14357 rezetecan
+taridetatug          # 14356 / 14357 rezetecan
 pegdariciment        # 14362
 vatrotatug           # 14379 / 14380 vedotin
 ronarokitug          # 14391
@@ -1501,7 +1501,21 @@ cenoroltamig         # 14428
 eflogafufusp         # 14432
 aldukimig            # 14438
 mofracibart          # 14439 (-ci- in this case if blood filtering by kidneys)
-larulatamig          # 14460
+larulatamig          # 14460 / 14493 adizutecan
 budectamig           # 14462
 imactarpacept        # 14465
 dezmicibart          # 14480
+rilsiftabart         # 13672 / 13671 adizutecan
+calocdekinra         # 14032 alfa
+tevintatug           # 14485
+milparatatug         # 14501 / 14502 bopistecan
+noragrobart          # 14503   (check the structure)
+munisatabart         # 14507 / 14508 pivumitecan
+frubiprubart         # 14515
+zonfintatug          # 14524 / 14523 birsatecan   mine
+sefortatug           # 14525 / 14526 drozuntecan
+drexistomig          # 14535
+etseprutug           # 14537
+donsuprubart         # 14538
+
+   
